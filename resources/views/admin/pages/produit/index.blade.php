@@ -28,6 +28,8 @@
                   <th scope="col">prix</th>
                   <th scope="col">categorie</th>
                   <th scope="col">solde</th>
+                  <th scope="col">date</th>
+
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -43,7 +45,7 @@
                     />
                   </th>
                   <td>{{ Str::limit($item['title'],10,'...' ) }}</td>
-                  <td>{{ $item['prix'] }}</td>
+                  <td>{{ number_format($item['prix'], 0,',', ' ') }}</td>
                   <td>
                    
                     <span>{{ $item['category']['title'] }} <br>
@@ -52,13 +54,17 @@
                     
                   </td>
 
+
+
                   <td>
                   @if ($item['promotion']==1)
                       <span>{{ $item['date_debut_promo'] }}</span> <br>
                       <span>{{ \Carbon\Carbon::parse($item['date_fin_promo'])->format('d-m-Y') }}</span><br>
-                      <span class=" text-white text-bold badge bg-danger">{{ $item['prix_promo'] }}</span>  
+                      <span class=" text-white text-bold badge bg-danger">{{ number_format($item['prix_promo'], 0,',', ' ') }}</span>  
                       @endif
                     </td>
+                    <td> {{ \Carbon\Carbon::parse($item['created_at'])->diffForHumans() }}</td>
+
 
                 
                   <td>

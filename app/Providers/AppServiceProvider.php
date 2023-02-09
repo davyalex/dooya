@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
             // $delete_produit = Produit::whereNull('category_id')
             // ->WhereNull('sous_category_id') ->delete();
 
-        $category_pack = CategoryPack::with('packs')->get();
+        $category_pack = CategoryPack::with('packs')->orderBy('title','asc')->get();
         $sous_category = SousCategory::with(['categorie','produits'])->get();
         $category = Category::with(['sous_categories','produits'])->get();
         $section = Section::with('produits')->get();

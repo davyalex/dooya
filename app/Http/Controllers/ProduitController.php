@@ -67,7 +67,7 @@ class ProduitController extends Controller
     {
         //
         $request->validate([
-            'title' => '',
+            'title' => 'required',
             'prix' => 'required',
             'prix_promo' => '',
             'date_fin_promo' => '',
@@ -230,6 +230,10 @@ $produit->sections()->sync($request->section);
             Produit::find($produit->id)->update([
                 "promotion" => 1,
             ]);
+        }else{
+            Produit::find($produit->id)->update([
+                "promotion" => 0,
+            ]);
         }
 
         if ($request->file('files')) {
@@ -246,8 +250,9 @@ $produit->sections()->sync($request->section);
             ->get();
 
         Alert::toast('modifié avec success', 'success');
+        return redirect() ->route('produit');
 
-        return view('admin.pages.produit.index', compact('produit'));
+        // return view('admin.pages.produit.index', compact('produit'));
     }
 
     /**

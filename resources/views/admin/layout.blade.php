@@ -209,7 +209,7 @@
             </a>
           </li>
           <li>
-            <a href="charts-apexcharts.html">
+            <a href="{{ route('pack') }}">
               <i class="bi bi-circle"></i><span>Packs</span>
             </a>
           </li>
@@ -218,7 +218,7 @@
 
 
 
-       {{-- Pack --}}
+       {{-- Commande --}}
        <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#commande-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-cart"></i><span>Commandes</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -248,13 +248,33 @@
                 <i class="bi bi-bicycle"></i>
                 <span>Livraisons</span>
             </a>
-        </li><!-- End Login Page Nav -->
+        </li><!-- End livraison Page Nav -->
+
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('user') }}">
             <i class="bi bi-people-fill"></i>
             <span>Utilisateurs</span>
           </a>
-        </li><!-- End category Page Nav -->
+        </li><!-- End user Page Nav -->
+
+           {{-- category --}}
+           <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#parametre-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-tools"></i><span>Parametre</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="parametre-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                <a href="">
+                  <i class="bi bi-circle"></i><span>Slider</span>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <i class="bi bi-circle"></i><span>Publicité</span>
+                </a>
+              </li>
+            </ul>
+          </li><!-- End category Nav -->
 
     </ul>
 

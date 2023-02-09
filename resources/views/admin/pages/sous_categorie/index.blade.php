@@ -70,6 +70,8 @@
                   <th scope="col">Title</th>
                   <th scope="col">Categorie</th>
                   <th scope="col">Nombre produits</th>
+                  <th scope="col">date</th>
+
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -80,6 +82,8 @@
                   <td>{{ $item['title'] }}</td>
                   <td>{{ $item->categorie->title }}</td>
                   <td>{{ $item->produits->count() }}</td>
+                  <td> {{ \Carbon\Carbon::parse($item['created_at'])->diffForHumans() }}</td>
+
                 
                   <td>
                    <div class="d-flex">

@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\CategoryPack;
+use App\Models\Pack;
 use Illuminate\Support\Str;
+use App\Models\CategoryPack;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
@@ -115,6 +116,8 @@ class CategoryPackController extends Controller
         //
 
         $delete = CategoryPack::find($id)->delete();
+        Pack::where('category_pack_id',$id)->delete();
+
         Alert::toast('supprimé avec success', 'success');
 
         return redirect()->route('category_pack');

@@ -70,6 +70,8 @@
                   <th scope="col">Lieu</th>
                   <th scope="col">Tarif</th>
                   <th scope="col">Description</th>
+                  <th scope="col">date</th>
+
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -78,8 +80,10 @@
                 <tr>
                   <th scope="row">{{ ++$key }}</th>
                   <td>{{ $item['lieu'] }}</td>
-                  <td>{{ $item['tarif'] }}</td>
+                  <td>{{ number_format($item['tarif'], 0,',', ' ') }}</td>
                   <td>{!! $item['description'] !!}</td>
+                  <td> {{ \Carbon\Carbon::parse($item['created_at'])->diffForHumans() }}</td>
+
                 
                   <td>
                    <div class="d-flex">

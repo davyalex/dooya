@@ -53,6 +53,8 @@
                   <th scope="col">#</th>
                   <th scope="col">Title</th>
                   <th scope="col">Nombre packs</th>
+                  <th scope="col">date</th>
+
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -62,7 +64,8 @@
                   <th scope="row">{{ ++$key }}</th>
                   <td>{{ $item['title'] }}</td>
                   <td>{{ $item->packs->count() }}</td>
-                
+                  <td> {{ \Carbon\Carbon::parse($item['created_at'])->diffForHumans() }}</td>
+
                   <td>
                    <div class="d-flex">
                     <a href="/post/category_pack?category_pack={{ $item['slug'] }}"  role="button" class="btn btn-warning rounded-circle"><i class="bi bi-eye"></i></a>

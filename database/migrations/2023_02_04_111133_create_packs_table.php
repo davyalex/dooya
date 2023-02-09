@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->double('prix')->nullable();
             $table->double('prix_promo')->nullable();
+            $table->date('date_debut_promo')->nullable();
             $table->date('date_fin_promo')->nullable();
             $table->integer('stock')->nullable();
             $table->string('disponibilite')->nullable(); //select(disponible, rupture)

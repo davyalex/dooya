@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PackController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\SectionController;
@@ -24,7 +25,7 @@ use App\Http\Controllers\SousCategoryController;
 */
 
 // Route::get('/', function () {
-//     return view('admin.pages.index');
+//     return view('site.pages.accueil');
 // });
 //LOGIN
 Route::post('login', [UserController::class, 'login'])->name('login');
@@ -33,11 +34,10 @@ Route::get('login', [UserController::class, 'loginForm'])->name('login-form');
 
 //Route admin
 Route::middleware('auth')->prefix('admin')->group(function () {
- 
+
     /**Post */
     Route::controller(DashboardController::class)->group(function () {
         Route::get('', 'index')->name('dashboard');
-      
     });
 
     Route::controller(UserController::class)->prefix('user')->group(function () {
@@ -52,8 +52,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('profil/{code}', 'profil')->name('user.profil');
         route::post('logout', 'logout')->name('logout');
         route::post('newpassword/{id}', 'newpassword')->name('user.newpassword');
-
-
     });
 
     /**Category */
@@ -65,8 +63,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::post('destroy/{id}', 'destroy')->name('category.delete');
     });
 
-      /**Sous-Category */
-      Route::controller(SousCategoryController::class)->prefix('sous_category')->group(function () {
+    /**Sous-Category */
+    Route::controller(SousCategoryController::class)->prefix('sous_category')->group(function () {
         Route::get('', 'index')->name('sous_category');
         Route::post('store', 'store')->name('sous_category.store');
         Route::get('edit/{slug}', 'edit')->name('sous_category.edit');
@@ -75,8 +73,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     });
 
 
-      /**CategoryPack */
-      Route::controller(CategoryPackController::class)->prefix('category_pack')->group(function () {
+    /**CategoryPack */
+    Route::controller(CategoryPackController::class)->prefix('category_pack')->group(function () {
         Route::get('', 'index')->name('category_pack');
         Route::post('store', 'store')->name('category_pack.store');
         Route::get('edit/{slug}', 'edit')->name('category_pack.edit');
@@ -85,8 +83,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     });
 
 
-     /**Section */
-     Route::controller(SectionController::class)->prefix('section')->group(function () {
+    /**Section */
+    Route::controller(SectionController::class)->prefix('section')->group(function () {
         Route::get('', 'index')->name('section');
         Route::post('store', 'store')->name('section.store');
         Route::get('edit/{slug}', 'edit')->name('section.edit');
@@ -95,18 +93,18 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     });
 
 
-         /**Livraison */
-         Route::controller(LivraisonController::class)->prefix('livraison')->group(function () {
-            Route::get('', 'index')->name('livraison');
-            Route::post('store', 'store')->name('livraison.store');
-            Route::get('edit/{code}', 'edit')->name('livraison.edit');
-            Route::post('update/{code}', 'update')->name('livraison.update');
-            Route::post('destroy/{id}', 'destroy')->name('livraison.delete');
-        });
-    
+    /**Livraison */
+    Route::controller(LivraisonController::class)->prefix('livraison')->group(function () {
+        Route::get('', 'index')->name('livraison');
+        Route::post('store', 'store')->name('livraison.store');
+        Route::get('edit/{code}', 'edit')->name('livraison.edit');
+        Route::post('update/{code}', 'update')->name('livraison.update');
+        Route::post('destroy/{id}', 'destroy')->name('livraison.delete');
+    });
 
 
-     /**Produit */
+
+    /**Produit */
     Route::controller(ProduitController::class)->prefix('produit')->group(function () {
         Route::get('', 'index')->name('produit');
         Route::get('create', 'create')->name('produit.create');
@@ -116,7 +114,31 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::post('destroy/{id}', 'destroy')->name('produit.delete');
         Route::get('loadSubCat/{id}', 'loadsubCat');
         Route::get('deleteImage/{id}', 'deleteImage');
+    });
 
-
+    /**Produit */
+    Route::controller(PackController::class)->prefix('pack')->group(function () {
+        Route::get('', 'index')->name('pack');
+        Route::get('create', 'create')->name('pack.create');
+        Route::post('store', 'store')->name('pack.store');
+        Route::get('edit/{code}', 'edit')->name('pack.edit');
+        Route::post('update/{id}', 'update')->name('pack.update');
+        Route::post('destroy/{id}', 'destroy')->name('pack.delete');
+        Route::get('loadSubCat/{id}', 'loadsubCat');
+        Route::get('deleteImage/{id}', 'deleteImage');
     });
 });
+
+
+
+
+
+ /**Site */
+ Route::controller(SiteController::class)->group(function () {
+    Route::get('', 'index')->name('accueil');
+  
+});
+
+
+
+
