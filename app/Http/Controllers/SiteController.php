@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pack;
+use App\Models\Produit;
 use App\Models\Section;
+use App\Models\Category;
+use App\Models\CategoryPack;
+use App\Models\SousCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class SiteController extends Controller
 {
@@ -15,15 +20,75 @@ class SiteController extends Controller
      */
     public function index()
     {
+
+
         //
-        $pack = Pack::with(['category_pack','media'])
-        ->orderBy('created_at', 'desc')
-        ->get();
+        $pack = Pack::with(['category_pack', 'media'])
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         $section = Section::with('produits')->get();
 
-        return view('site.pages.accueil',compact(['pack','section']));
+        return view('site.pages.accueil', compact(['pack', 'section']));
     }
+
+
+    public function shop(Request $request)
+    {
+
+        $req_cat = request('category');
+        $req_catGet = Category::whereCode(request('category'))->first();
+
+        $req_sousCat = request('sous_category');
+        $req_sousCatGet = SousCategory::whereCode(request('sous_category'))->first();
+
+        $req_section = request('section');
+        $req_sectionGet = Section::whereCode(request('section'))->first();
+
+        $req_spack = request('pack');
+        $req_packGet = CategoryPack::whereCode(request('pack'))->first();
+
+
+
+        $produit = Produit::with(['category', 'media', 'sous_category', 'sections', 'commandes'])
+            ->when($req_cat, function ($q) use ($req_catGet) {
+                return $q->where('category_id', $req_catGet['id']);
+            })
+
+
+            ->when($req_sousCat, function ($q) use ($req_sousCatGet) {
+                return $q->where('sous_category_id', $req_sousCatGet['id']);
+            })->orderBy('created_at', 'desc')->paginate(20);
+
+
+        if (request('section')) {
+            $produit = Produit::whereHas('sections', function ($q) use ($req_sectionGet) {
+                return $q->where('produit_section.section_id', $req_sectionGet['id']);
+            })->orderBy('created_at', 'desc')->paginate(20);
+        }
+
+
+        // if (request('pack')) {
+        //     $pack = Pack::with(['category_pack', 'media'])
+        //         ->when($req_spack, function ($q) use ($req_packGet) {
+        //             return $q->where('category_pack_id', $req_packGet['id']);
+        //         })->get();
+        //         return view('site.pages.shop', compact(['produit', 'req_catGet', 'req_sousCatGet', 'req_sectionGet','pack','req_packGet']));
+        //     }
+
+        // dd($produit);
+
+        // ->when($req_section, function($q)use ($req_sectionGet) {
+        //     return $q->with(['sections',function($q)use ($req_sectionGet)  {
+        //         return $q->where('section_id',$req_sectionGet['id']);
+        //     }]);
+        // })->orderBy('created_at', 'desc')->paginate(20);
+
+
+        return view('site.pages.shop', compact(['produit', 'req_catGet', 'req_sousCatGet', 'req_sectionGet']));
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -52,9 +117,29 @@ class SiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $produit_code = request('produit');
+        if ($produit_code) {
+            $produit = Produit::with(['category', 'media', 'sous_category', 'sections', 'commandes'])
+                ->when($produit_code, function ($q) use ($produit_code) {
+                    return $q->whereCode($produit_code);
+                })->first();
+
+            return view('site.pages.detail', compact('produit'));
+        }
+
+
+        $pack_code = request('pack');
+        $req_pack = CategoryPack::whereCode(request('pack'))->first();
+        if ($pack_code) {
+            $pack = Pack::with(['category_pack', 'media'])
+                ->when($pack_code, function ($q) use ($req_pack) {
+                    return $q->where('category_pack_id',$req_pack['id']);
+                })->first();
+
+            return view('site.pages.detail', compact('pack'));
+        }
     }
 
     /**

@@ -137,7 +137,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
         margin: 10,
         responsive: {
             0: {
-                items: 1,
+                items: 2,
                 autoplay: true,
                 smartSpeed: 500
             },
@@ -156,7 +156,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
         }
     })
     $('.hot-deal-active3').owlCarousel({
-        loop: false,
+        loop: true,
         nav: true,
         dots: false,
         smartSpeed: 1500,
@@ -164,7 +164,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
         margin: 10,
         responsive: {
             0: {
-                items: 1,
+                items: 2,
                 autoplay: true,
                 smartSpeed: 500
             },

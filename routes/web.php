@@ -136,7 +136,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
  /**Site */
  Route::controller(SiteController::class)->group(function () {
     Route::get('', 'index')->name('accueil');
-  
+    Route::get('boutique', 'shop')->name('boutique');
+    Route::get('detail', 'show')->name('detail');
 });
 
 
