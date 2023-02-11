@@ -71,9 +71,9 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets_admin/img/logo.png" alt="">
-        <span class="d-none d-lg-block">{{ config('app.name') }}</span>
+      <a href="{{ route('dashboard') }}" class="logo d-flex align-items-center">
+        <img src="{{ asset('img/logo/logo_site.jpg') }}" width="auto" height="auto" alt="">
+        <span class="d-none d-lg-block" style="color: orange">{{ config('app.name') }}</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->

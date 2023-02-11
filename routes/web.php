@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LivraisonController;
 use App\Http\Controllers\CategoryPackController;
+use App\Http\Controllers\PanierController;
 use App\Http\Controllers\SousCategoryController;
 
 /*
@@ -139,6 +140,16 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('boutique', 'shop')->name('boutique');
     Route::get('detail', 'show')->name('detail');
 });
+
+//panier
+Route::controller(PanierController::class)->group(function () {
+    // Route::get('/', [PanierController::class, 'index']);  
+    Route::get('cart', [PanierController::class, 'cart'])->name('cart');
+    Route::get('add-to-cart/{id}', [PanierController::class, 'addToCart'])->name('add.to.cart');
+    Route::patch('update-cart', [PanierController::class, 'update'])->name('update.cart');
+    Route::delete('remove-from-cart', [PanierController::class, 'remove'])->name('remove.from.cart');
+});
+
 
 
 

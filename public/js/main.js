@@ -68,6 +68,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     /*----------------------------
     4.1 Vertical-Menu Activation
     -----------------------------*/
+   
     $('.categorie-title,.mobile-categorei-menu').on('click', function () {
         $('.vertical-menu-list,.mobile-categorei-menu-list').slideToggle();
     });

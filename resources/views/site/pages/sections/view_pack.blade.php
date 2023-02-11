@@ -5,8 +5,8 @@
             <div class="single-support">
              
                
-                <div class="support-icon">
-                    <a href="/detail?pack={{ $item['code'] }}">
+                <div class="support-icon ">
+                    <a href="/detail?pack={{ $item['category_pack']['code'] }}">
                         <img src="{{ asset($item->getFirstMediaUrl('image')) }}" height="250px" max-width="300px" style="object-fit:contain;" alt="">
                     </a> 
                 </div>

@@ -5,13 +5,14 @@
             @if ($item->produits()->count() >0 )
                 
            
-       <div class="post-title col-12 pb-30 ">
-           <h2 class="">{{ $item['title'] }}
-            <a href="/boutique?section={{ $item['code'] }}" class="text-right col-10 text-white"> <small>Voir plus <i class="fa fa-arrow-right"></i></small></a>
-        </h2>
+       <div class="post-title pb-30">
         
-        <div>
-        </div>
+           <h2 class="">{{ $item['title'] }} 
+            <a href="/boutique?section={{ $item['code'] }}" class="">        <i class="fa fa-caret-right"></i>
+            </a>
+
+        </h2>         
+      
        </div>
       
         <div class="hot-deal-active owl-carousel">
@@ -39,7 +40,7 @@
                         </div>
                         <div class="pro-actions">
                             <div class="actions-primary mt-5">
-                                <a href="" title=""> <i class="fa fa-eye"></i> Aperçu</a>
+                                <a href="{{ route('add.to.cart',$item['id']) }}" title=""> <i class="fa fa-shopping-cart"></i> Acheter</a>
                             </div>
                             {{-- <div class="actions-secondary">
                                 <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>

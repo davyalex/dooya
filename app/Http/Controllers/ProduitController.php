@@ -103,13 +103,13 @@ class ProduitController extends Controller
         ]);
 // $produitId = Produit::find($produit->id);
                 
-for ($i=0; $i <count($section) ; $i++) { 
-    DB::table('produit_section')->insert([
-        'section_id'=>$section[$i],
-        'produit_id'=>$produit->id,
-    ]);
+// for ($i=0; $i <count($section) ; $i++) { 
+//     DB::table('produit_section')->insert([
+//         'section_id'=>$section[$i],
+//         'produit_id'=>$produit->id,
+//     ]);
 
-}
+// }
 $produit->sections()->sync($request->section);
 
 

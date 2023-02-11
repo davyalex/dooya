@@ -2,6 +2,7 @@
 @media (min-width: 992px) and (max-width: 1199px) {
     .header-sticky.sticky .col-lg-8 {
           margin-left: -107px;
+          display: flex;
         }
     .single-latest-blog {
           padding: 15px;
@@ -93,6 +94,7 @@
     }
     .support-area .single-support {
       padding: 35px 10px;
+      width: 50%;
     }
     .brand-banner .owl-nav {
       right: -234px;
@@ -611,7 +613,8 @@ display: none;
         margin-bottom: 20px;
     }
     .header-middle {
-          padding: 30px 0;
+          padding: 25px 0;
+          display: flex;
         }
     .table-responsive-sm {
       display: block;
@@ -625,7 +628,7 @@ display: none;
     #grid-view .col-6,
     #list-view .col-4,
     #list-view .col-8 {
-        max-width: 100%;
+        max-width: 50%;
         -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
     }
@@ -754,7 +757,8 @@ display: none;
     .second-hot-deal .post-title h2,
     .new-pro-two .post-title h2,
     .post-title h2 i {
-        font-size: 18px;
+        font-size: 15px;
+        
     }
     .toolbar-sorter label {
         margin-bottom: 10px;

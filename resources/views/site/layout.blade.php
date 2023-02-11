@@ -13,6 +13,8 @@
   <head>
       <meta charset="utf-8">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <meta name="csrf-token" content="{{ csrf_token() }}">
+
       <title>{{ config('app.name') }}-@yield('title')</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <!-- Favicons -->
@@ -46,10 +48,11 @@
   
       <!-- Modernizer js -->
       <script src="{{ asset('js/vendor/modernizr-3.5.0.min.js') }}"></script>
+      <script src="{{ asset('js/vendor/jquery-3.2.1.min.js') }}"></script>
+
   </head>
   
   <body>
-  
   
       <!-- Main Wrapper Start Here -->
       <div class="wrapper">
@@ -130,14 +133,14 @@
               <!-- Header Middle Start Here -->
               <div class="header-middle ptb-15 header-sticky">
                   <div class="container">
-                      <div class="row align-items-center no-gutters">
-                          <div class="col-lg-3 col-md-12">
-                              <div class="logo mb-all-30">
-                                  <a href="index.html"><img src="{{ asset('img/logo/logo_site.jpg') }}" width="50px" alt="logo-image"></a>
+                      <div class="row align-items-center no-gutters ">
+                          <div class="col-lg-3 col-md-4">
+                              <div class="logo ">
+                                  <a href="{{ route('accueil') }}"><img src="{{ asset('img/logo/logo_site.jpg') }}" width="70px" alt="logo-image"></a>
                               </div>
                           </div>
                           <!-- Categorie Search Box Start Here -->
-                          <div class="col-lg-5 col-md-8 ml-auto mr-auto col-10">
+                          <div class="col-lg-5 col-md-4">
                               <div class="categorie-search-box">
                                   <form action="#">
                                       <div class="form-group">
@@ -178,58 +181,10 @@
                           </div>
                           <!-- Categorie Search Box End Here -->
                           <!-- Cart Box Start Here -->
-                          <div class="col-lg-4 col-md-12">
-                              <div class="cart-box mt-all-30">
+                          <div class="col-lg-4 col-md-4">
+                              <div class="cart-box mt-2" >
                                   <ul class="d-flex justify-content-lg-end justify-content-center align-items-center">
-                                      <li><a href="#"><i class="lnr lnr-cart"></i><span class="my-cart"><span class="total-pro">2</span><span>Panier</span></span></a>
-                                          <ul class="ht-dropdown cart-box-width">
-                                              <li>
-                                                  <!-- Cart Box Start -->
-                                                  <div class="single-cart-box">
-                                                      <div class="cart-img">
-                                                          <a href="#"><img src="img/products/1.jpg" alt="cart-image"></a>
-                                                          <span class="pro-quantity">1X</span>
-                                                      </div>
-                                                      <div class="cart-content">
-                                                          <h6><a href="product.html">Printed Summer Red </a></h6>
-                                                          <span class="cart-price">27.45</span>
-                                                          <span>Size: S</span>
-                                                          <span>Color: Yellow</span>
-                                                      </div>
-                                                      <a class="del-icone" href="#"><i class="ion-close"></i></a>
-                                                  </div>
-                                                  <!-- Cart Box End -->
-                                                  <!-- Cart Box Start -->
-                                                  <div class="single-cart-box">
-                                                      <div class="cart-img">
-                                                          <a href="#"><img src="img/products/2.jpg" alt="cart-image"></a>
-                                                          <span class="pro-quantity">1X</span>
-                                                      </div>
-                                                      <div class="cart-content">
-                                                          <h6><a href="product.html">Printed Round Neck</a></h6>
-                                                          <span class="cart-price">45.00</span>
-                                                          <span>Size: XL</span>
-                                                          <span>Color: Green</span>
-                                                      </div>
-                                                      <a class="del-icone" href="#"><i class="ion-close"></i></a>
-                                                  </div>
-                                                  <!-- Cart Box End -->
-                                                  <!-- Cart Footer Inner Start -->
-                                                  <div class="cart-footer">
-                                                     <ul class="price-content">
-                                                         <li>Subtotal <span>$57.95</span></li>
-                                                         <li>Shipping <span>$7.00</span></li>
-                                                         <li>Taxes <span>$0.00</span></li>
-                                                         <li>Total <span>$64.95</span></li>
-                                                     </ul>
-                                                      <div class="cart-actions text-center">
-                                                          <a class="cart-checkout" href="checkout.html">Checkout</a>
-                                                      </div>
-                                                  </div>
-                                                  <!-- Cart Footer Inner End -->
-                                              </li>
-                                          </ul>
-                                      </li>
+                                    @include('site.pages.sections.cart')
   
   
                                       {{-- <li><a href="#"><i class="lnr lnr-heart"></i><span class="my-cart"><span>Wish</span><span>list (0)</span></span></a>
@@ -255,7 +210,7 @@
                               <span class="categorie-title">Categories </span>
                           </div>                       
                           <div class="col-xl-9 col-lg-8 col-md-12">
-                              <nav class="d-none d-lg-block">
+                              <nav class="d-none d-lg-block text-center">
                                   <ul class="header-bottom-list d-flex">
                                     @foreach ($category_pack as $item )
                                     <li><a href="/detail?pack={{ $item['code'] }}">  Pack {{ $item['title'] }}</a></li>
@@ -291,7 +246,7 @@
                                           <a href="#">{{ $item['title'] }} </a>
                                           <ul class="category-sub">
                                               @foreach ( $item['sous_categories'] as $sousCat )
-                                              <li class="has-sub"><a href="/boutique?sous_category={{ $sousCat['code'] }}">{{$sousCat['title']}}</a>
+                                              <li><a href="/boutique?sous_category={{ $sousCat['code'] }}">{{$sousCat['title']}}</a>
                                               </li>
                                               @endforeach
                                           </ul>
@@ -343,6 +298,8 @@
                                          @endif
                                      @endforeach
                                   </ul>
+
+                             
                               </nav>
                           </div>
                       </div>
@@ -367,11 +324,7 @@
   @yield('content')
   
   
-  
-  
-  
-  
-  
+
   
   <!-- Banner pub -->
   <div class="big-banner pb-100 pb-sm-60">
@@ -584,6 +537,24 @@
 <script src="{{ asset('js/plugins.js') }}"></script>
 <!-- Main activaion js -->
 <script src="{{ asset('js/main.js') }}"></script>
+
+
+
+<script type="text/javascript">
+                                   
+                                       
+    $(document).ready(function () {
+
+var url = {{ Js::from(Route::currentRouteName()==='accueil') }}
+if (url ===false) {
+    $('.vertical-menu-list').hide();
+}
+
+});
+       
+</script>
+@include('sweetalert::alert')
+
 </body>
 
 </html>

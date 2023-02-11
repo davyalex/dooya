@@ -149,6 +149,8 @@ ul {
 .hot-deal-three .post-title h2,
 .second-featured-products.related-pro .post-title h2 {
     background: #f28b00 none repeat scroll 0 0;
+    text-align: center!important;
+
     color: #fff;
     font-size: 21px;
     font-weight: 900;
@@ -159,13 +161,16 @@ ul {
     margin: 0;
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    display: inline-flex;
     -webkit-box-align:center;
     -ms-flex-align:center;
     align-items:center;
     height: 50px;
-    padding:10px 20px;
+    padding-left: 10px;
+    padding:10px 5px;
     border-radius: 5px;
+    width: 100%;
+
 }
 
 .arrivals-product .post-title h2 {
@@ -191,13 +196,14 @@ ul {
 
 /* post title icon css start */
 .post-title h2 i {
-    background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+    /* background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0; */
     color: #fff;
     display: inline-block;
     font-size: 22px;
     margin-right: 15px;
-    text-align: center;
-    width: 55px;
+    text-align: right;
+    width: 80%;
+    
     line-height: 55px;
 }
 
@@ -1188,6 +1194,8 @@ li.megamenu-img a {
     -webkit-transition: all 0.5s ease-in-out 0s;
     transition: all 0.5s ease-in-out 0s;
     margin: 10px 0;
+        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+
     
 }
 .single-product:hover {

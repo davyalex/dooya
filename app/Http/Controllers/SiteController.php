@@ -126,7 +126,15 @@ class SiteController extends Controller
                     return $q->whereCode($produit_code);
                 })->first();
 
-            return view('site.pages.detail', compact('produit'));
+
+                $produit_related = Produit::whereCode($produit_code)->first();
+                $catGet =  $produit_related->category_id;
+                $produit_related = Produit::with(['category', 'media', 'sous_category', 'sections', 'commandes'])
+                                    ->where('category_id',$catGet)  
+                                    ->where('id','!=',$produit_related->id)  
+                                 ->orderBy('created_at','desc')  ->get();
+
+            return view('site.pages.detail', compact('produit','produit_related'));
         }
 
 
