@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('quantite')->nullable();
             $table->double('prix_unitaire')->nullable();
+            $table->double('total')->nullable();
 
             $table->foreignId('commande_id')
             ->nullable()

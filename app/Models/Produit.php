@@ -39,6 +39,8 @@ class Produit extends Model implements HasMedia
         'user_id',
         'category_id',
         'sous_category_id',
+        'type_produit',
+        'category_pack_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -73,11 +75,17 @@ class Produit extends Model implements HasMedia
         return $this->belongsTo(SousCategory::class, 'sous_category_id');
     }
 
+
+    public function category_pack(): BelongsTo
+    {
+        return $this->belongsTo(CategoryPack::class, 'category_pack_id');
+    }
+
    
     public function commandes(): BelongsToMany
     {
-        return $this->belongsToMany(Commande::class, 'commande_produit', 'commande_id', 'produit_id')
-        ->withPivot('quantite', 'prix_unitaire')
+        return $this->belongsToMany(Commande::class, 'commande_produit','produit_id', 'commande_id')
+        ->withPivot('quantite', 'prix_unitaire','total')
         ->withTimestamps();
         
     }

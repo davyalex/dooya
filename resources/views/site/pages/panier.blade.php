@@ -45,12 +45,12 @@
                                                      @php $total += $details['prix'] * $details['quantite'] @endphp
                                             <tr data-id="{{ $id }}">
                                                 <td class="product-thumbnail">
-                                                    <a href="#"><img src="{{ $details['image'] }}" alt="cart-image" /></a>
+                                                    <a href=""><img src="{{ $details['image'] }}" alt="cart-image" /></a>
                                                 </td>
                                                 <td class="product-name"><a href="#">{{ $details['title'] }}</a></td>
-                                                <td class="product-price"><span class="amount">{{ $details['prix'] }} FCFA</span></td>
+                                                <td class="product-price"><span class="amount">{{ number_format($details['prix'],0) }} FCFA</span></td>
                                                 <td class="product-quantity"><input type="number" value="{{ $details['quantite'] }}" class=" quantite update-cart" /></td>
-                                                <td class="product-subtotal">{{ $details['prix'] * $details['quantite'] }} FCFA</td>
+                                                <td class="product-subtotal">{{ number_format($details['prix'] * $details['quantite'],0) }} FCFA</td>
                                                 <td class="product-remove"> <button class="remove-from-cart"><i class="fa fa-times" aria-hidden="true"></i></button></td>
                                             </tr>
                                             @endforeach
@@ -67,7 +67,7 @@
                                 <div class="col-md-8 col-sm-12">
                                     <div class="buttons-cart">
                                         {{-- <input type="submit" value="Update Cart" /> --}}
-                                        <a href="{{ route('boutique') }}">Continuez mes achats</a>
+                                        <a href="{{ route('boutique') }}">Poursuivre mes achats</a>
                                     </div>
                                 </div>
                                 <!-- Cart Button Start -->
@@ -85,13 +85,13 @@
                                                 <tr class="order-total">
                                                     <th>Total</th>
                                                     <td>
-                                                        <strong><span class="amount">{{ $total }} FCFA</span></strong>
+                                                        <strong><span class="amount">{{ number_format($total,0) }} FCFA</span></strong>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                         <div class="wc-proceed-to-checkout">
-                                            <a href="#">Finaliser la commande</a>
+                                            <a href="{{ route('caisse') }}">Finaliser la commande</a>
                                         </div>
                                     </div>
                                 </div>

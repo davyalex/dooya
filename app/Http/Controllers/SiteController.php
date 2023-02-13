@@ -23,7 +23,8 @@ class SiteController extends Controller
 
 
         //
-        $pack = Pack::with(['category_pack', 'media'])
+        $pack = Produit::with(['category_pack', 'media'])
+            ->where('type_produit', 'pack')
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -45,8 +46,8 @@ class SiteController extends Controller
         $req_section = request('section');
         $req_sectionGet = Section::whereCode(request('section'))->first();
 
-        $req_spack = request('pack');
-        $req_packGet = CategoryPack::whereCode(request('pack'))->first();
+        // $req_spack = request('pack');
+        // $req_packGet = CategoryPack::whereCode(request('pack'))->first();
 
 
 
@@ -126,27 +127,34 @@ class SiteController extends Controller
                     return $q->whereCode($produit_code);
                 })->first();
 
+            //produit en relation
+            $produit_related = Produit::whereCode($produit_code)->first();
+            $catGet =  $produit_related->category_id;
+            $produit_related = Produit::with(['category', 'media', 'sous_category', 'sections', 'commandes'])
+                ->where('category_id', $catGet)
+                ->where('id', '!=', $produit_related->id)
+                ->orderBy('created_at', 'desc')->get();
 
-                $produit_related = Produit::whereCode($produit_code)->first();
-                $catGet =  $produit_related->category_id;
-                $produit_related = Produit::with(['category', 'media', 'sous_category', 'sections', 'commandes'])
-                                    ->where('category_id',$catGet)  
-                                    ->where('id','!=',$produit_related->id)  
-                                 ->orderBy('created_at','desc')  ->get();
-
-            return view('site.pages.detail', compact('produit','produit_related'));
+            return view('site.pages.detail', compact('produit', 'produit_related'));
         }
 
 
         $pack_code = request('pack');
         $req_pack = CategoryPack::whereCode(request('pack'))->first();
         if ($pack_code) {
-            $pack = Pack::with(['category_pack', 'media'])
+            $produit = Produit::with(['category_pack', 'media'])
                 ->when($pack_code, function ($q) use ($req_pack) {
-                    return $q->where('category_pack_id',$req_pack['id']);
+                    return $q->where('category_pack_id', $req_pack['id']);
                 })->first();
 
-            return view('site.pages.detail', compact('pack'));
+
+                $produit_related = Produit::with(['category_pack', 'media'])
+                ->whereNull('category_id')
+                // ->where('code', '!=',  $produit->code)
+                ->orderBy('created_at', 'desc')->get();
+
+
+            return view('site.pages.detail', compact('produit','produit_related'));
         }
     }
 

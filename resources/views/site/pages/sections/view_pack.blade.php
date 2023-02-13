@@ -6,7 +6,7 @@
              
                
                 <div class="support-icon ">
-                    <a href="/detail?pack={{ $item['category_pack']['code'] }}">
+                    <a href="/detail?produit={{ $item['code'] }}">
                         <img src="{{ asset($item->getFirstMediaUrl('image')) }}" height="250px" max-width="300px" style="object-fit:contain;" alt="">
                     </a> 
                 </div>

@@ -1,17 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PackController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PanierController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LivraisonController;
 use App\Http\Controllers\CategoryPackController;
-use App\Http\Controllers\PanierController;
 use App\Http\Controllers\SousCategoryController;
 
 /*
@@ -148,6 +150,27 @@ Route::controller(PanierController::class)->group(function () {
     Route::get('add-to-cart/{id}', [PanierController::class, 'addToCart'])->name('add.to.cart');
     Route::patch('update-cart', [PanierController::class, 'update'])->name('update.cart');
     Route::delete('remove-from-cart', [PanierController::class, 'remove'])->name('remove.from.cart');
+});
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::controller(CommandeController::class)->group(function () {
+        Route::get('finaliser-ma-commande', 'checkout')->name('caisse');
+        Route::get('valider-ma-commande', 'finaliser_commande')->name('commande.store');
+        //recuperer le tarif pour additionner au montant total
+        Route::get('refresh_shipping/{id}', 'refresh_shipping');
+    });
+});
+
+
+
+
+Route::controller(AuthController::class)->group(function () {
+    Route::get('creer-un-compte', 'register_form')->name('register_form');
+    Route::post('creer-un-compte', 'register')->name('register');
+    Route::get('se-connecter', 'login_form')->name('login_form');
+    Route::post('se-connecter', 'login')->name('login');
+    Route::post('deconnexion', 'logout')->name('logout')->middleware('auth');
 });
 
 

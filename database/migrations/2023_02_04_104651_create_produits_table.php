@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('disponibilite')->nullable(); //select(disponible, rupture)
             $table->longText('description')->nullable();
             $table->integer('promotion')->default(0)->nullable();
+            $table->string('type_produit')->nullable();
 
             $table->softDeletes();
             $table->timestamps();
@@ -35,6 +36,12 @@ return new class extends Migration
             $table->foreignId('category_id')
             ->nullable()
             ->constrained('categories')
+            ->onUpdate('cascade')
+            ->onDelete('set null');
+
+            $table->foreignId('category_pack_id')
+            ->nullable()
+            ->constrained('category_packs')
             ->onUpdate('cascade')
             ->onDelete('set null');
 

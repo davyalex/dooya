@@ -17,14 +17,15 @@ return new class extends Migration
             $table->id();
             $table->string('code')->unique()->nullable();
             $table->string('description')->nullable();
-            $table->integer('quantite')->nullable();
-            $table->double('total_ht')->nullable();
-            $table->double('total_taxe')->nullable();
-            $table->double('total_livraison')->nullable();
-            $table->double('total_remise')->nullable();
-            $table->double('total_ttc')->nullable();
-            $table->string('livraison_prevue')->nullable();
+            $table->integer('nombre_produit')->nullable();
+            $table->double('sous_total')->nullable();
+            $table->double('taxe')->nullable();
+            $table->double('tarif_livraison')->nullable();
+            $table->double('remise')->nullable();
+            $table->double('montant_total')->nullable();
+            $table->dateTime('livraison_prevue')->nullable();
             $table->dateTime('livraison_exacte')->nullable();
+            $table->text('livraison_precis')->nullable();
             $table->string('status')->nullable(); // attente", en cour ,livré
 
             $table->foreignId('user_id')

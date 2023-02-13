@@ -1,18 +1,19 @@
-<li><a href="#"><i class="lnr lnr-cart"></i><span class="my-cart"><span class="total-pro">
+<li><a href="{{ route('cart') }}"><i class="lnr lnr-cart"></i><span class="my-cart"><span class="total-pro">
     {{ count((array) session('cart')) }}
 </span><span>Panier</span></span></a>
-    <ul class="ht-dropdown cart-box-width">
+    {{-- <ul class="ht-dropdown cart-box-width">
         <li>
             <!-- Cart Box Start -->
             @if (session('cart'))
             @foreach (session('cart') as $id => $details)
             <div class="single-cart-box">
+
                 <div class="cart-img">
-                    <a href="#"><img src="{{ $details['image'] }}" alt="cart-image"></a>
+                   <img src="{{ asset($details['image']) }}" alt="cart-image" class="img-cart">
                     <span class="pro-quantity">{{ $details['quantite'] }}</span>
                 </div>
                 <div class="cart-content">
-                    {{-- <h6><a href="">{{ $details['quantite'] }}</a></h6> --}}
+                    <h6><a href="">{{ $details['quantite'] }}</a></h6>
                     <span class="cart-price">{{ $details['prix'] }} FCFA</span>
                 </div>
                 <a class="del-icone remove-from-cart" data-id = {{ $id }} href="#"><i class="ion-close"></i></a>
@@ -21,9 +22,7 @@
           
             @endif
           
-            <!-- Cart Box End -->
-           
-            <!-- Cart Footer Inner Start -->
+          
             <div class="cart-footer">
                <ul class="price-content">
 
@@ -31,15 +30,14 @@
                 @foreach((array) session('cart') as $id => $details)
                     @php $total += $details['prix'] * $details['quantite'] @endphp
                 @endforeach
-                   <li>Total <span>{{ $total }} FCFA</span></li>
+                   <li class="get-total">Total <span>{{ $total }} FCFA</span></li>
                </ul>
                 <div class="cart-actions text-center">
-                    <a class="" href="{{ route('cart') }}">Mon panier</a>
+                    <a class="" href="{{ route('cart') }}">Voir Mon panier</a>
                 </div>
             </div>
-            <!-- Cart Footer Inner End -->
         </li>
-    </ul>
+    </ul> --}}
 
     {{-- @if(session('success'))
     <div class="alert alert-success">

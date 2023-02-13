@@ -23,7 +23,8 @@ class ProduitController extends Controller
     {
         
         $produit = Produit::with(['category', 'media', 'sous_category', 'sections', 'commandes'])
-            ->orderBy('created_at', 'desc')
+        ->where('type_produit','produit_simple')
+        ->orderBy('created_at', 'desc')
             ->get();
 
         return view('admin.pages.produit.index', compact('produit'));
@@ -73,6 +74,7 @@ class ProduitController extends Controller
             'date_fin_promo' => '',
             'couleur' => '',
             'stock' => '',
+            'type_produit' => '',
             'disponibilite' => '',
             'description' => '',
             'category' => 'required',
@@ -93,6 +95,7 @@ class ProduitController extends Controller
             'date_debut_promo' => $request['date_debut_promo'],
             'date_fin_promo' => $request['date_fin_promo'],
             'couleur' => $request['couleur'],
+            'type_produit' =>'produit_simple',
             'stock' => $request['stock'],
             'disponibilite' => 'disponible',
             'description' => $request['description'],
@@ -211,6 +214,7 @@ $produit->sections()->sync($request->section);
             'couleur' => $request['couleur'],
             'stock' => $request['stock'],
             'disponibilite' => 'disponible',
+            'type_produit' =>'produit_simple',
             'description' => $request['description'],
             'category_id' => $request['category'],
             'sous_category_id' => $request['sous_category'],

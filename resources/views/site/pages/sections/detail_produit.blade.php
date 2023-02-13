@@ -25,7 +25,7 @@
                 <!-- Thumbnail Image End -->
                 <div class="product-thumbnail mt-15">
                     <div class="thumb-menu owl-carousel nav tabs-area" role="tablist">
-                        <a class="active" data-toggle="tab" href="#thumb1"><img src="{{ asset($produit->getFirstMediaUrl('image')) }}" alt="product-thumbnail"></a>
+                        {{-- <a class="active" data-toggle="tab" href="#thumb1"><img src="{{ asset($produit->getFirstMediaUrl('image')) }}" alt="product-thumbnail"></a> --}}
                         @foreach ($produit->getMedia('image') as $key=>$item )
                         <a data-toggle="tab" href="#thumb{{ ++$key }}"><img src="{{ $item->getUrl() }}" alt="product-thumbnail"></a>
                         @endforeach
@@ -43,6 +43,11 @@
                 <div class="col-lg-7">
                     <div class="thubnail-desc fix">
                         <h3 class="product-header">{{ $produit['title'] }}</h3>
+                        @if ($produit['category_pack'])
+                        <strong><i class="fa fa-dropbox"></i> Pack {{ $produit['category_pack']['title'] }}
+                        </strong>
+                        @endif
+
                         <div class="rating-summary fix mtb-10">
                         </div>
                         <div class="pro-price mtb-30">
@@ -87,7 +92,7 @@
                             </form> --}}
                             <div class="pro-actions">
                                 <div class="actions-primary">
-                                    <a href="{{ route('add.to.cart',$produit['id']) }}" class="addCart" data-id="{{ $produit['id']}}" title="" data-original-title=""> + Ajouter au panier</a>
+                                    <a href="" class="addCart" data-id="{{ $produit['id']}}" title="" data-original-title=""> + Ajouter au panier</a>
                                 </div>
                                 {{-- <div class="actions-secondary">
                                     <a href="compare.html" title="" data-original-title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>
@@ -235,6 +240,8 @@
 </div>
 <!-- Product Thumbnail Description End -->
 <!-- Realted Products Start Here -->
+
+@if ($produit_related->count() >0)
 <div class="hot-deal-products off-white-bg pt-100 pb-90 pt-sm-60 pb-sm-50">
     <div class="container">
        <!-- Product Title Start -->
@@ -269,7 +276,7 @@
                 </div>
                 <div class="pro-actions">
                     <div class="actions-primary mt-5">
-                        <a href="{{ route('add.to.cart',$item['id']) }}" title=""> <i class="fa fa-shopping-cart"></i> Acheter</a>
+                        <a href="" class="addCart" data-id="{{ $item['id']}}" title="" data-original-title=""> <i class="fa fa-shopping-cart"></i> Acheter</a>
                     </div>
                     {{-- <div class="actions-secondary">
                         <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>
@@ -288,31 +295,10 @@
         <!-- Hot Deal Product Active End -->
 
     </div>
+@endif
+
     <!-- Container End -->
 </div>
 <!-- Realated Products End Here -->
 
-
-<script src="{{ asset('js/vendor/jquery-3.2.1.min.js') }}"></script>
-<script>
-
-    // $('.addCart').click(function (e) { 
-
-    //     e.preventDefault();
-
-    //     var getId =   e.target.dataset.id;
-    //     $.ajax({
-    //         type: "GET",
-    //         url: "/add-to-cart/" + getId,
-    //         data: getId,
-    //         dataType: "json",
-    //         success: function (response) {
-    //             alert(response)
-    //             window.location.reload();
-
-
-    //         }
-    //     });
-    // });
-   
-</script>
+@include('site.partials.script_add_to_cart')

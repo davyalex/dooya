@@ -17,15 +17,16 @@ class Commande extends Model
     protected $fillable = [
         'code',
         'description',
-        'quantite',
-        'total_ht',
-        'total_taxe',
-        'total_livraison',
-        'total_remise',
-        'total_ttc',
+        'nombre_produit',
+        'sous_total',
+        'taxe',
+        'tarif_livraison',
+        'remise',
+        'montant_total',
         'livraison_prevue',
         'livraison_exacte',
         'status',
+        'livraison_precis',
         'user_id',
         'livraison_id',
         'created_at',
@@ -46,7 +47,8 @@ class Commande extends Model
     public function produits(): BelongsToMany
     {
         return $this->belongsToMany(Produit::class, 'commande_produit', 'commande_id', 'produit_id')
-            ->withPivot('quantite', 'prix_unitaire')
+            ->withPivot('quantite', 'prix_unitaire','total')
             ->withTimestamps();
     }
 }
+

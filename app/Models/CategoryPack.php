@@ -39,4 +39,9 @@ class CategoryPack extends Model
      {
          return $this->hasMany(Pack::class);
      }
+
+     public function produits(): HasMany
+     {
+         return $this->hasMany(Produit::class);
+     }
 }

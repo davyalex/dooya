@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pack;
+use App\Models\Produit;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,8 @@ class PackController extends Controller
     public function index()
     {
         //
-        $pack = Pack::with(['category_pack','media'])
+        $pack = Produit::with(['category_pack','media'])
+            ->where('type_produit','pack')
             ->orderBy('created_at', 'desc')
             ->get();
         return view('admin.pages.pack.index',compact('pack'));
@@ -62,7 +64,7 @@ class PackController extends Controller
        
         $code = Str::random(10);
 
-        $pack = pack::create([
+        $pack = Produit::create([
             'code' => $code,
             'title' =>  $request['title'],
             'prix' => $request['prix'],
@@ -71,6 +73,7 @@ class PackController extends Controller
             'date_fin_promo' => $request['date_fin_promo'],
             'stock' => $request['stock'],
             'disponibilite' => 'disponible',
+            'type_produit' => 'pack',
             'description' => $request['description'],
             'category_pack_id' => $request['category'],
             // 'user_id' => Auth::user()->id,
@@ -78,7 +81,7 @@ class PackController extends Controller
         ]);
                 
         if ($request->date_fin_promo && $request->date_fin_promo && $request->prix_promo) {
-            Pack::find($pack->id)->update([
+            Produit::find($pack->id)->update([
                 "promotion" => 1,
             ]);
         }
@@ -117,7 +120,7 @@ class PackController extends Controller
     public function edit($code)
     {
         //
-        $pack = Pack::with(['category_pack', 'media'])
+        $pack = Produit::with(['category_pack', 'media'])
             ->whereCode($code)
             ->first();
 
@@ -163,13 +166,14 @@ class PackController extends Controller
             'date_fin_promo' => $request['date_fin_promo'],
             'stock' => $request['stock'],
             'disponibilite' => 'disponible',
+            'type_produit' => 'pack',
             'description' => $request['description'],
             'category_pack_id' => $request['category'],
 
         ]);
 
         if ($request->date_fin_promo && $request->date_fin_promo && $request->prix_promo) {
-            Pack::find($pack->id)->update([
+            Produit::find($pack->id)->update([
                 "promotion" => 1,
             ]);
         }else{

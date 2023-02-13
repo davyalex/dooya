@@ -49,7 +49,7 @@
       <!-- Modernizer js -->
       <script src="{{ asset('js/vendor/modernizr-3.5.0.min.js') }}"></script>
       <script src="{{ asset('js/vendor/jquery-3.2.1.min.js') }}"></script>
-
+     
   </head>
   
   <body>
@@ -189,8 +189,19 @@
   
                                       {{-- <li><a href="#"><i class="lnr lnr-heart"></i><span class="my-cart"><span>Wish</span><span>list (0)</span></span></a>
                                       </li> --}}
-                                      <li><a href="#"><i class="lnr lnr-user"></i><span class="my-cart"><span> <strong>Se connecter</strong></a>
+                                      @auth
+                                      <li><a href="#" class="text-secondary"><i class="fa fa-user text-secondary"></i> {{ Auth::user()->name }}</a>
+                                        <li><a href="" class="text-secondary signout"><i class="fa fa-sign-out"></i> Se deconnecter</a></li>
                                       </li>
+                                      <form id="form_logout" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                    </form>
+                                      @endauth
+                                      @guest
+                                      <li><a href="{{ route('login') }}"><i class="lnr lnr-user"></i><span class="my-cart"><span> <strong>Se connecter</strong></a>
+                                      </li>
+                                      @endguest
+                                    
                                   </ul>
                               </div>
                           </div>
@@ -538,17 +549,26 @@
 <!-- Main activaion js -->
 <script src="{{ asset('js/main.js') }}"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 <script type="text/javascript">
                                    
                                        
     $(document).ready(function () {
-
+//cacher le menu vertical sur les autres page
 var url = {{ Js::from(Route::currentRouteName()==='accueil') }}
 if (url ===false) {
     $('.vertical-menu-list').hide();
 }
+
+//logout
+
+$('.signout').click(function (e) { 
+    e.preventDefault();
+    document.getElementById('form_logout').submit();
+
+});
 
 });
        

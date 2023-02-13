@@ -25,6 +25,7 @@ class SousCategorySeeder extends Seeder
         for ($i = 0; $i < 50; $i++) {
           $sous_category = new SousCategory();
           $sous_category->title = $faker->text(20);
+          $sous_category->code = $faker->randomNumber(5);
           $sous_category->category_id = $faker->randomElement($category);
           $sous_category->save();
     }

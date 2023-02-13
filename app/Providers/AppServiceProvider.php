@@ -6,6 +6,7 @@ use App\Models\Produit;
 use App\Models\Section;
 use App\Models\Category;
 use App\Models\CategoryPack;
+use App\Models\Livraison;
 use App\Models\SousCategory;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\View;
@@ -40,8 +41,10 @@ class AppServiceProvider extends ServiceProvider
         $sous_category = SousCategory::with(['categorie','produits'])->get();
         $category = Category::with(['sous_categories','produits'])->get();
         $section = Section::with('produits')->get();
+        $livraison = Livraison::with('commandes')->get();
 
-        View::composer('*', function ($view) use ($category, $sous_category,$category_pack,$section) {
+
+        View::composer('*', function ($view) use ($category, $sous_category,$category_pack,$section,$livraison) {
             $view->with([
                 'category'=>$category,
             ]);
@@ -56,6 +59,10 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with([
                 'category_pack'=>$category_pack,
+            ]);
+
+            $view->with([
+                'livraison'=>$livraison,
             ]);
         });
         

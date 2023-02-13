@@ -40,7 +40,7 @@
                         </div>
                         <div class="pro-actions">
                             <div class="actions-primary mt-5">
-                                <a href="{{ route('add.to.cart',$item['id']) }}" title=""> <i class="fa fa-shopping-cart"></i> Acheter</a>
+                                <a href="" class="addCart" data-id="{{ $item['id']}}" title="" data-original-title=""><i class="fa fa-shopping-cart"></i> Acheter</a>
                             </div>
                             {{-- <div class="actions-secondary">
                                 <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>
@@ -59,7 +59,8 @@
      
         @endforeach
 
-
+        
     </div>
     <!-- Container End -->
+    @include('site.partials.script_add_to_cart')
 </div>
