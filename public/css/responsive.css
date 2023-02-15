@@ -753,12 +753,11 @@ display: none;
         font-size: 11px;
         border-right: none;
     }
-    .hot-deal-products .post-title h2,
+    .hot-deal-products .post-title h2, .post-title a,
     .second-hot-deal .post-title h2,
     .new-pro-two .post-title h2,
     .post-title h2 i {
         font-size: 15px;
-        
     }
     .toolbar-sorter label {
         margin-bottom: 10px;

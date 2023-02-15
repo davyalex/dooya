@@ -31,7 +31,7 @@
                     <div class="col-md-3"></div>
 
                     <div class="col-md-6 col-sm-12">
-                        <form class="form-register" method="POST" action="{{ route('login') }}">
+                        <form class="form-register" method="POST" action="{{ route('login-user') }}">
                             @csrf
                          
                             <div class="form-group d-md-flex align-items-md-center">
@@ -52,7 +52,7 @@
                                     <input type="text" name="role" value="client" hidden>
                                     <input type="submit" value="Valider" class="return-customer-btn">
                                 </div>
-                                <p class="text-center py-3">Pas de compte?  <a href="{{ route('register') }}">Connectez vous</a></p>
+                                <p class="text-center py-3">Pas de compte?  <a href="{{ route('register-user') }}">Connectez vous</a></p>
 
                             </div>
                            

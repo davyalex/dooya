@@ -31,7 +31,7 @@
                     <div class="col-md-3"></div>
 
                     <div class="col-md-6 col-sm-12">
-                        <form class="form-register" method="POST" action="{{ route('register') }}">
+                        <form class="form-register" method="POST" action="{{ route('register-user') }}">
                             @csrf
                                 {{-- @if (Session::has('message'))
                                     <p class="alert alert-danger text-center ">{{ Session::get('message') }}</p>
@@ -66,7 +66,7 @@
                                     <input type="text" name="role" value="client" hidden>
                                     <input type="submit" value="Valider" class="return-customer-btn">
                                 </div>
-                                <p class="text-center py-3">Vous avez un compte?  <a href="{{ route('login') }}">Connectez vous</a></p>
+                                <p class="text-center py-3">Vous avez un compte?  <a href="{{ route('login-user') }}">Connectez vous</a></p>
 
                             </div>
                            

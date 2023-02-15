@@ -31,12 +31,16 @@ use App\Http\Controllers\SousCategoryController;
 //     return view('site.pages.accueil');
 // });
 //LOGIN
-Route::post('login', [UserController::class, 'login'])->name('login');
-Route::get('login', [UserController::class, 'loginForm'])->name('login-form');
+
+Route::prefix('admin')->group(function () {
+    Route::post('login', [UserController::class, 'login'])->name('login');
+    Route::get('login', [UserController::class, 'loginForm'])->name('login-form');
+});
+
 
 
 //Route admin
-Route::middleware('auth')->prefix('admin')->group(function () {
+Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
 
     /**Post */
     Route::controller(DashboardController::class)->group(function () {
@@ -53,7 +57,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('lock/{id}', 'lock')->name('user.lock');
         Route::get('unlock/{id}', 'unlock')->name('user.unlock');
         Route::get('profil/{code}', 'profil')->name('user.profil');
-        route::post('logout', 'logout')->name('logout');
+        route::post('logout', 'logout_admin')->name('logout');
         route::post('newpassword/{id}', 'newpassword')->name('user.newpassword');
     });
 
@@ -136,8 +140,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
 
 
- /**Site */
- Route::controller(SiteController::class)->group(function () {
+/**Site */
+Route::controller(SiteController::class)->group(function () {
     Route::get('', 'index')->name('accueil');
     Route::get('boutique', 'shop')->name('boutique');
     Route::get('detail', 'show')->name('detail');
@@ -153,8 +157,18 @@ Route::controller(PanierController::class)->group(function () {
 });
 
 
-Route::middleware(['auth'])->group(function () {
+
+//commande
+Route::middleware('client')->group(function () {
     Route::controller(CommandeController::class)->group(function () {
+        //liste des commande admin
+        Route::get('commande', 'index')->name('liste-commande');
+        //liste des commandes user
+        Route::get('mes-commandes', 'mes_commandes')->name('commande-user');
+        //facture user
+        Route::get('ma-facture/{id}', 'facture_user')->name('facture-user');
+        Route::post('change-status/{id}', 'change_status')->name('change-status');
+
         Route::get('finaliser-ma-commande', 'checkout')->name('caisse');
         Route::get('valider-ma-commande', 'finaliser_commande')->name('commande.store');
         //recuperer le tarif pour additionner au montant total
@@ -163,17 +177,12 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-
+//AuthUser
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('creer-un-compte', 'register_form')->name('register_form');
-    Route::post('creer-un-compte', 'register')->name('register');
+    Route::post('creer-un-compte', 'register')->name('register-user');
     Route::get('se-connecter', 'login_form')->name('login_form');
-    Route::post('se-connecter', 'login')->name('login');
-    Route::post('deconnexion', 'logout')->name('logout')->middleware('auth');
+    Route::post('se-connecter', 'login')->name('login-user');
+    Route::post('deconnexion', 'logout')->name('logout-user')->middleware('client');
 });
-
-
-
-
-

@@ -14,7 +14,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 class AuthController extends Controller
 {
     //
-    public function login_form(){
+    public function login_form()
+    {
         return view('site.pages.auth.login');
     }
 
@@ -28,12 +29,11 @@ class AuthController extends Controller
         $user = $request->only('phone', 'password');
 
         if (Auth::attempt($user)) {
-            Alert::toast('Vous êtes connecté ');
+            Alert::toast('Vous êtes connecté', 'success');
             if ($request->session()->has('cart')) {
-                return redirect()->intended('/');
-            }else{
+                return redirect()->intended('/cart');
+            } else {
                 return redirect()->route('accueil');
-
             }
         }
 
@@ -41,21 +41,28 @@ class AuthController extends Controller
         return redirect('se-connecter');
     }
 
-    public function register_form(){
+    public function register_form()
+    {
         return view('site.pages.auth.register');
     }
 
-    public function register(Request $request){
-         $request->validate([
-            'name' => 'required',
-            'phone' => 'required|unique:users',
-            'email' => 'unique:users',
-            'password' => 'required',
-            'role' => 'required',
-        ]);
-        $code = Str::random(10);
+    public function register(Request $request)
+    {
+        $user_verify = User::wherePhone($request['phone'])->get();
+        // dd($user_verify->count());
+        if ($user_verify->count() > 0) {
+            Alert::error('Ce contact existe déja! veuillez utiliser un autre');
+            return back();
+        } else {
+            $request->validate([
+                'name' => 'required',
+                'phone' => 'required|unique:users',
+                'email' => '',
+                'password' => 'required',
+                'role' => 'required',
+            ]);
+            $code = Str::random(10);
 
-    
             $user = User::firstOrCreate([
                 'code' => $code,
                 'name' => $request['name'],
@@ -64,33 +71,30 @@ class AuthController extends Controller
                 'role' => $request->role,
                 'password' => Hash::make($request['password']),
             ]);
-    
+
             if ($request->role) {
                 $user->assignRole($request->role);
             }
-    
+
             Auth::login($user);
-    
-            Alert::toast('Votre compte est crée avec success');
-    
+
+            Alert::toast('Votre compte est crée avec success', 'success');
+
             if ($request->session()->has('cart')) {
-                return redirect()->intended('/');
-            }else{
+                return redirect()->intended('/cart');
+            } else {
                 return redirect()->route('accueil');
-
             }
-   
+        }
 
-       
+     
     }
 
 
     public function logout()
     {
         Auth::logout();
-        Alert::toast('Deconnexion réussi');
+        Alert::toast('Deconnexion réussi', 'success');
         return redirect('/');
     }
-
-
 }

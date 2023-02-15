@@ -2,8 +2,8 @@
     <div class="slider-wrapper theme-default">
         <!-- Slider Background  Image Start-->
         <div id="slider" class="nivoSlider">
-            <a href="shop.html"><img src="img/slider/1.jpg" data-thumb="img/slider/1.jpg" alt="" title="#htmlcaption" /></a>
-            <a href="shop.html"><img src="img/slider/2.jpg" data-thumb="img/slider/2.jpg" alt="" title="#htmlcaption2" /></a>
+            <a href="shop.html"><img src="{{ asset('img/banner/banndooya.png') }}" data-thumb="{{ asset('img/banner/banndooya.png') }}" alt="" title="#htmlcaption" /></a>
+            <a href="shop.html"><img src="{{ asset('img/banner/5.jpg') }}" data-thumb="{{ asset('img/banner/banndooya.png') }}" alt="" title="#htmlcaption" /></a>
         </div>
         <!-- Slider Background  Image Start-->
     </div>

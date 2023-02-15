@@ -45,33 +45,41 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'phone' => 'required|unique:users',
-            'email' => 'unique:users',
-            'password' => 'required',
-            'role' => '',
 
-        ]);
-        // dd($validatedData);
-        $code = Str::random(10);
+        $user_verify = User::wherePhone($request['phone'])->get();
+        // dd($user_verify->count());
+        if ($user_verify->count() > 0) {
+            Alert::error('Ce contact existe déja! veuillez utiliser un autre');
+            return back();
+        }else{
+            $request->validate([
+                'name' => 'required',
+                'phone' => 'required|unique:users',
+                'email' => '',
+                'password' => 'required',
+                'role' => 'required',
+            ]);
 
-        $user = User::create([
-            'code' => $code,
-            'name' => $validatedData['name'],
-            'phone' => $validatedData['phone'],
-            'email' => $request->email,
-            'role' => $request->role,
-            'password' => Hash::make($validatedData['password']),
-        ]);
+            $code = Str::random(10);
 
-        if ($request->role) {
-            $user->assignRole($request->role);
+            $user = User::firstOrCreate([
+                'code' => $code,
+                'name' => $request['name'],
+                'phone' => $request['phone'],
+                'email' => $request->email,
+                'role' => $request->role,
+                'password' => Hash::make($request['password']),
+            ]);
+
+            if ($request->role) {
+                $user->assignRole($request->role);
+            }
+            Alert::toast('utilisateur crée avec success', 'success');
+
+            return back();
         }
-        Alert::toast('utilisateur crée avec success', 'success');
-
-        return back();
+        //
+      
     }
 
     /**
@@ -205,11 +213,11 @@ class UserController extends Controller
     }
 
 
-    public function logout()
+    public function logout_admin()
     {
         Auth::logout();
         Alert::success('Deconnexion réussi');
-        return redirect('login');
+        return redirect('admin/login');
     }
 
 

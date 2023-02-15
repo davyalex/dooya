@@ -17,6 +17,9 @@
         </div>
         <!-- Breadcrumb End -->
         <!-- Cart Main Area Start -->
+        @if (session('cart'))
+        
+            
         <div class="cart-main-area ptb-10 ptb-sm-60">
             <div class="container">
                 <div class="row">
@@ -38,7 +41,6 @@
                                     </thead>
                                     <tbody>
                                         @php $total = 0 @endphp
-                                            @if (session('cart'))
 
                                                 @foreach(session('cart') as $id => $details)
 
@@ -55,7 +57,7 @@
                                             </tr>
                                             @endforeach
                                            
-                                            @endif
+                                         
                                       
                                       
                                     </tbody>
@@ -105,6 +107,14 @@
                  <!-- Row End -->
             </div>
         </div>
+
+        @else
+            <div class="mb-5 text-center">
+                <p class="text-center"> <i class="lnr lnr-cart text-center" style="font-size: 15em; color:rgb(45, 45, 44)"></i></p>
+                <h3 class="text-center">Votre panier est Vide</h3>
+                <a href="{{ route('boutique') }}" class="btn btn-light mt-2" style="background: rgba(232, 101, 13, 0.84); color:white; font-weight:600">Retour à la boutique</a>
+            </div>
+        @endif
         <!-- Cart Main Area End -->
 
         <script type="text/javascript">

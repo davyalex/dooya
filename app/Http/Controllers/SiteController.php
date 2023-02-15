@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\CategoryPack;
 use App\Models\SousCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 class SiteController extends Controller
@@ -20,8 +21,6 @@ class SiteController extends Controller
      */
     public function index()
     {
-
-
         //
         $pack = Produit::with(['category_pack', 'media'])
             ->where('type_produit', 'pack')

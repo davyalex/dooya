@@ -288,17 +288,17 @@
                                 Swal.fire({
                             toast: true,
                             icon: 'success',
-                            title: 'Produit ajouter avec succès',
-                            animation: false,
+                            title: 'Votre commande a été validé avec success',
+                            animation: true,
                             position: 'top-right',
                             background:'#3da108',
                             iconColor:'#fff',
                             color:'#fff',
                             showConfirmButton: false,
-                            timer: 1000,
+                            timer: 5000,
                             timerProgressBar: true,
                         });
-                        window.location(response.url)
+                        window.location="{{ route('commande-user') }}"
                             }
                         }
                     });

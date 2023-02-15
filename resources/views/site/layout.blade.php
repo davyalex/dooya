@@ -187,18 +187,31 @@
                                     @include('site.pages.sections.cart')
   
   
-                                      {{-- <li><a href="#"><i class="lnr lnr-heart"></i><span class="my-cart"><span>Wish</span><span>list (0)</span></span></a>
-                                      </li> --}}
+                                      
                                       @auth
-                                      <li><a href="#" class="text-secondary"><i class="fa fa-user text-secondary"></i> {{ Auth::user()->name }}</a>
-                                        <li><a href="" class="text-secondary signout"><i class="fa fa-sign-out"></i> Se deconnecter</a></li>
-                                      </li>
-                                      <form id="form_logout" action="{{ route('logout') }}" method="POST">
+                                    
+                                      
+                                       
+                                     
+                                      <li><a href="#"  class="dropdown-toggle"   data-toggle="dropdown"  role="button" ><i class="lnr lnr-user"></i><span class="my-cart"><span>{{ Auth::user()->name }}</span><span>mon compte</span></span>
+                                        <div class="dropdown-menu">
+                                            <button id="commande" style="color:rgb(236, 119, 18)" class="dropdown-item" type="button"> <i class="fa fa-shopping-bag"></i> Mes commandes</button>
+                                            <div class="dropdown-divider"></div>
+                                            <button id="" style="color:rgb(236, 119, 18)" class="dropdown-item" type="button"><i class="fa fa-user"></i> Mon profil</button>
+                                            <div class="dropdown-divider"></div>
+                                            <button style="color:rgb(170, 56, 56)" class="dropdown-item" type="button" class="signout"><i class="fa fa-sign-out"></i>Deconnexion</button>  
+
+                                        </div>
+                                    </a>
+                                
+                                    </li>
+                                                                          
+                                      <form id="form_logout" action="{{ route('logout-user') }}" method="POST">
                                         @csrf
                                     </form>
                                       @endauth
                                       @guest
-                                      <li><a href="{{ route('login') }}"><i class="lnr lnr-user"></i><span class="my-cart"><span> <strong>Se connecter</strong></a>
+                                      <li><a href="{{ route('login-user') }}"><i class="lnr lnr-user"></i><span class="my-cart">Creer un compte<span> <strong>Se connecter</strong></a>
                                       </li>
                                       @endguest
                                     
@@ -287,7 +300,7 @@
                                   <ul class="vertical-menu-list">
                                      @foreach ( $category as $item )
                                          @if ($item->sous_categories->count()>0)
-                                         <li><a href="#">{{ $item['title'] }}<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                         <li><a href="/boutique?category={{ $item['code'] }}">{{ $item['title'] }}<i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                           <!-- Vertical Mega-Menu Start -->
                                           <ul class="ht-dropdown megamenu megamenu-two">
                                               <!-- Single Column Start -->
@@ -304,10 +317,11 @@
                                           <!-- Vertical Mega-Menu End --> 
                                       </li>
                                          @else
-                                         <li><a href="/boutique?category={{ $item['code'] }}"><i class="fa fa-shop"></i>{{ $item['title'] }}</a>
+                                         <li> <i class="fa fa-shopping-cart"></i> <a href="/boutique?category={{ $item['code'] }}"><i class="fa fa-shop"></i>{{ $item['title'] }}</a>
                                          </li>
                                          @endif
                                      @endforeach
+                                     <li><a href="{{ route('boutique') }}" style="font-weight: 700">Tous les produits <i class="fa fa-shopping-cart"></i></a></li>
                                   </ul>
 
                              
@@ -338,7 +352,7 @@
 
   
   <!-- Banner pub -->
-  <div class="big-banner pb-100 pb-sm-60">
+  {{-- <div class="big-banner pb-100 pb-sm-60">
     <div class="container big-banner-box">
         <div class="col-img">
             <a href="#">
@@ -352,7 +366,7 @@
         </div>
     </div>
     <!-- Container End -->
-</div>
+</div> --}}
 
 
 <!-- Support Area Start Here -->
@@ -569,6 +583,14 @@ $('.signout').click(function (e) {
     document.getElementById('form_logout').submit();
 
 });
+
+//aller sur la page mes commandes
+$('#commande').click(function (e) { 
+    e.preventDefault();
+    window.location.href="{{ route('commande-user') }}"
+
+});
+
 
 });
        

@@ -5,13 +5,18 @@
             @if ($item->produits()->count() >0 )
                 
            
-       <div class="post-title pb-30">
-        
-           <h2 class="">{{ $item['title'] }} 
-            <a href="/boutique?section={{ $item['code'] }}" class="">        <i class="fa fa-caret-right"></i>
-            </a>
-
-        </h2>         
+       <div class="container post-title" style="background: #f28b00">
+            <div class="row">
+                <div class="col-md-12 text-center py-3">
+                    <a href="/boutique?section={{ $item['code'] }}" class="" style=" color: #fff;
+                    font-size: 21px;
+                    font-weight: 900;"> 
+                       <span> {{ $item['title'] }} <i class="fa fa-caret-right"></i></span>
+                    </a>
+                       
+                </div>
+                
+            </div>
       
        </div>
       
@@ -35,7 +40,7 @@
                                     {{ number_format(($item ->prix - $item ->prix_promo ) * 100 / $item ->prix, 0) }}
                                     <span class="symbol-percent">%</span></div>
                                 @else
-                                <p><span class="price">{{ $item['prix'] }} FCFA</span></p>
+                                <p><span class="price">{{ number_format($item['prix'],0) }} FCFA</span></p>
                                 @endif
                         </div>
                         <div class="pro-actions">

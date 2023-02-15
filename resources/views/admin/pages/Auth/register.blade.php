@@ -1,3 +1,4 @@
+
 @extends('admin.layout')
 @section('title', 'Utilisateurs')
 
@@ -38,7 +39,7 @@
             
                                 <div class="col-12">
                                   <label for="yourEmail" class="form-label">Email</label>
-                                  <input type="email" name="email" class="form-control" id="yourEmail">
+                                  <input type="email" name="email" class="form-control"">
                                 </div>
             
                                 <div class="col-12">

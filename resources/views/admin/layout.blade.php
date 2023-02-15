@@ -225,18 +225,18 @@
         </a>
         <ul id="commande-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="charts-chartjs.html">
+            <a href="/commande/?status=attente">
               <i class="bi bi-circle"></i><span>Commandes en attente</span>
             </a>
           </li>
           <li>
-            <a href="charts-apexcharts.html">
+            <a href="/commande/?status=livre">
               <i class="bi bi-circle"></i><span>Commandes Livrées</span>
             </a>
           </li>
 
           <li>
-            <a href="charts-apexcharts.html">
+            <a href="{{ route('liste-commande') }}">
               <i class="bi bi-circle"></i><span>Toutes les commandes</span>
             </a>
           </li>
@@ -249,14 +249,14 @@
                 <span>Livraisons</span>
             </a>
         </li><!-- End livraison Page Nav -->
-
+@role('administrateur')
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('user') }}">
             <i class="bi bi-people-fill"></i>
             <span>Utilisateurs</span>
           </a>
         </li><!-- End user Page Nav -->
-
+@endrole
            {{-- category --}}
            <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#parametre-nav" data-bs-toggle="collapse" href="#">

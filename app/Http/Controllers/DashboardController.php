@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class DashboardController extends Controller
 {
@@ -15,8 +16,14 @@ class DashboardController extends Controller
     public function index()
     {
         //
+        // dd(Route::currentRouteName());
         if (Auth::check()) {
-            return view('admin.pages.index');
+            if(Auth::user()->role =='administrateur' || Auth::user()->role =='webmaster'){
+                return view('admin.pages.index');
+            }else {
+                return redirect('login');
+             }
+           
         } else {
            return redirect('login');
         }

@@ -146,8 +146,8 @@ ul {
 
 /* post title bg color css start */
 .post-title h2,
-.hot-deal-three .post-title h2,
-.second-featured-products.related-pro .post-title h2 {
+.hot-deal-three,
+.second-featured-products.related-pro .post-title h2{
     background: #f28b00 none repeat scroll 0 0;
     text-align: center!important;
 

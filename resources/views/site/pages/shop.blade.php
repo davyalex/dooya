@@ -132,7 +132,7 @@
                                                         {{ number_format(($item ->prix - $item ->prix_promo ) * 100 / $item ->prix, 0) }}
                                                         <span class="symbol-percent">%</span></div>
                                                     @else
-                                                    <p><span class="price">{{ $item['prix'] }} FCFA</span></p>
+                                                    <p><span class="price">{{ number_format($item['prix'],0) }} FCFA</span></p>
                                                     @endif
                                             </div>
                                             <div class="pro-actions">
