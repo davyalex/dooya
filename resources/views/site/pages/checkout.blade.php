@@ -49,8 +49,8 @@
                                 </div>
                             </div> --}}
                             <!-- ACCORDION END -->
-                            <!-- ACCORDION START -->
-                            <h3>Vous avez un code promo? <span id="showcoupon">Cliquez içi pour entrer votre code promo</span></h3>
+                            <!-- ACCORDION CODE PROMO -->
+                            {{-- <h3>Vous avez un code promo? <span id="showcoupon">Cliquez içi pour entrer votre code promo</span></h3>
                             <div id="checkout_coupon" class="coupon-checkout-content">
                                 <div class="coupon-info">
                                     <form action="#">
@@ -60,7 +60,7 @@
                                         </p>
                                     </form>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- ACCORDION END -->
                         </div>
                     </div>
@@ -158,8 +158,9 @@
                                            
                                             <td class="product-name">
                                                     <p class="d-flex">
-                                                        <img src="{{ asset($item['image']) }}" alt="" width="50px" height="50px">
-                                                       
+                                                        <a href="/detail?produit={{ $item['code'] }}">
+                                                            <img src="{{ asset($item['image']) }}" alt="" width="50px" height="50px">
+                                                        </a>
                                                         <span class="mx-2">
                                                             {{ $item['title'] }} <br>
                                                             {{ $item['quantite'] }}  × {{ number_format($item['prix'],0)  }} FCFA
@@ -286,16 +287,16 @@
                         success: function (response) {
                             if (response.success) {
                                 Swal.fire({
-                            toast: true,
+                           toast: true,
                             icon: 'success',
                             title: 'Votre commande a été validé avec success',
-                            animation: true,
+                            animation: false,
                             position: 'top-right',
                             background:'#3da108',
                             iconColor:'#fff',
                             color:'#fff',
                             showConfirmButton: false,
-                            timer: 5000,
+                            timer: 3000,
                             timerProgressBar: true,
                         });
                         window.location="{{ route('commande-user') }}"

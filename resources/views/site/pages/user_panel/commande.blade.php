@@ -268,7 +268,7 @@
 	<div class="container">
 		<div class="breadcrumb">
 			<ul class="d-flex align-items-center">
-				<li><a href="javascript:history.go(-1)"><i class="fa fa-arrow-left"></i> Retour</a></li>
+				<li><a href="{{ route('boutique') }}"><i class="fa fa-arrow-left"></i> Retour en boutique</a></li>
 				<li><a href="{{ route('accueil') }}">Accueil</a></li>
 				<li class="active"><a href="">Mes commandes</a></li>
 			</ul>
@@ -312,11 +312,11 @@
 									@if ($item['status']=='livre')
 									<div class="status text-success">Status : Commande livrée</div>
 									@elseif ($item['status']=='attente')
-									<div class="status text-primary">Status : Commande en attente</div>
+									<div class="status text-primary">Status : Commande en cour de traitement</div>
 									@endif
 										<div>
 											<a href="{{ route('facture-user',$item['id']) }}" id="detail" class="btn btn-primary text-uppercase">Details</a>
-											<a href="" class="btn btn-danger text-uppercase">Annuler</a>
+											<a href="{{ route('annuler-facture',$item['id']) }}" class="btn btn-danger text-uppercase">Annuler</a>
 
 										</div>
 							</div>

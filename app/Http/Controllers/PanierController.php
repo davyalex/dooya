@@ -35,6 +35,7 @@ class PanierController extends Controller
         } else {
             $cart[$id] = [
                 "id"=>$id,
+                "code"=>$produit->code,
                 "title" => $produit->title,
                 "quantite" => 1,
                 "prix" => $produit->prix,

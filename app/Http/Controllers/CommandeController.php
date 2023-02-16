@@ -7,6 +7,7 @@ use App\Models\Commande;
 use App\Models\Livraison;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreCommandeRequest;
@@ -57,6 +58,18 @@ class CommandeController extends Controller
            return view('site.pages.user_panel.facture',compact('facture'));
    
        }
+
+
+       public function annuler_facture($id){
+        $cancel = Commande::find($id)->delete();
+        DB::table('commande_produit')->where('commande_id',$id)->delete();
+        Alert::Success('Commande annulé avec success');
+        return back();
+
+       }
+
+
+
 
 
 
@@ -242,5 +255,6 @@ class CommandeController extends Controller
     public function destroy(Commande $commande)
     {
         //
+
     }
 }

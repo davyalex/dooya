@@ -90,6 +90,21 @@ class SiteController extends Controller
 
 
 
+    public function search(Request $request)
+    {
+        $search = $request['search'];
+
+        if ($search) {
+            $produit = Produit::with(['category', 'media', 'sous_category', 'sections', 'commandes'])
+                ->where('title', 'Like',"%{$search}%")
+                ->orderBy('created_at', 'desc')->paginate(20);
+                return view('site.pages.shop',compact('produit'));
+        }else{
+            return redirect('/boutique');
+        }
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -147,13 +162,13 @@ class SiteController extends Controller
                 })->first();
 
 
-                $produit_related = Produit::with(['category_pack', 'media'])
+            $produit_related = Produit::with(['category_pack', 'media'])
                 ->whereNull('category_id')
                 // ->where('code', '!=',  $produit->code)
                 ->orderBy('created_at', 'desc')->get();
 
 
-            return view('site.pages.detail', compact('produit','produit_related'));
+            return view('site.pages.detail', compact('produit', 'produit_related'));
         }
     }
 

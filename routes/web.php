@@ -145,6 +145,8 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('', 'index')->name('accueil');
     Route::get('boutique', 'shop')->name('boutique');
     Route::get('detail', 'show')->name('detail');
+    Route::get('q', 'search')->name('search');
+
 });
 
 //panier
@@ -159,7 +161,7 @@ Route::controller(PanierController::class)->group(function () {
 
 
 //commande
-Route::middleware('client')->group(function () {
+Route::middleware(['client','admin'])->group(function () {
     Route::controller(CommandeController::class)->group(function () {
         //liste des commande admin
         Route::get('commande', 'index')->name('liste-commande');
@@ -167,6 +169,8 @@ Route::middleware('client')->group(function () {
         Route::get('mes-commandes', 'mes_commandes')->name('commande-user');
         //facture user
         Route::get('ma-facture/{id}', 'facture_user')->name('facture-user');
+        Route::get('annuler-ma-facture/{id}', 'annuler_facture')->name('annuler-facture');
+
         Route::post('change-status/{id}', 'change_status')->name('change-status');
 
         Route::get('finaliser-ma-commande', 'checkout')->name('caisse');
@@ -184,5 +188,10 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('creer-un-compte', 'register')->name('register-user');
     Route::get('se-connecter', 'login_form')->name('login_form');
     Route::post('se-connecter', 'login')->name('login-user');
-    Route::post('deconnexion', 'logout')->name('logout-user')->middleware('client');
+    Route::post('deconnexion', 'logout')->name('logout-user')->middleware(['client','admin']);
+    Route::get('mon-profil', 'profil_user')->name('profil-user')->middleware('client','admin');
+    Route::post('modifier-mon-profil', 'profil_update')->name('profil-update')->middleware('client','admin');
+    Route::post('modifier-mon-de-passe', 'new_password_user')->name('profil-user-password')->middleware('client','admin');
+
+
 });

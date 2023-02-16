@@ -11,7 +11,7 @@
                     </a> 
                 </div>
                 <div class="support-desc">
-                    <h6 class="">{{ $item['category_pack']['title'] }} <i class="fa fa-dropbox"></i></h6>
+                    <h6 class="text-uppercase">{{ $item['category_pack']['title'] }} </h6>
                     <span style=" color: #d60c0c;
                     font-size: 21px;
                     font-weight: 900;">{{ number_format($item['prix'],0) }} FCFA</span>

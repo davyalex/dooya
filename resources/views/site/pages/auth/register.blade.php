@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                             <div class="form-group d-md-flex align-items-md-center">
-                                <label class="control-label col-md-2" for="pwd"><span class="require">*</span>Password:</label>
+                                <label class="control-label col-md-2" for="pwd"><span class="require">*</span>Mot de passe:</label>
                                 <div class="col-md-10">
                                     <input type="password" name="password" class="form-control" id="pwd" placeholder="Password" required>
                                 </div>

@@ -47,7 +47,7 @@
                                                      @php $total += $details['prix'] * $details['quantite'] @endphp
                                             <tr data-id="{{ $id }}">
                                                 <td class="product-thumbnail">
-                                                    <a href=""><img src="{{ $details['image'] }}" alt="cart-image" /></a>
+                                                    <a href="/detail?produit={{ $details['code'] }}"><img src="{{ $details['image'] }}" alt="cart-image" /></a>
                                                 </td>
                                                 <td class="product-name"><a href="#">{{ $details['title'] }}</a></td>
                                                 <td class="product-price"><span class="amount">{{ number_format($details['prix'],0) }} FCFA</span></td>

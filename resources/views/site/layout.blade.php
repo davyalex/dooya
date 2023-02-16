@@ -142,40 +142,10 @@
                           <!-- Categorie Search Box Start Here -->
                           <div class="col-lg-5 col-md-4">
                               <div class="categorie-search-box">
-                                  <form action="#">
-                                      <div class="form-group">
-                                          <select class="bootstrap-select" name="poscats">
-                                              <option value="0">All categories</option>
-                                              <option value="2">Arrivals</option>
-                                              <option value="3">Cameras</option>
-                                              <option value="4">Cords and Cables</option>
-                                              <option value="5">gps accessories</option>
-                                              <option value="6">Microphones</option>
-                                              <option value="7">Wireless Transmitters</option>
-                                              <option value="8">GamePad</option>
-                                              <option value="9">cube lifestyle hd</option>
-                                              <option value="10">Bags</option>
-                                              <option value="11">Bottoms</option>
-                                              <option value="12">Shirts</option>
-                                              <option value="13">Tailored</option>
-                                              <option value="14">Home &amp; Kitchen</option>
-                                              <option value="15">Large Appliances</option>
-                                              <option value="16">Armchairs</option>
-                                              <option value="17">Bunk Bed</option>
-                                              <option value="18">Mattress</option>
-                                              <option value="19">Sideboard</option>
-                                              <option value="20">Small Appliances</option>
-                                              <option value="21">Bootees Bags</option>
-                                              <option value="22">Jackets</option>
-                                              <option value="23">Shelf</option>
-                                              <option value="24">Shoes</option>
-                                              <option value="25">Phones &amp; Tablets</option>
-                                              <option value="26">Tablet</option>
-                                              <option value="27">phones</option>
-                                          </select>
-                                      </div>
+                                  <form action="{{ route('search') }}" method="GET">
+                                        @csrf
                                       <input type="text" name="search" placeholder="Rechercher un produit">
-                                      <button><i class="lnr lnr-magnifier"></i></button>
+                                      <button type="submit"><i class="lnr lnr-magnifier"></i></button>
                                   </form>
                               </div>
                           </div>
@@ -195,11 +165,11 @@
                                      
                                       <li><a href="#"  class="dropdown-toggle"   data-toggle="dropdown"  role="button" ><i class="lnr lnr-user"></i><span class="my-cart"><span>{{ Auth::user()->name }}</span><span>mon compte</span></span>
                                         <div class="dropdown-menu">
-                                            <button id="commande" style="color:rgb(236, 119, 18)" class="dropdown-item" type="button"> <i class="fa fa-shopping-bag"></i> Mes commandes</button>
+                                            <button id="commande" style="color:rgb(81, 77, 77)" class="dropdown-item" type="button"> <i class="fa fa-shopping-bag"></i> Mes commandes</button>
                                             <div class="dropdown-divider"></div>
-                                            <button id="" style="color:rgb(236, 119, 18)" class="dropdown-item" type="button"><i class="fa fa-user"></i> Mon profil</button>
+                                            <button id="profil" style="color:rgb(81, 77, 77)" class="dropdown-item" type="button"><i class="fa fa-user"></i> Mon profil</button>
                                             <div class="dropdown-divider"></div>
-                                            <button style="color:rgb(170, 56, 56)" class="dropdown-item" type="button" class="signout"><i class="fa fa-sign-out"></i>Deconnexion</button>  
+                                            <button style="color:rgb(81, 77, 77)" class="dropdown-item" type="button" id="signout"><i class="fa fa-sign-out"></i>Deconnexion</button>  
 
                                         </div>
                                     </a>
@@ -436,7 +406,7 @@
                         <h3 class="footer-title">A propos</h3>
                         <div class="footer-content">
                             <ul class="footer-list">
-                                <li><a href="about.html">Presentation</a></li>
+                                <li><a href="#">Presentation</a></li>
                                 <li><a href="#">Politique de Confidentialité</a></li>
                                 <li><a href="#">Conditions générales de vente</a></li>
                             </ul>
@@ -451,7 +421,7 @@
                         <div class="footer-content">
                           
                             <ul class="footer-list">
-                                <li><a href="contact.html"> Comment ça marche ?</a></li>
+                                <li><a href="#"> Comment ça marche ?</a></li>
                                 <li><a href="#">Expédition et livraison</a></li>
                                 <li><a href="#">Retours et remboursements
                                 </a></li>
@@ -578,7 +548,8 @@ if (url ===false) {
 
 //logout
 
-$('.signout').click(function (e) { 
+$('#signout').click(function (e) { 
+    
     e.preventDefault();
     document.getElementById('form_logout').submit();
 
@@ -588,6 +559,13 @@ $('.signout').click(function (e) {
 $('#commande').click(function (e) { 
     e.preventDefault();
     window.location.href="{{ route('commande-user') }}"
+
+});
+
+//page profil
+$('#profil').click(function (e) { 
+    e.preventDefault();
+    window.location.href="{{ route('profil-user') }}"
 
 });
 

@@ -9,6 +9,7 @@
                     <ul class="d-flex align-items-center">
                         <li><a href="javascript:history.go(-1)"><i class="fa fa-arrow-left"></i> Retour</a></li>
                         <li><a href="{{ route('accueil') }}">Accueil</a></li>
+                        <li><a href="{{ route('boutique') }}">Boutique</a></li>
                         <li class="active"><a href="">Facture</a></li>
                     </ul>
                 </div>
@@ -53,8 +54,9 @@
                                             <td class="product-name">
                                                     
                                                 <p class="d-flex py-1">
-                                                    <img src="{{ asset($item->getFirstMediaUrl('image')) }}" alt="" width="50px" height="50px">
-                                                   
+                                                    <a href="/detail?produit={{ $item['code'] }}"> 
+                                                         <img src="{{ asset($item->getFirstMediaUrl('image')) }}" alt="" width="50px" height="50px">
+                                                    </a>
                                                     <span class="mx-2">
                                                         {{ $item['title'] }} <br>
                                                         {{ $item['pivot']['quantite'] }}  × {{ number_format($item['pivot']['prix_unitaire'] ,0)  }} FCFA
@@ -98,9 +100,9 @@
                     </div>
                 </div>
             </div>
-            <div class="wc-proceed-to-checkout text-center">
+            {{-- <div class="wc-proceed-to-checkout text-center">
                 <a href="" id="print"><i class="fa fa-print"></i> Imprimer</a>
-            </div>
+            </div> --}}
         </div>
      
         <!-- checkout-area end -->

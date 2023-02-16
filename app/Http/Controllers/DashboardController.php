@@ -18,14 +18,11 @@ class DashboardController extends Controller
         //
         // dd(Route::currentRouteName());
         if (Auth::check()) {
-            if(Auth::user()->role =='administrateur' || Auth::user()->role =='webmaster'){
+           
                 return view('admin.pages.index');
-            }else {
-                return redirect('login');
-             }
            
         } else {
-           return redirect('login');
+           return redirect('admin/login');
         }
         
     }

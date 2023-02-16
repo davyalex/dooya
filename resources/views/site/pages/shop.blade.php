@@ -74,37 +74,7 @@
             <!-- Product Categorie List Start -->
             <div class="col-lg-12 order-1 order-lg-2">
                 <!-- Grid & List View Start -->
-                <div class="grid-list-top border-default universal-padding d-md-flex justify-content-md-between align-items-center mb-30">
-                  
-                    <!-- Toolbar Short Area Start -->
-                    <div class="main-toolbar-sorter clearfix">
-                        <div class="toolbar-sorter d-flex align-items-center">
-                            <label>Sort By:</label>
-                            <select class="sorter wide">
-                                <option value="Position">Relevance</option>
-                                <option value="Product Name">Neme, A to Z</option>
-                                <option value="Product Name">Neme, Z to A</option>
-                                <option value="Price">Price low to heigh</option>
-                                <option value="Price" selected>Price heigh to low</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- Toolbar Short Area End -->
-                    <!-- Toolbar Short Area Start -->
-                    <div class="main-toolbar-sorter clearfix">
-                        <div class="toolbar-sorter d-flex align-items-center">
-                            <label>Show:</label>
-                            <select class="sorter wide">
-                                <option value="12">12</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="75">75</option>
-                                <option value="100">100</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- Toolbar Short Area End -->
-                </div>
+              
                 <!-- Grid & List View End -->
                 <div class="main-categorie mb-all-40">
                     <!-- Grid & List Main Area End -->

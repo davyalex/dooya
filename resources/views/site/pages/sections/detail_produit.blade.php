@@ -44,7 +44,7 @@
                     <div class="thubnail-desc fix">
                         <h3 class="product-header">{{ $produit['title'] }}</h3>
                         @if ($produit['category_pack'])
-                        <strong><i class="fa fa-dropbox"></i> Pack {{ $produit['category_pack']['title'] }}
+                        <strong> Pack {{ $produit['category_pack']['title'] }}
                         </strong>
                         @endif
 

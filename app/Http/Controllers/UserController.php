@@ -147,7 +147,7 @@ class UserController extends Controller
             $user_update->syncRoles($request->role);
         }
 
-        Alert::toast('utilisateur modifié avec success', 'success');
+        Alert::toast('Compte modifié avec success', 'success');
 
         return back();
     }
@@ -209,7 +209,7 @@ class UserController extends Controller
         }
 
         Alert::error('Contact ou mot de passe incorrect');
-        return redirect('login');
+        return redirect('admin/login');
     }
 
 

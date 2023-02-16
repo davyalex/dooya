@@ -86,8 +86,6 @@ class AuthController extends Controller
                 return redirect()->route('accueil');
             }
         }
-
-     
     }
 
 
@@ -96,5 +94,47 @@ class AuthController extends Controller
         Auth::logout();
         Alert::toast('Deconnexion réussi', 'success');
         return redirect('/');
+    }
+
+    public function profil_user()
+    {
+        return view('site.pages.user_panel.profil');
+    }
+
+    public function profil_update(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => '',
+
+        ]);
+
+        $user_update = tap(User::find(Auth::user()->id))->update([
+            'name' => $validatedData['name'],
+            'phone' => $validatedData['phone'],
+            'email' => $request->email,
+        ]);
+
+        Alert::toast('Compte modifié avec success', 'success');
+
+        return back();
+    }
+
+
+    public function new_password_user(Request $request){
+        $user = User::whereId(Auth::user()->id)->first();
+        $pwd = Hash::check($request['password'],$user['password']);
+        if (!$pwd) {
+            Alert::Error('votre ancien mot de passe est incorrect');
+            return back();
+        } else {
+            $update_pwd = User::find(Auth::user()->id)->update(['password'=>Hash::make($request['newPassword'])]);
+            Alert::Success('votre mot de passe modifié avec success');
+            return back();
+
+        }
+        
+        
     }
 }
