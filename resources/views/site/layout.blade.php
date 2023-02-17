@@ -168,6 +168,11 @@
                                             <button id="commande" style="color:rgb(81, 77, 77)" class="dropdown-item" type="button"> <i class="fa fa-shopping-bag"></i> Mes commandes</button>
                                             <div class="dropdown-divider"></div>
                                             <button id="profil" style="color:rgb(81, 77, 77)" class="dropdown-item" type="button"><i class="fa fa-user"></i> Mon profil</button>
+                                          @role(['administrateur','webmaster'])
+                                          <div class="dropdown-divider"></div>
+                                          <button style="color:rgb(81, 77, 77)" class="dropdown-item" type="button" id="dashboard"><i class="fa fa-dashboard"></i> Dashboard</button>  
+                                         
+                                          @endrole
                                             <div class="dropdown-divider"></div>
                                             <button style="color:rgb(81, 77, 77)" class="dropdown-item" type="button" id="signout"><i class="fa fa-sign-out"></i>Deconnexion</button>  
 
@@ -566,6 +571,13 @@ $('#commande').click(function (e) {
 $('#profil').click(function (e) { 
     e.preventDefault();
     window.location.href="{{ route('profil-user') }}"
+
+});
+
+//page profil
+$('#dashboard').click(function (e) { 
+    e.preventDefault();
+    window.location.href="{{ route('dashboard') }}"
 
 });
 

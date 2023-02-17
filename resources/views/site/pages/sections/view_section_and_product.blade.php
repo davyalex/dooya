@@ -11,7 +11,7 @@
                     <a href="/boutique?section={{ $item['code'] }}" class="" style=" color: #fff;
                     font-size: 21px;
                     font-weight: 900;"> 
-                       <span> {{ $item['title'] }} <i class="fa fa-caret-right"></i></span>
+                       <span class="text-capitalize"> {{ $item['title'] }} <i class="fa fa-caret-right"></i></span>
                     </a>
                        
                 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pack;
+use App\Models\Slider;
 use App\Models\Produit;
 use App\Models\Section;
 use App\Models\Category;
@@ -29,7 +30,9 @@ class SiteController extends Controller
 
         $section = Section::with('produits')->get();
 
-        return view('site.pages.accueil', compact(['pack', 'section']));
+        $slider = Slider::with('media')->orderBy('created_at','desc')->get();
+            
+        return view('site.pages.accueil', compact(['pack', 'section','slider']));
     }
 
 

@@ -2,8 +2,11 @@
     <div class="slider-wrapper theme-default">
         <!-- Slider Background  Image Start-->
         <div id="slider" class="nivoSlider">
-            <a href="shop.html"><img src="{{ asset('img/banner/banndooya.png') }}" data-thumb="{{ asset('img/banner/banndooya.png') }}" alt="" title="#htmlcaption" /></a>
-            <a href="shop.html"><img src="{{ asset('img/banner/5.jpg') }}" data-thumb="{{ asset('img/banner/banndooya.png') }}" alt="" title="#htmlcaption" /></a>
+            @foreach ($slider as $item)
+                 @foreach ($item->getMedia('image') as $item)
+                 <a href="{{ route('boutique') }}"><img src="{{ asset($item->getUrl()) }}" data-thumb="{{ asset($item->getUrl()) }}" alt="" title="#htmlcaption" /></a>
+                 @endforeach
+            @endforeach
         </div>
         <!-- Slider Background  Image Start-->
     </div>

@@ -14,6 +14,8 @@
   <meta name="title" content="@yield('title')">
   <meta name="url" content="@yield('url')">
 
+  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -185,12 +187,12 @@
       <ul id="produit-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
           <a href="{{ route('section') }}">
-            <i class="bi bi-circle"></i><span>Ajouter une section</span>
+            <i class="bi bi-circle"></i><span>Section</span>
           </a>
         </li>
         <li>
           <a href="{{ route('produit') }}">
-            <i class="bi bi-circle"></i><span>Ajouter un produit</span>
+            <i class="bi bi-circle"></i><span>Produit</span>
           </a>
         </li>
       </ul>
@@ -264,7 +266,7 @@
             </a>
             <ul id="parametre-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
               <li>
-                <a href="">
+                <a href="{{ route('slider.index') }}">
                   <i class="bi bi-circle"></i><span>Slider</span>
                 </a>
               </li>
@@ -287,8 +289,9 @@
       <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">@yield('title')</a></li>
+          <li class="breadcrumb-item"><a href="#">@yield('title')</a></li>
           <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item"><a href="javascript:history.go(-1)">Retour</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -309,7 +312,7 @@
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Crée par <a href="">Labodigit</a>
+      Réalisé par <a href="">DevDav-INGENIEUR DASI@</a>
     </div>
   </footer><!-- End Footer -->
 

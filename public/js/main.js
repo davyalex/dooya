@@ -118,9 +118,9 @@ NOTE: main.js, All custom script and plugin activation script in this file.
         animSpeed: 300,
         pauseTime: 5000,
         directionNav: true,
-        manualAdvance: true,
+        manualAdvance: false,
         controlNavThumbs: false,
-        pauseOnHover: true,
+        pauseOnHover: false,
         controlNav: false,
         prevText: "<i class='lnr lnr-arrow-left'></i>",
         nextText: "<i class='lnr lnr-arrow-right'></i>"

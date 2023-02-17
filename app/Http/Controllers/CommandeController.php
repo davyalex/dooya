@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produit;
 use App\Models\Commande;
+use Barryvdh\DomPDF\PDF;
 use App\Models\Livraison;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -58,6 +59,27 @@ class CommandeController extends Controller
            return view('site.pages.user_panel.facture',compact('facture'));
    
        }
+
+        public function bon_livraison($id){
+            $detail = Commande::with(['produits', 'livraison', 'users'])
+            ->whereId($id)->get();
+            
+            return view('admin.pages.commande.bon_livraison',compact('detail'));
+        }
+
+
+        // public function print_bon_livraison($id){
+        //     $detail = Commande::with(['produits', 'livraison', 'users'])
+        //     ->whereId($id)->get();
+        //     $detail = Commande::with(['produits', 'livraison', 'users'])
+        //     ->whereId($id)->get();
+            
+        //     $pdf = PDF::loadView('admin.pages.commande.print_bon_livraison', $detail);
+     
+        //     return $pdf->download($detail->code.'pdf');
+        // }
+
+
 
 
        public function annuler_facture($id){

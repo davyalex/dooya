@@ -25,12 +25,28 @@
                 <div class="row">
                    
                     <div class="col-lg-6 col-md-6 m-auto">
+                        @role(['administrateur','webmaster'])
+                       <div class="wc-proceed-to-checkout text-center mb-2">
+                        <a href="javascript:history.go(-1)" id=""><i class="fa fa-dashboard"></i> Retour en administration</a>
+                   </div>
+                       @endrole
                         <div class="your-order">
-                            <h3 class="text-center">Votre facture</h3>
+                            <h3 class="text-center">Facture</h3>
                             @foreach ($facture as $item)
+
                             <div class="d-flex justify-content-between">
-                                <h6 class="text-left">No: #{{ $item['code'] }} </h6>
-                                <h6 class="text-right">Date: #{{ $item['created_at'] }} </h6>
+
+                                <div class="text-left">
+                                    <h6><b>N <sup>0</sup>  commande:</b> {{ $item['code'] }}</h6>
+                                    <h6 class=""><b>Date:</b> {{ $item['created_at'] }} </h6>
+                                </div>
+
+                                <div class="text-right">
+                                    <span>  <b>Client:</b> {{ $item['users']['name'] }}</span><br>
+                                    <span>  <b>Contact:</b> {{ $item['users']['phone'] }}</span><br>
+                                    <span> <b> Email:</b> {{ $item['users']['email'] }}</span>
+                                </div>
+                              
 
                             </div>
 

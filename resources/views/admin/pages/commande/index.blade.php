@@ -54,11 +54,13 @@
 
                   <td>
                     <div class="d-flex">
-                     <a href="/post/livraison?livraison={{ $item['code'] }}"  role="button" class="btn btn-warning rounded-circle"><i class="bi bi-eye"></i></a>
- 
+                     <a href="{{ route('facture-user',$item['id']) }}"  role="button" class="btn btn-warning rounded-circle mx-2"><i class="bi bi-eye"></i></a>
+
+                     <a href="{{ route('bon-livraison',$item['id']) }}"  role="button" class="btn btn-secondary rounded-circle"><i class="bi bi-file-earmark-check"></i></a>
+
                      <a href="{{ route('change-status',$item['id']) }}" role="button" data-id = {{ $item['id'] }} data-bs-toggle="modal" data-bs-target="#basicModalStatus{{ $item['id'] }}" class="btn btn-success rounded-circle mx-2 "><i class="bi bi-bicycle"></i></a>
                      
-                     <form  action="{{ route('livraison.delete',$item->id) }}" method="POST">
+                     <form  action="{{ route('annuler-facture',$item->id) }}" method="GET">
                        @csrf
                        <a  class="btn btn-danger rounded-circle" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#confirmDelete{{ $item->id }}"><i class="bi bi-trash"></i> </a>
                       @include('admin.partials.deleteConfirm')
@@ -73,7 +75,7 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title">Modifier une livraison </h5>
+                        <h5 class="modal-title">Modifier le status livraison </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">

@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PanierController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\CategoryController;
@@ -40,7 +41,7 @@ Route::prefix('admin')->group(function () {
 
 
 //Route admin
-Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     /**Post */
     Route::controller(DashboardController::class)->group(function () {
@@ -134,6 +135,15 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
         Route::get('loadSubCat/{id}', 'loadsubCat');
         Route::get('deleteImage/{id}', 'deleteImage');
     });
+
+    //slider
+    route::controller(SliderController::class)->prefix('slider')->group(function(){
+        route::get('index','index')->name('slider.index');
+        route::post('store','store')->name('slider.store');
+        Route::get('edit/{id}', 'edit')->name('slider.edit');
+        Route::post('update/{id}', 'update')->name('slider.update');
+        Route::post('destroy/{id}', 'destroy')->name('slider.delete');
+    });
 });
 
 
@@ -146,7 +156,6 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('boutique', 'shop')->name('boutique');
     Route::get('detail', 'show')->name('detail');
     Route::get('q', 'search')->name('search');
-
 });
 
 //panier
@@ -161,7 +170,7 @@ Route::controller(PanierController::class)->group(function () {
 
 
 //commande
-Route::middleware(['client','admin'])->group(function () {
+Route::middleware(['client', 'admin'])->group(function () {
     Route::controller(CommandeController::class)->group(function () {
         //liste des commande admin
         Route::get('commande', 'index')->name('liste-commande');
@@ -177,6 +186,10 @@ Route::middleware(['client','admin'])->group(function () {
         Route::get('valider-ma-commande', 'finaliser_commande')->name('commande.store');
         //recuperer le tarif pour additionner au montant total
         Route::get('refresh_shipping/{id}', 'refresh_shipping');
+
+        Route::get('bon-de-livraison/{id}', 'bon_livraison')->name('bon-livraison');
+        Route::get('bon-de-livraison-pdf/{id}', 'print_bon_livraison')->name('print-bon-livraison');
+
     });
 });
 
@@ -188,10 +201,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('creer-un-compte', 'register')->name('register-user');
     Route::get('se-connecter', 'login_form')->name('login_form');
     Route::post('se-connecter', 'login')->name('login-user');
-    Route::post('deconnexion', 'logout')->name('logout-user')->middleware(['client','admin']);
-    Route::get('mon-profil', 'profil_user')->name('profil-user')->middleware('client','admin');
-    Route::post('modifier-mon-profil', 'profil_update')->name('profil-update')->middleware('client','admin');
-    Route::post('modifier-mon-de-passe', 'new_password_user')->name('profil-user-password')->middleware('client','admin');
-
-
+    Route::post('deconnexion', 'logout')->name('logout-user')->middleware(['client', 'admin']);
+    Route::get('mon-profil', 'profil_user')->name('profil-user')->middleware('client', 'admin');
+    Route::post('modifier-mon-profil', 'profil_update')->name('profil-update')->middleware('client', 'admin');
+    Route::post('modifier-mon-de-passe', 'new_password_user')->name('profil-user-password')->middleware('client', 'admin');
 });
