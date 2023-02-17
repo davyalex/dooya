@@ -61,7 +61,7 @@
                 
                   <td>
                    <div class="d-flex">
-                    <a href="/post/pack?pack={{ $item['slug'] }}"  role="button" class="btn btn-warning rounded-circle"><i class="bi bi-eye"></i></a>
+                    <a href="/detail?produit={{ $item['code'] }}"  role="button" class="btn btn-warning rounded-circle"><i class="bi bi-eye"></i></a>
 
                     <a href="{{ route('pack.edit',$item['code']) }}" role="button"  class="btn btn-success rounded-circle mx-2 "><i class="bi bi-pencil"></i></a>
                     

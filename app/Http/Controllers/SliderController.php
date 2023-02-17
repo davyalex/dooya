@@ -122,7 +122,6 @@ class SliderController extends Controller
     {
         //
         $delete = Slider::find($id)->delete();
-        $delete = DB::table('media')->where('model_id', $id)->delete();
         Alert::toast('supprimé avec success', 'success');
         return back();
     }

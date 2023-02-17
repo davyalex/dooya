@@ -7,7 +7,7 @@
                
                 <div class="support-icon ">
                     <a href="/detail?produit={{ $item['code'] }}">
-                        <img src="{{ asset($item->getFirstMediaUrl('image')) }}" height="250px" max-width="300px" style="object-fit:contain;" alt="">
+                        <img src="{{ asset($item->getFirstMediaUrl('image')) }}" height="200px" width="100%" style="object-fit:cover;" alt="">
                     </a> 
                 </div>
                 <div class="support-desc">

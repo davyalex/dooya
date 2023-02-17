@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Produit;
+use App\Models\Commande;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -18,13 +22,105 @@ class DashboardController extends Controller
         //
         // dd(Route::currentRouteName());
         if (Auth::check()) {
-           
-                return view('admin.pages.index');
-           
+
+            $nombre_client = User::where('role', 'client')->get()->count();
+
+            //commande par temps
+            $filter = request('vente');
+            $nombre_commande = Commande::when(
+                $filter == 'annee',
+                fn ($q)
+                => $q->whereYear('created_at', Carbon::now()->year)
+            )
+                ->when(
+                    $filter == 'mois',
+                    fn ($q)
+                    => $q->whereMonth('created_at', Carbon::now()->month),
+                )
+
+                ->when(
+                    $filter == 'jour',
+                    fn ($q)
+                    => $q->whereDay('created_at', Carbon::now()->day)
+                )
+                ->get()->count();
+
+
+            //commande par status livre
+            $filter = request('vente');
+            $nombre_commande_livre = Commande::when(
+                $filter == 'annee',
+                fn ($q)
+                => $q->whereYear('created_at', Carbon::now()->year)
+                    ->whereStatus('livre')
+            )
+                ->when(
+                    $filter == 'mois',
+                    fn ($q)
+                    => $q->whereMonth('created_at', Carbon::now()->month)
+                        ->whereStatus('livre')
+                )
+
+                ->when(
+                    $filter == 'jour',
+                    fn ($q)
+                    => $q->whereDay('created_at', Carbon::now()->day)
+                        ->whereStatus('livre')
+                )
+                ->get()->count();
+
+
+            //commande par status attente
+            $filter = request('vente');
+            $nombre_commande_attente = Commande::when(
+                $filter == 'annee',
+                fn ($q)
+                => $q->whereYear('created_at', Carbon::now()->year)
+                    ->whereStatus('attente')
+            )
+                ->when(
+                    $filter == 'mois',
+                    fn ($q)
+                    => $q->whereMonth('created_at', Carbon::now()->month)
+                        ->whereStatus('attente')
+                )
+
+                ->when(
+                    $filter == 'jour',
+                    fn ($q)
+                    => $q->whereDay('created_at', Carbon::now()->day)
+                        ->whereStatus('attente')
+                )
+                ->get()->count();
+
+
+            //nombre de produits
+            $nombre_produit = Produit::get()->count();
+
+                    //liste des commandes en attente
+                    $commande = Commande::with(['produits', 'livraison', 'users'])
+                    ->whereStatus('attente')
+                    ->whereDay('created_at', Carbon::now()->day)
+                    ->orderBy('created_at', 'desc')->get();
+
+            // dd(
+            //     $nombre_client,
+            //     $nombre_commande_mois,
+            //     $nombre_commande_jour,
+            //     $nombre_commande_annee
+
+            // );
+            return view('admin.pages.index', compact([
+                'nombre_commande_livre',
+                'nombre_commande_attente',
+                'nombre_commande',
+                'nombre_produit',
+                'nombre_client',
+                'commande'
+            ]));
         } else {
-           return redirect('admin/login');
+            return redirect('admin/login');
         }
-        
     }
 
     /**

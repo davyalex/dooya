@@ -7,6 +7,7 @@
             <div class="container">
                 <div class="breadcrumb">
                     <ul class="d-flex align-items-center">
+                        <li><a href="javascript:history.go(-1)"><i class="fa fa-caret-left"></i> Retour</a></li>
                         <li><a href="{{ route('accueil') }}">Accueil</a></li>
                         <li class="active"><a href="">Caisse</a></li>
                     </ul>

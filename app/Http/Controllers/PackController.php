@@ -158,7 +158,7 @@ class PackController extends Controller
         // dd($request->file('image'));
 
     //   dd(  $section  = $request['section']);
-        $pack = tap(Pack::find($id))->update([
+        $pack = tap(Produit::find($id))->update([
             'title' =>  $request['title'],
             'prix' => $request['prix'],
             'prix_promo' => $request['prix_promo'],
@@ -177,7 +177,7 @@ class PackController extends Controller
                 "promotion" => 1,
             ]);
         }else{
-            Pack::find($pack->id)->update([
+            Produit::find($pack->id)->update([
                 "promotion" => 0,
             ]);
         }
@@ -210,8 +210,8 @@ class PackController extends Controller
     public function destroy( $id)
     {
         //
-        $delete = Pack::find($id)->delete();
-        $delete = DB::table('media')->where('model_id', $id)->delete();
+        $delete = Produit::find($id)->delete();
+        // $delete = DB::table('media')->where('model_id', $id)->delete();
         Alert::toast('supprimé avec success', 'success');
         return redirect()->route('pack');
     }

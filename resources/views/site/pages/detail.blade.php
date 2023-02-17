@@ -1,5 +1,8 @@
 @extends('site.layout')
-@section('title','Detail')
+@section('title',$produit->title)
+@section('description',$produit ->description)
+@section('image',asset($produit->getFirstMediaUrl('image')))
+@section('url',url()->current())
 
 @section('content')
 <div class="breadcrumb-area mt-30">

@@ -269,7 +269,7 @@ $produit->sections()->sync($request->section);
     {
         //
         $delete = Produit::find($id)->delete();
-        $delete = DB::table('media')->where('model_id', $id)->delete();
+        // $delete = DB::table('media')->where('model_id', $id)->delete();
         Alert::toast('supprimé avec success', 'success');
         return redirect()->route('produit');
     }

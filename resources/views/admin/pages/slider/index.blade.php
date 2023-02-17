@@ -30,7 +30,7 @@
                   <input type="text" name="title" class="form-control" id="inputNanme4">
                 </div>
                 <div class="col-12">
-                    <label for="inputNumber" class="form-label">Image du slider <br> <span> Taille image(L:580px / h:189px)</span></label>
+                    <label for="inputNumber" class="form-label">Image du slider <br> <span> Taille image(L:899px / h:409px)</span></label>
                       <input class="form-control" name="image" type="file" id="formFile" required>
                       <div class="invalid-feedback">Veuillez ajouter une image</div>
                   </div>
@@ -102,7 +102,7 @@
                     <input type="text" name="title" value="{{ $item['title'] }}" class="form-control" id="inputNanme4">
                   </div>
                   <div class="col-12 mt-2">
-                      <label for="inputNumber" class="form-label">Image de l'actualité</label>
+                      <label for="inputNumber" class="form-label">Image du slider</label>
                         <input class="form-control" name="image" type="file" id="formFile">
 
                         <div>

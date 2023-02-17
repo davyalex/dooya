@@ -4,7 +4,7 @@
         <div id="slider" class="nivoSlider">
             @foreach ($slider as $item)
                  @foreach ($item->getMedia('image') as $item)
-                 <a href="{{ route('boutique') }}"><img src="{{ asset($item->getUrl()) }}" data-thumb="{{ asset($item->getUrl()) }}" alt="" title="#htmlcaption" /></a>
+                 <a href="{{ route('boutique') }}"><img src="{{ asset($item->getUrl()) }}" data-thumb="{{ asset($item->getUrl()) }}" alt="" title="#htmlcaption"  /></a>
                  @endforeach
             @endforeach
         </div>

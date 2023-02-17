@@ -17,6 +17,10 @@
 
       <title>{{ config('app.name') }}-@yield('title')</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta property="og:description" content="@yield('description')">
+      <meta property="og:image" content="@yield('image')">
+      <meta property="og:title" content="@yield('title')">
+      <meta property="og:url" content="@yield('url')">
       <!-- Favicons -->
       <link rel="shortcut icon" href="img/favicon.ico">
       <!-- Fontawesome css -->

@@ -69,7 +69,7 @@
                 
                   <td>
                    <div class="d-flex">
-                    <a href="/post/produit?produit={{ $item['slug'] }}"  role="button" class="btn btn-warning rounded-circle"><i class="bi bi-eye"></i></a>
+                    <a href="/detail?produit={{ $item['code'] }}"  role="button" class="btn btn-warning rounded-circle"><i class="bi bi-eye"></i></a>
 
                     <a href="{{ route('produit.edit',$item['code']) }}" role="button"  class="btn btn-success rounded-circle mx-2 "><i class="bi bi-pencil"></i></a>
                     
