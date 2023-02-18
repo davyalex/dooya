@@ -1,8 +1,8 @@
 <div class="support-area bdr-top">
     <div class="container mb-1">
-        <div class="d-flex flex-wrap text-center">
+        <div class="d-flex flex-wrap">
             @foreach ($pack as $item)
-            <div class="single-support">
+            <div class="single-support ">
              
                
                 <div class="support-icon ">
@@ -10,7 +10,7 @@
                         <img src="{{ asset($item->getFirstMediaUrl('image')) }}" height="200px" width="100%" style="object-fit:cover;" alt="">
                     </a> 
                 </div>
-                <div class="support-desc">
+                <div class="support-desc text-center">
                     <h6 class="text-uppercase">{{ $item['category_pack']['title'] }} </h6>
                     <span style=" color: #d60c0c;
                     font-size: 21px;

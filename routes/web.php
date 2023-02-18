@@ -170,7 +170,7 @@ Route::controller(PanierController::class)->group(function () {
 
 
 //commande
-Route::middleware(['client', 'admin'])->group(function () {
+Route::middleware(['client'])->group(function () {
     Route::controller(CommandeController::class)->group(function () {
         //liste des commande admin
         Route::get('commande', 'index')->name('liste-commande');
@@ -201,8 +201,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('creer-un-compte', 'register')->name('register-user');
     Route::get('se-connecter', 'login_form')->name('login_form');
     Route::post('se-connecter', 'login')->name('login-user');
-    Route::post('deconnexion', 'logout')->name('logout-user')->middleware(['client', 'admin']);
-    Route::get('mon-profil', 'profil_user')->name('profil-user')->middleware('client', 'admin');
-    Route::post('modifier-mon-profil', 'profil_update')->name('profil-update')->middleware('client', 'admin');
-    Route::post('modifier-mon-de-passe', 'new_password_user')->name('profil-user-password')->middleware('client', 'admin');
+    Route::post('deconnexion', 'logout')->name('logout-user')->middleware(['client']);
+    Route::get('mon-profil', 'profil_user')->name('profil-user')->middleware('client');
+    Route::post('modifier-mon-profil', 'profil_update')->name('profil-update')->middleware('client');
+    Route::post('modifier-mon-de-passe', 'new_password_user')->name('profil-user-password')->middleware('client');
 });

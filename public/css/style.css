@@ -1551,14 +1551,17 @@ li.megamenu-img a {
 /* 8. Support Area CSS
 /*----------------------------------------*/
 .support-area .single-support {
-  border-right: 1px solid #ddd;
-  flex: 0 0 20%;
+  /* border-right: 1px solid #ddd; */
+  flex: 0 0 25%;
   padding: 16px;
+  margin-top: 40px;
   margin-bottom: 10px;
 
   font-size: 2em;
   transition: transform .3s ease-out;
   display: inline-block;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+
 }
 
 .support-area .single-support:hover {

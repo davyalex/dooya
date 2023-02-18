@@ -10,7 +10,7 @@
         <div class="row">
 
           <!-- Sales Card -->
-          <div class="col-xxl-4 col-md-4">
+          <div class="col-xxl-6 col-md-6">
             <div class="card info-card sales-card">
 
               <div class="filter">
@@ -46,7 +46,7 @@
           </div><!-- End Sales Card -->
 
           <!-- Revenue Card -->
-          <div class="col-xxl-4 col-md-4">
+          <div class="col-xxl-3 col-md-3">
             <div class="card info-card revenue-card">
 
               <div class="filter">
@@ -81,7 +81,7 @@
           </div><!-- End Revenue Card -->
 
           <!-- Customers Card -->
-          <div class="col-xxl-4 col-md-4">
+          <div class="col-xxl-3 col-md-3">
 
             <div class="card info-card customers-card">
 

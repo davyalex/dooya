@@ -111,11 +111,16 @@ class CommandeController extends Controller
     public function checkout(Request $request)
     {
 
-        if ($request->session()->has('cart')) {
-            $cart_detail = $request->session()->get('cart');
+        if (Auth::check()) {
+            if ($request->session()->has('cart')) {
+                $cart_detail = $request->session()->get('cart');
+            }
+            // dd($cart_detail);
+            return view('site.pages.checkout', compact('cart_detail'));
+        } else {
+            return redirect('se-connecter');
         }
-        // dd($cart_detail);
-        return view('site.pages.checkout', compact('cart_detail'));
+        
     }
 
 

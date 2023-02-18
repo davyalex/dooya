@@ -20,7 +20,7 @@ class Client
         if(Auth::user() && Auth::user()->role){
             return $next($request);
         }else{
-            return redirect('/');
+            return redirect('se-connecter');
         }
     }
 }

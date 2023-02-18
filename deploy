@@ -1,0 +1,1 @@
+rsync -av ./ -e "ssh -p 22" dooyasite@dooya.ci@ftp.dooya.ci:~/dooya/
