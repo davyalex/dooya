@@ -83,19 +83,19 @@
                             <div class="row">
                                 <!-- Single Product Start -->
                                 @foreach ($produit as $item )
-                                <div class="col-lg-3 col-md-4 col-sm-3 col-6">
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6">
                                     <div class="single-product">
                                         <!-- Product Image Start -->
                                         <div class="pro-img">
                                             <a href="/detail?produit={{ $item['code'] }}">
-                                                <img class="primary-img" src="{{ asset($item->getFirstMediaUrl('image')) }}" width="100%" height="200px" style=" object-fit:cover" alt="single-product">
+                                                <img class="primary-img" src="{{ asset($item->getFirstMediaUrl('image')) }}" width="100%" height="150px" style=" object-fit:cover" alt="single-product">
                                             </a>
                                         </div>
                                         <!-- Product Image End -->
                                         <!-- Product Content Start -->
                                         <div class="pro-content">
                                             <div class="pro-info text-center">
-                                                <h4><a href="product.html">{{ $item['title'] }}</a></h4>
+                                                <h4><a href="/detail?produit={{ $item['code'] }}">{{ $item['title'] }}</a></h4>
                                                     @if ($item['prix_promo'] >0)
                                                     <p><span class="price">{{ $item['prix_promo'] }} FCFA</span><del class="prev-price">{{ $item['prix'] }} FCFA</del></p>
                                                     <div class="label-product l_sale">

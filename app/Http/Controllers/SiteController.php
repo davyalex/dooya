@@ -138,11 +138,13 @@ class SiteController extends Controller
     public function show(Request $request)
     {
         $produit_code = request('produit');
+
         if ($produit_code) {
             $produit = Produit::with(['category', 'media', 'sous_category', 'sections', 'commandes'])
                 ->when($produit_code, function ($q) use ($produit_code) {
                     return $q->whereCode($produit_code);
                 })->first();
+
 
             //produit en relation
             $produit_related = Produit::whereCode($produit_code)->first();
@@ -163,7 +165,7 @@ class SiteController extends Controller
                 ->when($pack_code, function ($q) use ($req_pack) {
                     return $q->where('category_pack_id', $req_pack['id']);
                 })->first();
-
+        // dd( $produit);
 
             $produit_related = Produit::with(['category_pack', 'media'])
                 ->whereNull('category_id')

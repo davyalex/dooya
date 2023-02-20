@@ -17,10 +17,10 @@
 
       <title>{{ config('app.name') }}-@yield('title')</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta property="og:description" content="@yield('description')">
-      <meta property="og:image" content="@yield('image')">
-      <meta property="og:title" content="@yield('title')">
-      <meta property="og:url" content="@yield('url')">
+      <meta property="og:description" content="{{ config('app.name') }}-@yield('description')">
+      <meta property="og:image" content="{{ config('app.name') }}-@yield('image')">
+      <meta property="og:title" content="{{ config('app.name') }}-@yield('title')">
+      <meta property="og:url" content="{{ config('app.name') }}-@yield('url')">
       <!-- Favicons -->
       <link rel="shortcut icon" href="img/favicon.ico">
       <!-- Fontawesome css -->
@@ -138,13 +138,13 @@
               <div class="header-middle ptb-15 header-sticky">
                   <div class="container">
                       <div class="row align-items-center no-gutters ">
-                          <div class="col-lg-3 col-md-4">
+                          <div class="col-lg-3 col-md-3">
                               <div class="logo ">
                                   <a href="{{ route('accueil') }}"><img src="{{ asset('img/logo/logo_site.jpg') }}" width="70px" alt="logo-image"></a>
                               </div>
                           </div>
                           <!-- Categorie Search Box Start Here -->
-                          <div class="col-lg-5 col-md-4">
+                          <div class="col-lg-5 col-md-6">
                               <div class="categorie-search-box">
                                   <form action="{{ route('search') }}" method="GET">
                                         @csrf
@@ -155,7 +155,7 @@
                           </div>
                           <!-- Categorie Search Box End Here -->
                           <!-- Cart Box Start Here -->
-                          <div class="col-lg-4 col-md-4">
+                          <div class="col-lg-4 col-md-3">
                               <div class="cart-box mt-2" >
                                   <ul class="d-flex justify-content-lg-end justify-content-center align-items-center">
                                     @include('site.pages.sections.cart')
@@ -258,7 +258,8 @@
                                       <li><a href="/boutique?category={{ $item['code'] }}">{{ $item['title'] }}</a> </li>
   
                                       @endif
-                                  @endforeach                        
+                                  @endforeach 
+                                  <li><a href="{{ route('boutique') }}" style="font-weight: 700">Tous les produits <i class="fa fa-shopping-cart"></i></a></li>                       
                               </ul>
                           </div>
                           <!-- category-menu-end -->
@@ -296,7 +297,7 @@
                                           <!-- Vertical Mega-Menu End --> 
                                       </li>
                                          @else
-                                         <li> <i class="fa fa-shopping-cart"></i> <a href="/boutique?category={{ $item['code'] }}"><i class="fa fa-shop"></i>{{ $item['title'] }}</a>
+                                         <li></i> <a href="/boutique?category={{ $item['code'] }}"><i class="fa fa-shop"></i>{{ $item['title'] }}</a>
                                          </li>
                                          @endif
                                      @endforeach

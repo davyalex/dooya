@@ -11,11 +11,11 @@
                 <!-- Thumbnail Large Image start -->
                 <div class="tab-content">
                     <div id="thumb1" class="tab-pane fade show active">
-                        <a data-fancybox="images" href="{{ asset($produit->getFirstMediaUrl('image'))  }}"><img src="{{ asset($produit->getFirstMediaUrl('image'))  }}" alt="product-view"></a>
+                        <a data-fancybox="images" href="{{ asset($produit->getFirstMediaUrl('image'))  }}"><img src="{{ asset($produit->getFirstMediaUrl('image'))  }}" width="100%" height="400px" style=" object-fit:contain"  alt="product-view"></a>
                     </div>
                         @foreach ($produit->getMedia('image') as $key=>$item )
                         <div id="thumb{{ ++$key }}" class="tab-pane fade">
-                            <a data-fancybox="images" href="{{ $item->getUrl() }}"><img src="{{ $item->getUrl() }}" alt="product-view"></a>
+                            <a data-fancybox="images" href="{{ $item->getUrl() }}"><img src="{{ $item->getUrl() }}" width="100%" height="400px" style=" object-fit:contain"  alt="product-view"></a>
                         </div>
                         @endforeach
                     
@@ -27,7 +27,7 @@
                     <div class="thumb-menu owl-carousel nav tabs-area" role="tablist">
                         {{-- <a class="active" data-toggle="tab" href="#thumb1"><img src="{{ asset($produit->getFirstMediaUrl('image')) }}" alt="product-thumbnail"></a> --}}
                         @foreach ($produit->getMedia('image') as $key=>$item )
-                        <a data-toggle="tab" href="#thumb{{ ++$key }}"><img src="{{ $item->getUrl() }}" alt="product-thumbnail"></a>
+                        <a data-toggle="tab" href="#thumb{{ ++$key }}"><img src="{{ $item->getUrl() }}"width="100%" height="80px" style=" object-fit:cover"  alt="product-thumbnail"></a>
                         @endforeach
                       
                     </div>
@@ -90,7 +90,7 @@
                             {{-- <form action="#">
                                 <input class="quantity mr-15" type="number" min="1" value="1">
                             </form> --}}
-                            <div class="pro-actions">
+                            <div class="">
                                 <div class="actions-primary">
                                     <a href="" class="addCart" data-id="{{ $produit['id']}}" title="" data-original-title=""> + Ajouter au panier</a>
                                 </div>

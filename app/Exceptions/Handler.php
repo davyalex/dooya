@@ -48,7 +48,7 @@ class Handler extends ExceptionHandler
         $this->renderable(function (Exception $e) {
             //
             if ($e->getPrevious() instanceof TokenMismatchException) {
-               return redirect()->route('login-form');
+               return redirect()->route('/');
             }
         });
     }

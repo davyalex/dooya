@@ -54,18 +54,19 @@
 
                   <td>
                     <div class="d-flex">
-                     <a href="{{ route('facture-user',$item['id']) }}"  role="button" class="btn btn-warning rounded-circle mx-2"><i class="bi bi-eye"></i></a>
+                     <a href="{{ route('facture-user',$item['id']) }}"  role="button" class="btn btn-warning rounded-circle mx-2 bs-tooltip" title="Detail de la commande"><i class="bi bi-eye"></i></a>
 
                      <a href="{{ route('bon-livraison',$item['id']) }}"  role="button" class="btn btn-secondary rounded-circle"><i class="bi bi-file-earmark-check"></i></a>
 
                      <a href="{{ route('change-status',$item['id']) }}" role="button" data-id = {{ $item['id'] }} data-bs-toggle="modal" data-bs-target="#basicModalStatus{{ $item['id'] }}" class="btn btn-success rounded-circle mx-2 "><i class="bi bi-bicycle"></i></a>
-                     
                      <form  action="{{ route('annuler-facture',$item->id) }}" method="GET">
                        @csrf
                        <a  class="btn btn-danger rounded-circle" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#confirmDelete{{ $item->id }}"><i class="bi bi-trash"></i> </a>
                       @include('admin.partials.deleteConfirm')
                      </form>
                     </div>
+
+                   
                      
                    </td>
 

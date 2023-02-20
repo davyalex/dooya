@@ -1,5 +1,6 @@
 @extends('site.layout')
 @section('title','Ma facture')
+@section('url',url()->current())
 
 @section('content')
           <!-- Breadcrumb Start -->
@@ -28,7 +29,26 @@
                         @role(['administrateur','webmaster'])
                        <div class="wc-proceed-to-checkout text-center mb-2">
                         <a href="javascript:history.go(-1)" id=""><i class="fa fa-dashboard"></i> Retour en administration</a>
-                   </div>
+                    </div>
+
+                    <div class="text-center mb-2">
+                        <div class="dropdown">
+                            <button class="btn btn-success" class="fa fa-whatsapp btn btn-success rounded-circle  dropdown-toggle mx-2" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">Envoyer la commande 
+                              <i class="fa fa-whatsapp"
+                              ></i>
+                            </button>
+                              <div class="dropdown-menu" aria-labelledby="triggerId">
+                               @foreach ($user as $item)
+                               <a target="_blank" href="https://wa.me/+225{{ $item->phone }}/?text= bonjour,{{ $item['name'] }} veuillez traiter cette commande {{ url()->current() }}
+                                " class="">
+                                <div class=" dropdown-divider"></div>
+                                  <h5 class="text-dark text-center px-3 py-1" >  {{ $item['name'] }} <small>({{ $item['roles'][0]['name'] }})</small> <small>({{ $item['phone'] }})</small></h5>
+                              </a>
+                               @endforeach
+                               
+                          </div>
+                            </div>
+                    </div>
                        @endrole
                         <div class="your-order">
                             <h3 class="text-center">Facture</h3>

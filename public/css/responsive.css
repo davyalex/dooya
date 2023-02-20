@@ -218,7 +218,7 @@ display: none;
           margin-top: 0;
         }
     .logo {
-        text-align: center;
+        text-align: left;
     }
     .header-right {
         display: block;
@@ -306,6 +306,11 @@ display: none;
       margin-left: 0;
       padding-left: 15px;
       padding-right: 16px;
+    }
+    .cart-box {
+        position:absolute;
+        top:-100px;
+        margin-left:250px;
     }
     .home-3 .slider_box {
       margin-left: 0;
@@ -633,10 +638,15 @@ display: none;
         flex-basis: 100%;
     }
      .hot-product2 .pro-actions {
-      display: block;
+      display: none;
       padding-right: 0;
 
     }  
+
+    .primary-img{
+        width:100%;
+        height:100px
+    }
     .hot-product2 .actions-primary {
       margin-bottom: 20px;
     }
@@ -650,6 +660,15 @@ display: none;
         .box-quantity.hot-product2 {
       flex-direction: column;
     }
+    .pro-actions{
+        display:none;
+    }
+    .cart-box {
+        position:absolute;
+        top:-100px;
+        margin-left:250px;
+    }
+ 
     .box-quantity.hot-product2 .pro-actions {
       margin-top: 30px;
     }
@@ -776,6 +795,16 @@ display: none;
     p.checkout-coupon input[type="text"] {
       width: 157px;
     }
+
+    .pro-actions{
+        display:none;
+    }
+
+    .cart-box {
+        position:absolute;
+        top:-120px;
+        margin-left:100px;
+    }
     .product-pagination {
       margin-bottom: 15px;
     }
@@ -810,6 +839,7 @@ display: none;
     }
     .categorie-search-box input {
         padding: 0 60px 0 20px;
+        
     }
     .header-helpline {
         font-size: 14px;
@@ -896,5 +926,38 @@ display: none;
     /*== very xtra small mobile device margin ==*/
     .mb-xxs-30 {
         margin-bottom: 30px;
+    }
+}
+
+
+@media (min-width: 10px)and (max-width: 532px){
+    .cart-box {
+        position:absolute;
+        top:-100px;
+        margin-left:100px;
+    }
+    .logo{
+        top:20px;
+
+    }
+
+    .pro-actions{
+        display:none;
+    }
+}
+
+@media (max-width: 365px){
+    .cart-box {
+        position:absolute;
+        top:-120px;
+        margin-left:100px;
+    }
+    .logo{
+        top:20px;
+
+    }
+
+    .pro-actions{
+        display:none;
     }
 }

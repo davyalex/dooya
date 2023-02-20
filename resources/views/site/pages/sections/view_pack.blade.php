@@ -12,10 +12,20 @@
                 </div>
                 <div class="support-desc text-center">
                     <h6 class="text-uppercase">{{ $item['category_pack']['title'] }} </h6>
+                 
+                    @if ($item['prix_promo'] >0)
+                    <span style=" color: #d60c0c;
+                    font-size: 21px;
+                    font-weight: 900;">{{ number_format($item['prix_promo'],0) }} FCFA</span> 
+                    <del class="prev-price">{{ number_format($item['prix'],0) }} FCFA</del>              
+                    @else
                     <span style=" color: #d60c0c;
                     font-size: 21px;
                     font-weight: 900;">{{ number_format($item['prix'],0) }} FCFA</span>
+                    @endif
                 </div>
+
+               
                 
                 
             </div>

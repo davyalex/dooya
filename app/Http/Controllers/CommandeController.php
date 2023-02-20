@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Produit;
 use App\Models\Commande;
 use Barryvdh\DomPDF\PDF;
@@ -35,7 +36,9 @@ class CommandeController extends Controller
                     return $q->whereStatus('livre');
                 })
                 ->orderBy('created_at', 'desc')->get();
-            return view('admin.pages.commande.index', compact('commande'));
+
+                $user = User::with('roles')->get();
+            return view('admin.pages.commande.index', compact('commande','user'));
         }
     }
 
@@ -56,7 +59,9 @@ class CommandeController extends Controller
         $facture = Commande::with(['produits', 'livraison', 'users'])
         ->whereId($id)->get();
         // dd( $facture);
-           return view('site.pages.user_panel.facture',compact('facture'));
+        $user = User::with('roles')->where('role','!=','client')->get();
+        
+           return view('site.pages.user_panel.facture',compact('facture','user'));
    
        }
 

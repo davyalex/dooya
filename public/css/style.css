@@ -1308,18 +1308,21 @@ li.megamenu-img a {
 .price {
   color: #363636;
   font-family: "Lato",sans-serif;
-  font-size: 21px;
+  font-size: 19px;
   font-weight: 700;
   line-height: 20px;
 }
 .prev-price {
   color: #666;
   display: block;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 20px;
+  /* text-align: left; */
+  /* margin-right: 30px; */
   text-decoration: line-through;
 }
+
 
 
 .pro-actions {
@@ -1327,13 +1330,13 @@ li.megamenu-img a {
     left: 0;
     opacity: 0;
     position: absolute;
-    top: 15px;
+    top: 23px;
     -webkit-transform: scale(0.6);
     transform: scale(0.6);
     -webkit-transition: all 300ms ease-in 0s;
-    transition: all 300ms ease-in 0s;
+    transition: all 200ms ease-in 0s;
     width: 100%;
-    z-index: 10;
+    z-index: 4;
     padding:0 10px;
 }
 
@@ -1345,12 +1348,12 @@ li.megamenu-img a {
 }
 
 .single-product .pro-info {
-    -webkit-transition: all 300ms ease-in 0s;
-    transition: all 300ms ease-in 0s;
+    /* -webkit-transition: all 300ms ease-in 0s;
+    transition: all 300ms ease-in 0s; */
 }
 
 .single-product:hover .pro-info {
-    opacity: 0;
+    /* opacity: 0; */
 }
 
 .actions-secondary {
@@ -1398,16 +1401,16 @@ li.megamenu-img a {
 }
 .l_sale {
   background: rgba(0, 0, 0, 0) url("img/icon/bg-l-sale.png") no-repeat scroll right center;
-  bottom: 20px;
+  bottom: 3px;
   color: #f28b00;
   font-size: 20px;
   font-weight: 900;
   height: 22px;
   line-height: 1;
-  padding-right: 17px;
+  /* padding-right: 17px; */
   position: absolute;
-  right: 15px;
-  text-align: center;
+  right: 10px;
+  text-align: right;
   text-transform: uppercase;
   z-index: 1;
 }
@@ -1852,7 +1855,7 @@ li.megamenu-img a {
   width: 50%;
 }
 .pro-content h4 a {
-  font-size: 18px;
+  font-size: 15px;
 }
 .banner-site-box .l_sale {
   margin-top: 5px;
