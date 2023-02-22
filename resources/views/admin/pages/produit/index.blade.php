@@ -49,7 +49,9 @@
                   <td>
                    
                     <span>{{ $item['category']['title'] }} <br>
-                    <small>{{ $item['sous_category']['title'] }}  </small>
+                      @if ($item['sous_category'])
+                      <small>{{ $item['sous_category']['title'] }}  </small>
+                      @endif
                     </span>
                     
                   </td>

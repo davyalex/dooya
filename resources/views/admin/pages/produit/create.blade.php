@@ -91,7 +91,7 @@
 
                               <div class="col-12 mb-3">
                                 <label class="form-label">Sous categorie</label>
-                                  <select name="sous_category"  class="form-select @error('sous_category') is-invalid @enderror" aria-label="Default select example" required>
+                                  <select name="sous_category"  class="form-select" aria-label="Default select example" required>
                                     <option disabled selected value>selectionner</option>
                                   </select>
                                   <div class="invalid-feedback">Champs obligatoire</div>
