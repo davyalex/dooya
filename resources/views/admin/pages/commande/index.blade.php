@@ -40,13 +40,18 @@
                     @endif
                   </td>
                   <td>
+                    @if ($item['users'] !== null)
                     <span>{{ $item['users']['name'] }}</span><br>
                     <span>{{ $item['users']['phone'] }}</span>
+                    @endif
+                 
                   </td>
                   <td>{{ number_format($item['montant_total'],0)  }} FCFA</td>
                   <td>
+                    @if ($item['livraison'] !==null)
                     <span>{{ $item['livraison']['lieu'] }}</span><br>
                     <span>{{ number_format($item['livraison']['tarif'],0)  }} FCFA</span>
+                    @endif
                   </td>
                   <td> {{ \Carbon\Carbon::parse($item['created_at'])->diffForHumans() }}
                     <br>  <span>{{ \Carbon\Carbon::parse($item['created_at'])->format('d-m-Y') }}</span>
