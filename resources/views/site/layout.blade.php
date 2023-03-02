@@ -1,12 +1,4 @@
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
   <!doctype html>
   <html class="no-js" lang="fr">
   
@@ -49,6 +41,10 @@
       <link rel="stylesheet" href="{{ asset('css/style.css') }}">
       <!-- Responsive css -->
       <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+      <link href="{{ asset('assets_admin/css/bootstrap-select.min.css') }}" rel="stylesheet">
+
+      <link href="{{ asset('assets_admin/css/select2.min.css') }}" rel="stylesheet">
+    
   
       <!-- Modernizer js -->
       <script src="{{ asset('js/vendor/modernizr-3.5.0.min.js') }}"></script>
@@ -545,6 +541,10 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+{{-- <script src="{{ asset('assets_admin/js/bootstrap-select.min.js') }}"></script> --}}
+{{-- <script src="{{ asset('assets_admin/js/bootstrap-multiselect.min.js') }}"></script> --}}
+{{-- <script src="{{ asset('assets_admin/js/custom-select2.js') }}"></script> --}}
+<script src="{{ asset('assets_admin/js/select2.min.js') }}"></script>
 
 <script type="text/javascript">
                                    

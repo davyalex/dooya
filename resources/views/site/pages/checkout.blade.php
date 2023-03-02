@@ -101,40 +101,49 @@
                                 </div>
                               
                             </div>
-                            <div class="different-address">
-                                <div class="ship-different-title">
-                                    <h3>
-                                        <label>Choisissez le lieu de livraison</label>
-                                        <input id="ship-box" type="checkbox" />
-                                    </h3>
-                                </div>
-                                <div id="ship-box-info">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="country-select clearfix mb-30">
-                                                <label>Zone de livraison <span class="required">*</span></label>
-                                                <select class="wide" id="shipping" name="livraison">
-                                                    <option disabled value selected>Selectionner une zone</option>
-                                                    @foreach ($livraison as $item)
-                                                    <option value="{{ $item['id'] }}">{{ $item['lieu'] }}</option>
-                                                    @endforeach
-                                               </select>
-                                            </div>
+                           
+                        </div>
+
+{{-- 
+                        <div class="payment-method">
+                                
+                            <div id="accordion">
+                              
+                                <div class="card">
+                                    <div class="card-header" id="headingone">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                              Paiement à la livraison 
+                                            </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingone" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p>Le paiement pour les commandes sur Abidjan se font après reception du colis</p>
                                         </div>
-                                      
-                                        {{-- <div class="col-md-12">
-                                            <div class="order-notes">
-                                                <div class="checkout-form-list">
-                                                    <label>Precisez la zone exacte</label>
-                                                    <textarea id="zone_exacte" cols="30" rows="10" name="zone_precise"></textarea>
-                                                </div>
-                                            </div>
-                                        </div> --}}
                                     </div>
                                 </div>
-                              
+                                <div class="card">
+                                    <div class="card-header" id="headingthree">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                      Paiement hors Abidjan
+                                    </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingthree" data-parent="#accordion">
+                                        <div class="card-body">
+                                             <p>Le paiement pour les commandes hors Abidjan necessite une contre-partie du montant de la commande .</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            
                             </div>
-                        </div>
+                        </div> --}}
+
+
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="your-order">
@@ -194,40 +203,24 @@
                                     </tfoot>
                                 </table>
                             </div>
-                            <div class="payment-method">
-                                <div id="accordion">
-                                  
-                                    <div class="card">
-                                        <div class="card-header" id="headingone">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                  Paiement à la livraison 
-                                                </button>
-                                            </h5>
-                                        </div>
-
-                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingone" data-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Le paiement pour les commandes sur Abidjan se font après reception du colis</p>
-                                            </div>
+                          <div class="card">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <div class="col-md-12 mt-4">
+                                        <div class="country-select clearfix mb-30">
+                                            <label>Choisissez une zone de livraison <span class="required">*</span></label>
+                                            <select class=" wide" id="shipping" name="livraison">
+                                                <option disabled value selected>Selectionner une zone</option>
+                                                @foreach ($livraison as $item)
+                                                <option value="{{ $item['id'] }}">{{ $item['lieu'] }}</option>
+                                                @endforeach
+                                           </select>
                                         </div>
                                     </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingthree">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                          Paiement hors Abidjan
-                                        </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseThree" class="collapse" aria-labelledby="headingthree" data-parent="#accordion">
-                                            <div class="card-body">
-                                                 <p>Le paiement pour les commandes hors Abidjan necessite une contre-partie du montant de la commande .</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </p>
                             </div>
+                          </div>
+                          
                             <div class="wc-proceed-to-checkout">
                                 <a href="{{ route('commande.store') }}" id="valide_commande">Valider ma commande</a>
                             </div>
@@ -240,6 +233,9 @@
 
         <script>
             $(document).ready(function () {
+
+
+
                 //recuperation du tarif livraison et actualisation du montant total
                 $('select').change(function (e) { 
                     e.preventDefault();
