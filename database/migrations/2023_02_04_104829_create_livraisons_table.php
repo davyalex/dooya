@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('code')->unique()->nullable();
             $table->string('lieu')->unique()->nullable();
+            $table->string('sous_lieu')->unique()->nullable();
+            $table->string('parent_lieu')->unique()->nullable();
             $table->double('tarif')->nullable();
             $table->string('description')->nullable();
             $table->softDeletes();

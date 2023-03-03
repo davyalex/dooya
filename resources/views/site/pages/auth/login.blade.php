@@ -2,6 +2,17 @@
 @section('title','Se connecter')
 
 @section('content')
+<style>
+    /* input::-webkit-outer-spin-button, */
+    /* input::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+        margin: 0;
+    } */
+
+    /* input[type=number]{
+        -moz-appearance: textfield;
+    } */
+</style>
          <!-- Breadcrumb Start -->
          <div class="breadcrumb-area mt-30">
             <div class="container">
@@ -37,13 +48,16 @@
                             <div class="form-group d-md-flex align-items-md-center">
                                 <label class="control-label col-md-2 " for="number"><span class="require">*</span>Telephone</label>
                                 <div class="col-md-10">
-                                    <input type="number" name="phone" class="form-control" id="number" required>
+                                    <input type="number"  name="phone" class="form-control" id="number" required>
                                 </div>
+
                             </div>
                             <div class="form-group d-md-flex align-items-md-center">
                                 <label class="control-label col-md-2" for="pwd"><span class="require">*</span>Mot de passe:</label>
-                                <div class="col-md-10">
-                                    <input type="password" name="password" class="form-control" id="pwd" placeholder="Password" required>
+                                <div class="col-md-10 ">
+                                    <input type="password" name="password" class="form-control mb-2" id="password" placeholder="Password" required>
+                                    @include('admin.partials.hideShowPwd')
+
                                 </div>
                             </div>
                             
@@ -52,7 +66,7 @@
                                     <input type="text" name="role" value="client" hidden>
                                     <input type="submit" value="Valider" class="return-customer-btn">
                                 </div>
-                                <p class="text-center py-3">Pas de compte?  <a href="{{ route('register-user') }}">Connectez vous</a></p>
+                                <p class="text-center py-3">Pas de compte?  <a href="{{ route('register-user') }}"><b style="color:orangered">Créer un compte</b></a></p>
 
                             </div>
                            

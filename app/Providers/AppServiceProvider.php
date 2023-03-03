@@ -38,13 +38,19 @@ class AppServiceProvider extends ServiceProvider
             // ->WhereNull('sous_category_id') ->delete();
 
         $category_pack = CategoryPack::with('packs')->orderBy('title','asc')->get();
-        $sous_category = SousCategory::with(['categorie','produits'])->get();
-        $category = Category::with(['sous_categories','produits'])->get();
-        $section = Section::with('produits')->get();
-        $livraison = Livraison::with('commandes')->get();
+        $sous_category = SousCategory::with(['categorie','produits'])->orderBy('title','asc')->get();
+        $category = Category::with(['sous_categories','produits'])->orderBy('title','asc')->get();
+        $section = Section::with('produits')->orderBy('title','asc')->get();
+        $livraison = Livraison::with('commandes')
+        ->whereNull('parent_lieu')
+        ->orderBy('lieu', 'asc')->get();
+
+        $commune = Livraison::with('commandes')
+        ->whereNotNull('parent_lieu')
+        ->orderBy('lieu', 'Asc')->get();
 
 
-        View::composer('*', function ($view) use ($category, $sous_category,$category_pack,$section,$livraison) {
+        View::composer('*', function ($view) use ($category, $sous_category,$category_pack,$section,$livraison,$commune) {
             $view->with([
                 'category'=>$category,
             ]);
@@ -63,6 +69,10 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with([
                 'livraison'=>$livraison,
+            ]);
+
+            $view->with([
+                'commune'=>$commune,
             ]);
         });
         

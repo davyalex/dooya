@@ -57,7 +57,9 @@
                             <div class="form-group d-md-flex align-items-md-center">
                                 <label class="control-label col-md-2" for="pwd"><span class="require">*</span>Mot de passe:</label>
                                 <div class="col-md-10">
-                                    <input type="password" name="password" class="form-control" id="pwd" placeholder="Password" required>
+                                    <input type="password" name="password" class="form-control mb-2" id="password" placeholder="Password" required>
+                                    @include('admin.partials.hideShowPwd')
+
                                 </div>
                             </div>
                             
@@ -66,7 +68,7 @@
                                     <input type="text" name="role" value="client" hidden>
                                     <input type="submit" value="Valider" class="return-customer-btn">
                                 </div>
-                                <p class="text-center py-3">Vous avez un compte?  <a href="{{ route('login-user') }}">Connectez vous</a></p>
+                                <p class="text-center py-3">Vous avez un compte?  <a href="{{ route('login-user') }}"><b style="color:orangered">Connectez vous</b></a></p>
 
                             </div>
                            

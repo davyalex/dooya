@@ -208,10 +208,22 @@
                                 <p class="card-text">
                                     <div class="col-md-12 mt-4">
                                         <div class="country-select clearfix mb-30">
-                                            <label>Choisissez une zone de livraison <span class="required">*</span></label>
-                                            <select class=" wide" id="shipping" name="livraison">
-                                                <option disabled value selected>Selectionner une zone</option>
+                                            <label>Choisissez une Zone de livraison <span class="required">*</span></label>
+                                            <select class="wide" id="shipping" name="livraison">
+                                                <option disabled value selected>Selectionner</option>
                                                 @foreach ($livraison as $item)
+                                                <option value="{{ $item['id'] }}">{{ $item['lieu'] }}</span></option>
+                                                @endforeach
+                                           </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mt-4">
+                                        <div class="country-select clearfix mb-30" id="divCommune">
+                                            <label>Choisissez une commune <span class="required">*</span></label>
+                                            <select class=" wide" id="shippingCommune" name="livraison">
+                                                <option disabled value selected>Selectionner</option>
+                                                @foreach ($commune as $item)
                                                 <option value="{{ $item['id'] }}">{{ $item['lieu'] }}</option>
                                                 @endforeach
                                            </select>
@@ -235,11 +247,28 @@
             $(document).ready(function () {
 
 
+                $('#divCommune').hide();
 
+                var getId = "";
                 //recuperation du tarif livraison et actualisation du montant total
                 $('select').change(function (e) { 
+
+                    var ville = $('#shipping option:selected').html();
+
+                    if (ville === 'Abidjan') {
+                        $('#divCommune').show(200);
+                        var getZone = $('#shippingCommune option:selected').val();
+                        var getId = getZone;
+                    }else{
+                        $('#divCommune').hide();
+                        var getZone = $('#shipping option:selected').val();
+                        var getId = getZone;
+                    }
+
+
+                    console.log(getId);
+
                     e.preventDefault();
-                    var getId = $('#shipping option:selected').val();
                     var total = {{ Js::from($total) }};
                     console.log(total);
                     $.ajax({
@@ -258,12 +287,22 @@
 
                 //recuperation des details de la commande et insertion database
 
+            
                 $("#valide_commande").click(function (e) { 
                     e.preventDefault();
-                    
-                    var getLivraison = $('#shipping option:selected').val();
-                    // var zoneExact = $('#zone_exacte').val();
-                    // console.log(zoneExact);
+
+                    var getVille= $('#shipping option:selected').html();
+                    if (getVille ==='Abidjan') {
+                        var getLivraison = $('#shippingCommune option:selected').val();
+                        }else{
+                            var getLivraison = $('#shipping option:selected').val();
+                        }
+
+                        //validation message for commune no selected
+                       
+                        console.log(getLivraison);
+
+
                     var getSousTotal = {{ Js::from($sub_total) }};
                     var getTotal = {{ Js::from($total) }};
                     var data = {livraison: getLivraison,sousTotal : getSousTotal, total : getTotal};
@@ -271,11 +310,26 @@
                         Swal.fire({
                         position: 'center',
                         icon: 'warning',
-                        title: 'Veuillez choisir une zone de livraison',
+                        title: 'Veuillez choisir une zone de livraison ',
                         showConfirmButton: false,
                         timer: 3000
                         })
-                    }else{
+                    }
+                    if (getVille ==='Abidjan') {
+                           var commune = $('#shippingCommune option:selected').val();
+                           if (commune.length < 1) {
+                            Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'Veuillez choisir une commune ',
+                        showConfirmButton: false,
+                        timer: 3000
+                        })
+                           }
+                        }
+                        
+
+                    if(getLivraison.length > 1){
                         $.ajax({
                         type: "GET",
                         url: "/valider-ma-commande/" ,

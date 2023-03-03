@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Livraison;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -17,7 +18,11 @@ class LivraisonController extends Controller
     public function index()
     {
         //
-        $livraison = Livraison::with('commandes')->get();
+        $livraison = Livraison::with('commandes')
+            ->whereNull('parent_lieu')
+            ->orderBy('lieu', 'Asc')->get();
+
+
         return view('admin.pages.livraison.index', compact('livraison'));
     }
 
@@ -26,7 +31,7 @@ class LivraisonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() 
+    public function create()
     {
         //
     }
@@ -39,25 +44,25 @@ class LivraisonController extends Controller
      */
     public function store(Request $request)
     {
-    
+
 
         $request->validate([
-            'lieu' => 'required|unique:livraisons',
-            'tarif' =>'required',
-            'description' =>''
+            'lieu' => 'required',
+            'tarif' => 'required',
+            'description' => ''
         ]);
         $code = Str::random(10);
+        $lieu = ucfirst($request->lieu);
         $Livraison = Livraison::firstOrCreate([
             'code' => $code,
-            'lieu' => $request->lieu,
+            'lieu' => $lieu,
             'tarif' => $request->tarif,
             'description' => $request->description,
         ]);
-        
+
         Alert::toast('enregistré avec success', 'success');
 
         return back();
-
     }
 
 
@@ -81,7 +86,7 @@ class LivraisonController extends Controller
     public function edit(Livraison $Livraison, $slug)
     {
         //
-     
+
     }
 
     /**
@@ -91,19 +96,20 @@ class LivraisonController extends Controller
      * @param  \App\Models\Livraison  $Livraison
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$code)
+    public function update(Request $request, $code)
     {
         //
         $request->validate([
             'lieu' => 'required',
-            'tarif' =>'required',
-            'description' =>''
+            'tarif' => 'required',
+            'description' => ''
 
 
         ]);
+        $lieu = ucfirst($request->lieu);
 
         $Livraison_update = tap(Livraison::whereCode($code))->update([
-            'lieu' => $request->lieu,
+            'lieu' => $lieu,
             'tarif' => $request->tarif,
             'description' => $request->description,
 
@@ -113,7 +119,6 @@ class LivraisonController extends Controller
         Alert::toast('modifié avec success', 'success');
 
         return back();
-
     }
 
     /**
@@ -126,9 +131,44 @@ class LivraisonController extends Controller
     {
         //
 
-        $delete = Livraison::find($id)->delete();
+        $delete = Livraison::find($id)->forceDelete();
         Alert::toast('supprimé avec success', 'success');
 
-        return redirect()->route('livraison');
+        return back();
+    }
+
+
+    public function commune()
+    {
+        $ville = Livraison::with('commandes')
+            ->whereNull('parent_lieu')
+            ->orderBy('lieu', 'Asc')->get();
+
+        $commune = Livraison::with('commandes')
+            ->whereNotNull('parent_lieu')
+            ->orderBy('lieu', 'Asc')->get();
+        // dd($livraison->toArray());
+        return view('admin.pages.livraison.commune', compact('ville', 'commune'));
+    }
+
+    public function commune_store(Request $request)
+    {
+
+
+        $code = Str::random(10);
+        $commune = ucfirst($request->commune);
+        $ville = ucfirst($request->ville);
+
+
+        $Livraison = Livraison::firstOrCreate([
+            'code' => $code,
+            'lieu' => $commune,
+            'parent_lieu' => $ville,
+            'tarif' => $request->tarif,
+        ]);
+
+        Alert::toast('enregistré avec success', 'success');
+
+        return back();
     }
 }

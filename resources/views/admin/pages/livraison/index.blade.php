@@ -87,7 +87,7 @@
                 
                   <td>
                    <div class="d-flex">
-                    <a href="/post/livraison?livraison={{ $item['code'] }}"  role="button" class="btn btn-warning rounded-circle"><i class="bi bi-eye"></i></a>
+                    {{-- <a href="/post/livraison?livraison={{ $item['code'] }}"  role="button" class="btn btn-warning rounded-circle"><i class="bi bi-eye"></i></a> --}}
 
                     <a href="{{ route('livraison.edit',$item['code']) }}" role="button" data-id = {{ $item['code'] }} data-bs-toggle="modal" data-bs-target="#basicModalEdit{{ $item['code'] }}" class="btn btn-success rounded-circle mx-2 "><i class="bi bi-pencil"></i></a>
                     

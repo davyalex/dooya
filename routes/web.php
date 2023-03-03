@@ -8,6 +8,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\CommuneController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\CategoryController;
@@ -108,7 +109,20 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::get('edit/{code}', 'edit')->name('livraison.edit');
         Route::post('update/{code}', 'update')->name('livraison.update');
         Route::post('destroy/{id}', 'destroy')->name('livraison.delete');
+
+        Route::get('commune', 'commune')->name('commune');
+        Route::post('commune', 'commune_store')->name('commune.store');
+
     });
+
+
+    
+
+    // /**Commune */
+    // Route::controller(CommuneController::class)->prefix('livraison')->group(function () {
+    //     Route::get('commune', 'commune')->name('commune');
+    //     Route::post('commune', 'commune_store')->name('commune.store');
+    // });
 
 
 
@@ -124,7 +138,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::get('deleteImage/{id}', 'deleteImage');
     });
 
-    /**Produit */
+    /**Pack */
     Route::controller(PackController::class)->prefix('pack')->group(function () {
         Route::get('', 'index')->name('pack');
         Route::get('create', 'create')->name('pack.create');

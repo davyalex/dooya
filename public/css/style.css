@@ -1172,7 +1172,7 @@ li.megamenu-img a {
 .second-hot-deal-active .owl-nav div,
 .new-pro-two-active .owl-nav div {
     right: 55px;
-    top: -71px;
+    top: -45px;
 }
 
 .hot-deal-active .owl-nav div.owl-next,
@@ -4578,4 +4578,10 @@ a.shipping-calculator-button:hover {
   text-decoration: none;
   top: 6px;
   transition: all 0.3s ease-in 0s;
+}
+
+
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
 }

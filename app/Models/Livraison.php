@@ -17,6 +17,8 @@ class Livraison extends Model
         'code',
         'lieu',
         'tarif',
+        'sous_lieu',
+        'parent_lieu',
         'description',
         'created_at',
         'updated_at',

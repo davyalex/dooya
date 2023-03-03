@@ -49,7 +49,11 @@
                   <td>{{ number_format($item['montant_total'],0)  }} FCFA</td>
                   <td>
                     @if ($item['livraison'] !==null)
-                    <span>{{ $item['livraison']['lieu'] }}</span><br>
+                    <span class="text-capitalize">{{ $item['livraison']['lieu'] }}</span>
+                      {{-- @if ( $item['livraison']['parent_lieu'])
+                          <small style="font-size: 12px">{{  $item['livraison']['parent_lieu'] }}</small>
+                      @endif --}}
+                    <br>
                     <span>{{ number_format($item['livraison']['tarif'],0)  }} FCFA</span>
                     @endif
                   </td>

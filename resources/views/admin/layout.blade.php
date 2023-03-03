@@ -244,13 +244,27 @@
           </li>
         </ul>
       </li><!-- End commande Nav -->
-    
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('livraison') }}">
-                <i class="bi bi-bicycle"></i>
-                <span>Livraisons</span>
+
+       {{-- Livraison --}}
+       <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#livraison-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bicycle"></i><span>Livraison</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="livraison-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{ route('livraison') }}">
+              <i class="bi bi-circle"></i><span>Villes</span>
             </a>
-        </li><!-- End livraison Page Nav -->
+          </li>
+          <li>
+            <a href="{{ route('commune') }}">
+              <i class="bi bi-circle"></i><span>Communes</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Livraison Nav -->
+    
+     
 @role('administrateur')
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('user') }}">
