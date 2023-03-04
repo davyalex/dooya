@@ -473,12 +473,18 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-footer mb-sm-40">
                         <h3 class="footer-title">Nous contactez</h3>
-                        <div class="footer-content">
+                        <div class="footer-content" style="text-transform:lowercase">
                             <ul class="footer-list address-content">
                                 <li><i class="lnr lnr-map-marker"></i> Adresse: Abidjan ,cocody 2plateaux dokui.</li>
-                                <li><i class="lnr lnr-envelope"></i><a href="#"> Email Support@dooya.com </a></li>
+                                <li><i class="lnr lnr-envelope"></i><a href="mailto:dooya.ci@gmail.com"> dooya.ci@gmail.com </a></li>
+                                <li><i class="lnr lnr-envelope"></i><a href="directiondooya@dooya.ci"> directiondooya@dooya.ci</a></li>
+                                <li><i class="lnr lnr-envelope"></i><a href="serviceadministratif@dooya.ci"> serviceadministratif@dooya.ci</a></li>
+                                <li><i class="lnr lnr-envelope"></i><a href="servicecommercial@dooya.ci"> servicecommercial@dooya.ci</a></li>
                                 <li>
-                                    <i class="lnr lnr-phone-handset"></i> Phone: (+225) 0000000000
+                                    <i class="lnr lnr-phone-handset"></i> +225 0769359012
+                                </li>
+                                <li>
+                                    <i class="lnr lnr-phone-handset"></i> +225 0585605604
                                 </li>
                             </ul>
                                                           

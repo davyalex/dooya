@@ -1172,7 +1172,7 @@ li.megamenu-img a {
 .second-hot-deal-active .owl-nav div,
 .new-pro-two-active .owl-nav div {
     right: 55px;
-    top: -45px;
+    top: -70px;
 }
 
 .hot-deal-active .owl-nav div.owl-next,
@@ -1682,7 +1682,7 @@ li.megamenu-img a {
   font-size: 14px;
   font-weight: 400;
   position: relative;
-  text-transform: capitalize;
+  text-transform: lowercase;
 }
 
 .footer-list li {

@@ -86,13 +86,13 @@
                                 </li>
                             </ul>
                         </div> --}}
-                        <div class="box-quantity d-flex hot-product2">
+                        <div class="box-quantity d-flex hot-product2 py-4">
                             {{-- <form action="#">
                                 <input class="quantity mr-15" type="number" min="1" value="1">
                             </form> --}}
                             <div class="">
                                 <div class="actions-primary">
-                                    <a href="" class="addCart" data-id="{{ $produit['id']}}" title="" data-original-title=""> + Ajouter au panier</a>
+                                    <a href="" class="addCart" data-id="{{ $produit['id']}}" title="" data-original-title=""> <i class="fa fa-shopping-cart"></i> Ajouter au panier</a>
                                 </div>
                                 {{-- <div class="actions-secondary">
                                     <a href="compare.html" title="" data-original-title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>
@@ -115,20 +115,20 @@
 </div>
 <!-- Product Thumbnail End -->
 <!-- Product Thumbnail Description Start -->
-<div class="thumnail-desc pb-100 pb-sm-60">
+{{-- <div class="thumnail-desc pb-100 pb-sm-60">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <ul class="main-thumb-desc nav tabs-area" role="tablist">
                     <li><a class="active" data-toggle="tab" href="#dtail">Description du produit</a></li>
-                    {{-- <li><a data-toggle="tab" href="#review">Commentaires</a></li> --}}
+                    <li><a data-toggle="tab" href="#review">Commentaires</a></li>
                 </ul>
                 <!-- Product Thumbnail Tab Content Start -->
                 <div class="tab-content thumb-content border-default">
                     <div id="dtail" class="tab-pane fade show active">
                         <p>{!! $produit['description'] !!}</p>
                     </div>
-                    {{-- <div id="review" class="tab-pane fade">
+                    <div id="review" class="tab-pane fade">
                         <!-- Reviews Start -->
                         <div class="review border-default universal-padding">
                             <div class="group-title">
@@ -229,7 +229,7 @@
                             <!-- Reviews Field Start -->
                         </div>
                         <!-- Reviews End -->
-                    </div> --}}
+                    </div>
                 </div>
                 <!-- Product Thumbnail Tab Content End -->
             </div>
@@ -237,7 +237,7 @@
         <!-- Row End -->
     </div>
     <!-- Container End -->
-</div>
+</div> --}}
 <!-- Product Thumbnail Description End -->
 <!-- Realted Products Start Here -->
 
@@ -245,9 +245,20 @@
 <div class="hot-deal-products off-white-bg pt-100 pb-90 pt-sm-60 pb-sm-50">
     <div class="container">
        <!-- Product Title Start -->
-       <div class="post-title pb-30">
-           <h2>Produits Similaires</h2>
-       </div>
+       <div class="container post-title" style="background: #f28b00">
+        <div class="row">
+            <div class="col-md-12 text-center py-3">
+                <a href="#" class="" style=" color: #fff;
+                font-size: 21px;
+                font-weight: 900;"> 
+                   <span class="text-capitalize"> Produit similaires <i class="fa fa-caret-right"></i></span>
+                </a>
+                   
+            </div>
+            
+        </div>
+  
+   </div>
        <!-- Product Title End -->
        
 

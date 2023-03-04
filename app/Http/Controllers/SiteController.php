@@ -61,13 +61,13 @@ class SiteController extends Controller
 
             ->when($req_sousCat, function ($q) use ($req_sousCatGet) {
                 return $q->where('sous_category_id', $req_sousCatGet['id']);
-            })->orderBy('created_at', 'desc')->paginate(20);
+            })->orderBy('created_at', 'desc')->paginate(50);
 
 
         if (request('section')) {
             $produit = Produit::whereHas('sections', function ($q) use ($req_sectionGet) {
                 return $q->where('produit_section.section_id', $req_sectionGet['id']);
-            })->orderBy('created_at', 'desc')->paginate(20);
+            })->orderBy('created_at', 'desc')->paginate(50);
         }
 
 
@@ -85,7 +85,7 @@ class SiteController extends Controller
         //     return $q->with(['sections',function($q)use ($req_sectionGet)  {
         //         return $q->where('section_id',$req_sectionGet['id']);
         //     }]);
-        // })->orderBy('created_at', 'desc')->paginate(20);
+        // })->orderBy('created_at', 'desc')->paginate(50);
 
 
         return view('site.pages.shop', compact(['produit', 'req_catGet', 'req_sousCatGet', 'req_sectionGet']));
@@ -100,7 +100,7 @@ class SiteController extends Controller
         if ($search) {
             $produit = Produit::with(['category', 'media', 'sous_category', 'sections', 'commandes'])
                 ->where('title', 'Like',"%{$search}%")
-                ->orderBy('created_at', 'desc')->paginate(20);
+                ->orderBy('created_at', 'desc')->paginate(50);
                 return view('site.pages.shop',compact('produit'));
         }else{
             return redirect('/boutique');
