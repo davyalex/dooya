@@ -477,14 +477,17 @@
                             <ul class="footer-list address-content">
                                 <li><i class="lnr lnr-map-marker"></i> Adresse: Abidjan ,cocody 2plateaux dokui.</li>
                                 <li><i class="lnr lnr-envelope"></i><a href="mailto:dooya.ci@gmail.com"> dooya.ci@gmail.com </a></li>
-                                <li><i class="lnr lnr-envelope"></i><a href="directiondooya@dooya.ci"> directiondooya@dooya.ci</a></li>
-                                <li><i class="lnr lnr-envelope"></i><a href="serviceadministratif@dooya.ci"> serviceadministratif@dooya.ci</a></li>
-                                <li><i class="lnr lnr-envelope"></i><a href="servicecommercial@dooya.ci"> servicecommercial@dooya.ci</a></li>
+                                <li><i class="lnr lnr-envelope"></i><a href="mailto:directiondooya@dooya.ci"> directiondooya@dooya.ci</a></li>
+                                <li><i class="lnr lnr-envelope"></i><a href="mailto:serviceadministratif@dooya.ci"> serviceadministratif@dooya.ci</a></li>
+                                <li><i class="lnr lnr-envelope"></i><a href="mailto:servicecommercial@dooya.ci"> servicecommercial@dooya.ci</a></li>
                                 <li>
-                                    <i class="lnr lnr-phone-handset"></i> +225 0769359012
+                                    <i class="lnr lnr-phone-handset"></i>
+                                    <a href="tel:+225 0769359012"> +225 0769359012</a>
+                                   
                                 </li>
                                 <li>
-                                    <i class="lnr lnr-phone-handset"></i> +225 0585605604
+                                    <i class="lnr lnr-phone-handset"></i> 
+                                    <a href="tel:+225 0585605604">+225 0585605604</a>
                                 </li>
                             </ul>
                                                           
