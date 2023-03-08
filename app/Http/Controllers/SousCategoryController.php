@@ -18,7 +18,10 @@ class SousCategoryController extends Controller
     public function index()
     {
         //
-        $sous_category = SousCategory::with(['categorie','produits'])->get();
+        $sous_category = SousCategory::with(['categorie','produits'])
+        ->orderBy('updated_at','desc')
+        ->get();
+        // dd( $sous_category->toArray());
         return view('admin.pages.sous_categorie.index', compact('sous_category'));
     }
 

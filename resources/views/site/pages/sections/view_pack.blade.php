@@ -4,14 +4,16 @@
             @foreach ($pack as $item)
             <div class="single-support ">
              
-               
+               @foreach ($item['produits'] as $item)
+                   
+              
                 <div class="support-icon ">
                     <a href="/detail?produit={{ $item['code'] }}">
                         <img src="{{ asset($item->getFirstMediaUrl('image')) }}" height="200px" width="100%" style="object-fit:cover;" alt="">
                     </a> 
                 </div>
                 <div class="support-desc text-center">
-                    <h6 class="text-uppercase">{{ $item['category_pack']['title'] }} </h6>
+                    <h6 class="text-uppercase">{{ $item['title']}} </h6>
                  
                     @if ($item['prix_promo'] >0)
                     <span style=" color: #d60c0c;
@@ -25,7 +27,7 @@
                     @endif
                 </div>
 
-               
+                @endforeach
                 
                 
             </div>

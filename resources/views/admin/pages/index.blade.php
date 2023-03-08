@@ -27,8 +27,12 @@
               </div>
 
               <div class="card-body">
-                <h5 class="card-title">Commandes <span>| Jour</span></h5>
-
+                <h5 class="card-title">Commandes <span>
+                  @if (request('vente'))
+                      
+                  | {{ request('vente') }}</span>
+                  @endif
+                </h5>
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                     <i class="bi bi-cart-check"></i>
@@ -120,7 +124,7 @@
           <div class="col-xxl-4 col-md-12">
                <!-- News & Updates Traffic -->
               <div class="card">
-                  <div class="filter">
+                  {{-- <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                       <li class="dropdown-header text-start">
@@ -131,7 +135,7 @@
                       <li><a class="dropdown-item" href="#">This Month</a></li>
                       <li><a class="dropdown-item" href="#">This Year</a></li>
                   </ul>
-                  </div>
+                  </div> --}}
 
                   <div class="card-body pb-0">
                   <h5 class="card-title">Commandes en attentes du jour ({{ $commande->count() }})</h5>

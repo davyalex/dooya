@@ -82,7 +82,7 @@
                   <td>{{ $item['title'] }}</td>
                   <td>{{ $item->categorie->title }}</td>
                   <td>{{ $item->produits->count() }}</td>
-                  <td> {{ \Carbon\Carbon::parse($item['created_at'])->diffForHumans() }}</td>
+                  <td> {{ \Carbon\Carbon::parse($item['updated_at'])->diffForHumans() }}</td>
 
                 
                   <td>

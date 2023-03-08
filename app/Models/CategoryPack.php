@@ -19,6 +19,7 @@ class CategoryPack extends Model
         'code',
         'slug',
         'title',
+        'position',
         'description',
         'created_at',
         'updated_at',

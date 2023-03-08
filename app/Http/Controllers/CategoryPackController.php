@@ -18,7 +18,8 @@ class CategoryPackController extends Controller
     public function index()
     {
         //
-        $category_pack = CategoryPack::with('packs')->get();
+            // fonction call in AppServiveProvider
+        $category_pack = CategoryPack::with('packs')->orderBy('position','asc')->get();
         return view('admin.pages.pack.category_pack', compact('category_pack'));
     }
 
@@ -45,10 +46,12 @@ class CategoryPackController extends Controller
         $request->validate([
             'title' => 'required',
         ]);
+        $position = CategoryPack::get()->count();
         $code = Str::random(10);
         $CategoryPack = CategoryPack::firstOrCreate([
-            'title' => $request->title,
             'code' => $code ,
+            'title' => $request->title,
+            'position' => $position + 1 ,
         ]);
         
         Alert::toast('enregistré avec success', 'success');
@@ -95,9 +98,23 @@ class CategoryPackController extends Controller
             'title' => 'required',
         ]);
 
-        $CategoryPack_update = tap(CategoryPack::whereSlug($slug))->update([
+        $position= CategoryPack::whereSlug($slug)->first();
+        $position_actuelle =  $position['position']; //position de la category entrant avant modification
+        
+        $position_select = CategoryPack::wherePosition($request['position'])->first();
+
+        $CategoryPack_update1 = tap(CategoryPack::whereSlug($slug))->update([
             'title' => $request->title,
+            'position' => $request->position,
         ]);
+
+        $CategoryPack_update2 = tap(CategoryPack::whereId( $position_select['id']))->update([
+            'position' => $position_actuelle,
+        ]);
+
+
+        //recuperation des packs pour update la position dans liste packs
+
 
         Alert::toast('modifié avec success', 'success');
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Produit;
 use App\Models\Category;
 use App\Models\SousCategory;
@@ -19,7 +20,11 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $category = Category::with(['sous_categories','produits'])->get();
+        $category = Category::with([
+            'sous_categories'
+            => fn ($q) => $q->orderBy('updated_at', 'desc'), 'produits'
+        ])->orderBy('position', 'asc')->get();
+
         return view('admin.pages.categorie.index', compact('category'));
     }
 
@@ -28,7 +33,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() 
+    public function create()
     {
         //
     }
@@ -41,21 +46,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-    
+
 
         $request->validate([
             'title' => 'required',
         ]);
+        $position = Category::get()->count();
+
         $code = Str::random(10);
         $category = Category::firstOrCreate([
+            'code' => $code,
             'title' => $request->title,
-            'code' => $code ,
+            'position' => $position + 1,
+
         ]);
-        
+
         Alert::toast('enregistré avec success', 'success');
 
         return back();
-
     }
 
 
@@ -79,7 +87,7 @@ class CategoryController extends Controller
     public function edit(Category $category, $slug)
     {
         //
-     
+
     }
 
     /**
@@ -89,21 +97,30 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$slug)
+    public function update(Request $request, $slug)
     {
         //
         $request->validate([
             'title' => 'required',
         ]);
 
+        $position = Category::whereSlug($slug)->first();
+        $position_actuelle =  $position['position']; //position de la category entrant avant modification
+
+        $position_select = Category::wherePosition($request['position'])->first();
+
         $category_update = tap(Category::whereSlug($slug))->update([
             'title' => $request->title,
+            'position' => $request->position,
+        ]);
+
+        $CategoryPack_update2 = tap(Category::whereId($position_select['id']))->update([
+            'position' => $position_actuelle,
         ]);
 
         Alert::toast('modifié avec success', 'success');
 
         return back();
-
     }
 
     /**
@@ -117,8 +134,8 @@ class CategoryController extends Controller
         //
 
         $delete = Category::find($id)->delete();
-        SousCategory::where('category_id',$id)->delete();
-        Produit::where('category_id',$id)->delete();
+        SousCategory::where('category_id', $id)->delete();
+        Produit::where('category_id', $id)->delete();
 
         Alert::toast('supprimé avec success', 'success');
 

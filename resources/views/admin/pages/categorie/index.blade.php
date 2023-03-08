@@ -100,6 +100,15 @@
                 @enderror
                 
                 </div>
+
+                <div class="form-group">
+                  <label for="position">Position</label>
+                  <select class="form-control" name="position" id="">
+                      @for ($i = 1; $i <= count($category); $i++)   
+                      <option value = "{{ $i}}" {{ $item['position'] == $i ? 'selected' : '' }} >{{ $i }}</option>
+                      @endfor
+                    </select>
+                  </div>
                 <div class="text-center mt-2">
                   <button type="submit" class="btn btn-primary">Valider</button>
                 </div>

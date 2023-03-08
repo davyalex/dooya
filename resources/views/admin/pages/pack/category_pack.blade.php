@@ -63,7 +63,7 @@
                 <tr>
                   <th scope="row">{{ ++$key }}</th>
                   <td>{{ $item['title'] }}</td>
-                  <td>{{ $item->packs->count() }}</td>
+                  <td>{{ $item->produits->count() }}</td>
                   <td> {{ \Carbon\Carbon::parse($item['created_at'])->diffForHumans() }}</td>
 
                   <td>
@@ -99,7 +99,15 @@
                   @error('title')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
-                
+
+                <div class="form-group">
+                  <label for="position">Position</label>
+                  <select class="form-control" name="position" id="">
+                      @for ($i = 1; $i <= count($category_pack); $i++)   
+                      <option value = "{{ $i}}" {{ $item['position'] == $i ? 'selected' : '' }} >{{ $i }}</option>
+                      @endfor
+                    </select>
+                  </div>
                 </div>
                 <div class="text-center mt-2">
                   <button type="submit" class="btn btn-primary">Valider</button>

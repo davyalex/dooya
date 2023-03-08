@@ -130,7 +130,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
     6. Hot Deal Product Activation
     -----------------------------------------------------*/
     $('.hot-deal-active').owlCarousel({
-        loop: false,
+        loop: true,
         nav: true,
         dots: false,
         smartSpeed: 1500,
@@ -143,16 +143,24 @@ NOTE: main.js, All custom script and plugin activation script in this file.
                 smartSpeed: 500
             },
             480: {
-                items: 2
+                items: 2,
+                autoplay: true,
+                smartSpeed: 500
             },
             768: {
-                items: 2
+                items: 2,
+                autoplay: true,
+                smartSpeed: 500
             },
             992: {
-                items: 3
+                items: 3,
+                autoplay: true,
+                smartSpeed: 500
             },
             1200: {
-                items: 5
+                items: 5,
+                autoplay: true,
+                smartSpeed: 500
             }
         }
     })
@@ -170,16 +178,24 @@ NOTE: main.js, All custom script and plugin activation script in this file.
                 smartSpeed: 500
             },
             480: {
-                items: 1
+                items: 1,
+                autoplay: true,
+                smartSpeed: 500
             },
             768: {
-                items: 1
+                items: 1,
+                autoplay: true,
+                smartSpeed: 500
             },
             992: {
-                items: 1
+                items: 1,
+                autoplay: true,
+                smartSpeed: 500
             },
             1200: {
-                items: 1
+                items: 1,
+                autoplay: true,
+                smartSpeed: 500
             }
         }
     })

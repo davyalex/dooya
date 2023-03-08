@@ -22,6 +22,7 @@ class Category extends Model
         'slug',
         'title',
         'description',
+        'position',
         'user_id',
         'created_at',
         'updated_at',

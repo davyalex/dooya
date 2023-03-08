@@ -23,16 +23,29 @@ class SiteController extends Controller
     public function index()
     {
         //
-        $pack = Produit::with(['category_pack', 'media'])
-            ->where('type_produit', 'pack')
-            ->orderBy('created_at', 'desc')
+        // $pack = Produit::with(['category_pack', 'media'])
+        //     ->where('type_produit', 'pack')
+        //     ->orderBy('created_at', 'desc')
+        //     ->get();
+
+        $pack = CategoryPack::with([
+            'produits'
+            => function ($q) {
+
+                $q->with('media');
+            }
+
+        ])->has('produits')
+            ->orderBy('position', 'asc')
             ->get();
+
+        // dd($pack->toArray());
 
         $section = Section::with('produits')->get();
 
-        $slider = Slider::with('media')->orderBy('created_at','desc')->get();
-            
-        return view('site.pages.accueil', compact(['pack', 'section','slider']));
+        $slider = Slider::with('media')->orderBy('created_at', 'desc')->get();
+
+        return view('site.pages.accueil', compact(['pack', 'section', 'slider']));
     }
 
 
@@ -99,10 +112,10 @@ class SiteController extends Controller
 
         if ($search) {
             $produit = Produit::with(['category', 'media', 'sous_category', 'sections', 'commandes'])
-                ->where('title', 'Like',"%{$search}%")
+                ->where('title', 'Like', "%{$search}%")
                 ->orderBy('created_at', 'desc')->paginate(50);
-                return view('site.pages.shop',compact('produit'));
-        }else{
+            return view('site.pages.shop', compact('produit'));
+        } else {
             return redirect('/boutique');
         }
     }
@@ -165,7 +178,7 @@ class SiteController extends Controller
                 ->when($pack_code, function ($q) use ($req_pack) {
                     return $q->where('category_pack_id', $req_pack['id']);
                 })->first();
-        // dd( $produit);
+            // dd( $produit);
 
             $produit_related = Produit::with(['category_pack', 'media'])
                 ->whereNull('category_id')
