@@ -143,24 +143,16 @@ NOTE: main.js, All custom script and plugin activation script in this file.
                 smartSpeed: 500
             },
             480: {
-                items: 2,
-                autoplay: true,
-                smartSpeed: 500
+                items: 2
             },
             768: {
-                items: 2,
-                autoplay: true,
-                smartSpeed: 500
+                items: 2
             },
             992: {
-                items: 3,
-                autoplay: true,
-                smartSpeed: 500
+                items: 3
             },
             1200: {
-                items: 5,
-                autoplay: true,
-                smartSpeed: 500
+                items: 5
             }
         }
     })
@@ -178,24 +170,16 @@ NOTE: main.js, All custom script and plugin activation script in this file.
                 smartSpeed: 500
             },
             480: {
-                items: 1,
-                autoplay: true,
-                smartSpeed: 500
+                items: 1
             },
             768: {
-                items: 1,
-                autoplay: true,
-                smartSpeed: 500
+                items: 1
             },
             992: {
-                items: 1,
-                autoplay: true,
-                smartSpeed: 500
+                items: 1
             },
             1200: {
-                items: 1,
-                autoplay: true,
-                smartSpeed: 500
+                items: 1
             }
         }
     })

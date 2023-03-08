@@ -113,7 +113,7 @@ ul {
 .second-hot-deal .post-title h2:before,
 .new-pro-two .post-title h2:before,
 .hot-deal-three .post-title h2:before {
-    content: "";
+    content: "ïŠ«";
     vertical-align: middle;
 }
 
@@ -857,7 +857,7 @@ span.total-pro {
 }
 
 .vertical-menu > span::after {
-    content: "";
+    content: "ïˆŽ";
     font-family: "Ionicons";
     font-size: 27px;
     font-weight: normal;
@@ -1172,7 +1172,7 @@ li.megamenu-img a {
 .second-hot-deal-active .owl-nav div,
 .new-pro-two-active .owl-nav div {
     right: 55px;
-    top: -70px;
+    top: -45px;
 }
 
 .hot-deal-active .owl-nav div.owl-next,
@@ -3846,7 +3846,7 @@ p.checkout-coupon input[type="submit"] {
 
 .payment-accordion h3 a:before,
 .payment-accordion h3.open a:after {
-    content: "Ã¯Ââ€¢";
+    content: "ÃƒÂ¯Ã‚ÂÃ¢â‚¬Â¢";
     display: inline-block;
     font-family: fontawesome;
     font-size: 20px;
