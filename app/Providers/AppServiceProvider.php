@@ -45,8 +45,9 @@ class AppServiceProvider extends ServiceProvider
         =>fn($q)=>$q->orderBy('updated_at','desc')
         ,'produits'])->orderBy('position','asc')->get();
        
-        $section = Section::with('produits')->orderBy('title','asc')->get();
-       
+        $section = Section::with(['produits','publicites'=>fn($q)=>$q->with(['section','media'])])
+        ->orderBy('position','asc')->get();
+               
         $livraison = Livraison::with('commandes')
         ->whereNull('parent_lieu')
         ->orderBy('lieu', 'asc')->get();

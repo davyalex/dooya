@@ -178,6 +178,13 @@
           </li>
         </ul>
       </li><!-- End category Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('section') }}">
+          <i class="bi bi-grid-fill"></i>
+          <span>Sections</span>
+        </a>
+      </li><!-- End section Page Nav -->
     
      {{-- produit --}}
      <li class="nav-item">
@@ -185,11 +192,11 @@
         <i class="bi bi-cart-plus"></i><span>Produits</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="produit-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
+        {{-- <li>
           <a href="{{ route('section') }}">
             <i class="bi bi-circle"></i><span>Section</span>
           </a>
-        </li>
+        </li> --}}
         <li>
           <a href="{{ route('produit') }}">
             <i class="bi bi-circle"></i><span>Produit</span>
@@ -285,7 +292,7 @@
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="{{ route('publicite.index') }}">
                   <i class="bi bi-circle"></i><span>Publicité</span>
                 </a>
               </li>

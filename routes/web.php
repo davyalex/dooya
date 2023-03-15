@@ -15,6 +15,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LivraisonController;
+use App\Http\Controllers\PubliciteController;
 use App\Http\Controllers\CategoryPackController;
 use App\Http\Controllers\SousCategoryController;
 
@@ -157,6 +158,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::get('edit/{id}', 'edit')->name('slider.edit');
         Route::post('update/{id}', 'update')->name('slider.update');
         Route::post('destroy/{id}', 'destroy')->name('slider.delete');
+    });
+
+       //publicité
+       route::controller(PubliciteController::class)->prefix('publicite')->group(function(){
+        route::get('index','index')->name('publicite.index');
+        route::post('store','store')->name('publicite.store');
+        Route::get('edit/{id}', 'edit')->name('publicite.edit');
+        Route::post('update/{id}', 'update')->name('publicite.update');
+        Route::post('destroy/{id}', 'destroy')->name('publicite.delete');
     });
 });
 

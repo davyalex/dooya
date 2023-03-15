@@ -25,10 +25,21 @@
                      <!-- Vertical Form -->
               <form class="row g-3 needs-validation" method="post" action="{{ route('section.store') }}" novalidate>
                 @csrf
+
+                <div class="col-12">
+                  <label class="form-label">Type de la section</label>
+                    <select name="type" class="form-select" aria-label="Default select example" required>
+                      <option disabled selected></option>
+                      <option value="produit">Produit</option>
+                      <option value="publicite">Publicité</option>
+                    </select>
+                    <div class="invalid-feedback">Veuillez remplir ce champs</div>
+                   
+                </div>
                 <div class="col-12">
                   <label for="inputNanme4" class="form-label">Title</label>
                   <input type="text" name="title" class="form-control @error('title') is-invalid  @enderror" id="inputNanme4" required>
-                  <div class="invalid-feedback">Veuillez entrer une catégorie</div>
+                  <div class="invalid-feedback">Veuillez remplir ce champs</div>
 
                   @error('title')
                   <p class="text-danger">{{ $message }}</p>
@@ -51,6 +62,7 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
+                  <th scope="col">Type</th>
                   <th scope="col">Title</th>
                   <th scope="col">Nombre produits</th>
                   <th scope="col">Action</th>
@@ -60,12 +72,19 @@
                 @foreach ($section as $key =>$item)
                 <tr>
                   <th scope="row">{{ ++$key }}</th>
+                  <td>{{ $item['type'] }}</td>
                   <td>{{ $item['title'] }}</td>
-                  <td>{{ $item->produits->count() }}</td>
+                  <td>@if ($item['type']=='produit')
+                    {{ $item->produits->count() }}
+                    @else
+                    <span>Banniere pub</span>
+                  @endif</td>
                 
                   <td>
                    <div class="d-flex">
-                    <a href="/post/section?section={{ $item['slug'] }}"  role="button" class="btn btn-warning rounded-circle"><i class="bi bi-eye"></i></a>
+                    @if ($item['type']=='produit')
+                    <a href="/boutique?section={{ $item['code'] }}"  role="button" class="btn btn-warning rounded-circle"><i class="bi bi-eye"></i></a>
+                    @endif
 
                     <a href="{{ route('section.edit',$item['slug']) }}" role="button" data-id = {{ $item['slug'] }} data-bs-toggle="modal" data-bs-target="#basicModalEdit{{ $item['slug'] }}" class="btn btn-success rounded-circle mx-2 "><i class="bi bi-pencil"></i></a>
                     
@@ -91,6 +110,16 @@
               <form class="row g-3" method="post" action="{{ route('section.update',$item['slug']) }}">
                 @csrf
                 <div class="col-12">
+                  <label class="form-label">Type de la section</label>
+                    <select name="type" class="form-select" aria-label="Default select example" required>
+                      <option disabled selected></option>
+                      <option value="produit" {{ 'produit'==$item['type'] ?'selected': '' }}>Produit</option>
+                      <option value="publicite" {{ 'publicite'==$item['type'] ?'selected': '' }}>Publicité</option>
+                    </select>
+                    <div class="invalid-feedback">Veuillez remplir ce champs</div>
+                   
+                </div>
+                <div class="col-12">
                   <label for="inputNanme4" class="form-label">Title</label>
                   <input type="text" value="{{ $item['title'] }}" name="title" class="form-control @error('title') is-invalid  @enderror" id="inputNanme4">
                   @error('title')
@@ -98,6 +127,14 @@
                 @enderror
                 
                 </div>
+                <div class="form-group">
+                  <label for="position">Position</label>
+                  <select class="form-control" name="position" id="">
+                      @for ($i = 1; $i <= count($section); $i++)   
+                      <option value = "{{ $i}}" {{ $item['position'] == $i ? 'selected' : '' }} >{{ $i }}</option>
+                      @endfor
+                    </select>
+                  </div>
                 <div class="text-center mt-2">
                   <button type="submit" class="btn btn-primary">Valider</button>
                 </div>

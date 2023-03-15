@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -26,9 +27,11 @@ class Section extends Model
 
     protected $fillable = [
         'code',
+        'type',
         'slug',
         'title',
         'description',
+        'position',
         'user_id',
         'created_at',
         'updated_at',
@@ -41,6 +44,12 @@ class Section extends Model
         return $this->belongsToMany(Produit::class, 'produit_section', 'section_id', 'produit_id')
             // ->withPivot('quantite', 'prix_unitaire')
             ->withTimestamps();
+    }
+
+
+    public function publicites(): HasMany
+    {
+        return $this->hasMany(Publicite::class);
     }
     
 

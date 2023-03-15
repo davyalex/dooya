@@ -17,7 +17,9 @@ class SectionController extends Controller
     public function index()
     {
         //
-        $section = Section::with('produits')->get();
+        $section = Section::with(['produits','publicites'=>fn($q)=>$q->with(['section','media'])])
+        ->orderBy('position','asc')->get();
+        
         return view('admin.pages.produit.section', compact('section'));
     }
 
@@ -43,11 +45,17 @@ class SectionController extends Controller
 
         $request->validate([
             'title' => 'required',
+            'type' => 'required',
+
         ]);
+        $position = Section::get()->count();
         $code = Str::random(10);
         $Section = Section::firstOrCreate([
-            'title' => $request->title,
             'code' => $code ,
+            'title' => $request->title,
+            'type' => $request->type,
+            'position' => $position + 1,
+
         ]);
         
         Alert::toast('enregistré avec success', 'success');
@@ -92,10 +100,25 @@ class SectionController extends Controller
         //
         $request->validate([
             'title' => 'required',
+            'type' => 'required',
+
         ]);
+
+      
+
+        $position = Section::whereSlug($slug)->first();
+        $position_actuelle =  $position['position']; //position de la section entrant avant modification
+
+        $position_select = Section::wherePosition($request['position'])->first();
 
         $Section_update = tap(Section::whereSlug($slug))->update([
             'title' => $request->title,
+            'type' => $request->type,
+            'position' => $request->position,
+        ]);
+
+        $SectionPack_update2 = tap(Section::whereId($position_select['id']))->update([
+            'position' => $position_actuelle,
         ]);
 
         Alert::toast('modifié avec success', 'success');

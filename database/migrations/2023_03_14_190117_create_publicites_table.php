@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sections', function (Blueprint $table) {
+        Schema::create('publicites', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique()->nullable();
             $table->string('title')->nullable();
-            $table->string('type')->nullable();
-            $table->string('slug')->nullable();
-            $table->string('description')->nullable();
-            $table->integer('position')->nullable();
+            $table->foreignId('section_id')
+            ->nullable()
+            ->constrained('sections')
+            ->onUpdate('cascade')
+            ->onDelete('set null');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sections');
+        Schema::dropIfExists('publicites');
     }
 };

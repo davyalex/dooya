@@ -1466,7 +1466,7 @@ li.megamenu-img a {
 .col-img img{
      transition: all 300ms ease-in 0s;
      transform: scale(1);
-     width:95%;
+     width:100%;
      /* margin: 3px; */
 }
 .col-img:hover img {

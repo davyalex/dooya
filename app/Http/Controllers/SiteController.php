@@ -41,8 +41,11 @@ class SiteController extends Controller
 
         // dd($pack->toArray());
 
-        $section = Section::with('produits')->get();
-
+        $section = Section::with(['produits','publicites'=>fn($q)=>$q->with('media')])
+        ->orderBy('position','asc')->get();
+        
+    
+        // dd( $section->toArray());
         $slider = Slider::with('media')->orderBy('created_at', 'desc')->get();
 
         return view('site.pages.accueil', compact(['pack', 'section', 'slider']));
