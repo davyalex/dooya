@@ -83,7 +83,7 @@
                             <div class="row">
                                 <!-- Single Product Start -->
                                 @foreach ($produit as $item )
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6">
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6" style="padding-left:0; padding-right:0;">
                                     <div class="single-product">
                                         <!-- Product Image Start -->
                                         <div class="pro-img">

@@ -41,7 +41,7 @@
                   <input type="text" name="title" class="form-control" id="inputNanme4">
                 </div>
                 <div class="col-12">
-                    <label for="inputNumber" class="form-label">Image du publicite <br> <span> Taille image(L:899px / h:409px)</span></label>
+                    <label for="inputNumber" class="form-label">Image du publicite <br> <span> Taille image(L:1920px / h:409px)</span></label>
                       <input class="form-control" name="image" type="file" id="formFile" required>
                       <div class="invalid-feedback">Veuillez ajouter une image</div>
                   </div>
@@ -63,6 +63,7 @@
                   <th scope="col">#</th>
                   <th scope="col">image</th>
                   <th scope="col">Title</th>
+                  <th scope="col">Section</th>
                   <th scope="col">date</th>
                   <th scope="col">Action</th>
                 </tr>
@@ -79,6 +80,8 @@
                     class=""
                     /></td>
                   <td>{{ $item['title'] }}</td>
+                  <td>{{ $item['section']['title'] }}</td>
+
                   <td> {{ \Carbon\Carbon::parse($item['created_at'])->diffForHumans() }}</td>
 
                   <td>

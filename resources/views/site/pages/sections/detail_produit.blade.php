@@ -268,7 +268,7 @@
             <!-- Product Image Start -->
             <div class="pro-img">
                 <a href="/detail?produit={{ $item['code'] }}">
-                    <img class="primary-img" src="{{ asset($item->getFirstMediaUrl('image')) }}" width="100%" height="200px" style=" object-fit:cover" alt="single-product">
+                    <img class="primary-img" src="{{ asset($item->getFirstMediaUrl('image')) }}" width="100%" height="200px" style=" object-fit:contain" alt="single-product">
                 </a>
             </div>
             <!-- Product Image End -->

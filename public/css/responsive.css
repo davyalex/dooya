@@ -112,6 +112,10 @@
     .title-box {
           min-height: 338px;
         }
+        .voirPlus{
+            position: absolute;
+                    top:-48px;
+            }
             .right-sider-banner {
         display: -moz-flex;
         display: -ms-flex;
@@ -217,6 +221,10 @@ display: none;
     .breadcrumb-area{
           margin-top: 0;
         }
+        .voirPlus{
+            position: absolute;
+                    top:-48px;
+            }
     .logo {
         text-align: left;
     }
@@ -307,6 +315,10 @@ display: none;
       padding-left: 15px;
       padding-right: 16px;
     }
+    .voirPlus{
+        position: absolute;
+                top:-48px;
+        }
     .cart-box {
         position:absolute;
         top:-100px;
@@ -643,6 +655,12 @@ display: none;
 
     }  
 
+    .voirPlus{
+position: absolute;
+        top:-48px;
+}
+
+
     .primary-img{
         width:100%;
         /* height:100px */
@@ -663,6 +681,10 @@ display: none;
     .pro-actions{
         display:none;
     }
+    .voirPlus{
+        position: absolute;
+                top:-48px;
+        }
     .cart-box {
         position:absolute;
         top:-100px;
@@ -940,6 +962,10 @@ display: none;
         top:20px;
 
     }
+    .voirPlus{
+        position: absolute;
+                top:-48px;
+        }
 
     .pro-actions{
         display:none;
@@ -956,6 +982,11 @@ display: none;
         top:20px;
 
     }
+
+    .voirPlus{
+        position: absolute;
+                top:-48px;
+        }
 
     .pro-actions{
         display:none;

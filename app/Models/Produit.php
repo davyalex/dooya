@@ -97,4 +97,6 @@ class Produit extends Model implements HasMedia
             // ->withPivot('quantite', 'prix_unitaire')
             ->withTimestamps();
     }
+
+    
 }

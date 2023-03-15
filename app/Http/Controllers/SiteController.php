@@ -40,8 +40,11 @@ class SiteController extends Controller
             ->get();
 
         // dd($pack->toArray());
-
-        $section = Section::with(['produits','publicites'=>fn($q)=>$q->with('media')])
+            $sectionName = Section::whereTitle('Decouvrez')->first();
+            // dd( $sectionName);
+        $section = Section::with([
+        'produits'
+        ,'publicites'=>fn($q)=>$q->with('media')])
         ->orderBy('position','asc')->get();
         
     
@@ -160,6 +163,8 @@ class SiteController extends Controller
                 ->when($produit_code, function ($q) use ($produit_code) {
                     return $q->whereCode($produit_code);
                 })->first();
+
+                
 
 
             //produit en relation

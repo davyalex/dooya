@@ -50,9 +50,11 @@ class SectionController extends Controller
         ]);
         $position = Section::get()->count();
         $code = Str::random(10);
+        $title = ucfirst($request->title);
+
         $Section = Section::firstOrCreate([
             'code' => $code ,
-            'title' => $request->title,
+            'title' => $title,
             'type' => $request->type,
             'position' => $position + 1,
 
@@ -104,7 +106,7 @@ class SectionController extends Controller
 
         ]);
 
-      
+        $title = ucfirst($request->title);
 
         $position = Section::whereSlug($slug)->first();
         $position_actuelle =  $position['position']; //position de la section entrant avant modification
@@ -112,7 +114,7 @@ class SectionController extends Controller
         $position_select = Section::wherePosition($request['position'])->first();
 
         $Section_update = tap(Section::whereSlug($slug))->update([
-            'title' => $request->title,
+            'title' => $title,
             'type' => $request->type,
             'position' => $request->position,
         ]);
