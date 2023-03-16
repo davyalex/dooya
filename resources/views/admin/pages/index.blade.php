@@ -9,8 +9,8 @@
       <div class="col-lg-12">
         <div class="row">
 
-          <!-- Sales Card -->
-          <div class="col-xxl-6 col-md-6">
+          <!-- Nombre de commande -->
+          <div class="col-xxl-3 col-md-3">
             <div class="card info-card sales-card">
 
               <div class="filter">
@@ -47,9 +47,9 @@
               </div>
 
             </div>
-          </div><!-- End Sales Card -->
+          </div><!-- End Nombre de commande -->
 
-          <!-- Revenue Card -->
+          <!-- Nombre de produit -->
           <div class="col-xxl-3 col-md-3">
             <div class="card info-card revenue-card">
 
@@ -82,9 +82,9 @@
               </div>
 
             </div>
-          </div><!-- End Revenue Card -->
+          </div><!-- End Nombre de produit -->
 
-          <!-- Customers Card -->
+          <!-- Nombre de client -->
           <div class="col-xxl-3 col-md-3">
 
             <div class="card info-card customers-card">
@@ -119,8 +119,45 @@
               </div>
             </div>
 
-          </div><!-- End Customers Card -->
+          </div><!-- End Nombre de client -->
 
+ <!-- Nombre de visiteur -->
+ <div class="col-xxl-3 col-md-3">
+  <div class="card info-card sales-card">
+
+    <div class="filter">
+      <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+        <li class="dropdown-header text-start">
+          <h6>Filtrer</h6>
+        </li>
+
+        <li><a class="dropdown-item" href="/admin?visiteur=jour">Jour</a></li>
+        <li><a class="dropdown-item" href="/admin?visiteur=mois">Mois</a></li>
+        <li><a class="dropdown-item" href="/admin?visiteur=annee">Année</a></li>
+      </ul>
+    </div>
+
+    <div class="card-body">
+      <h5 class="card-title">Visiteurs <span>
+        @if (request('visiteur'))
+            
+        | {{ request('visiteur') }}</span>
+        @endif
+      </h5>
+      <div class="d-flex align-items-center">
+        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+          <i class="bi bi-people"></i> <i class="bi bi-globe"></i>
+                </div>
+        <div class="ps-3">
+          <h6>{{ $visiteur }}</h6>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- End Nombre de visiteur -->
+          
           <div class="col-xxl-4 col-md-12">
                <!-- News & Updates Traffic -->
               <div class="card">

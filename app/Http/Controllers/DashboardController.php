@@ -7,8 +7,10 @@ use App\Models\User;
 use App\Models\Produit;
 use App\Models\Commande;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
@@ -24,6 +26,30 @@ class DashboardController extends Controller
         if (Auth::check()) {
 
             $nombre_client = User::where('role', 'client')->get()->count();
+
+            //nombre de visiteur
+
+            $filter_visiteur = request('vente');
+
+            $visiteur = DB::table('sessions')
+            ->when( $filter_visiteur=='annee',
+                fn($q)=>$q->whereYear('created_at', Carbon::now()->year)
+            )
+            ->when(
+                $filter_visiteur == 'mois',
+                fn ($q)
+                => $q->whereMonth('created_at', Carbon::now()->month),
+            )
+
+            ->when(
+                $filter_visiteur == 'jour',
+                fn ($q)
+                => $q->whereDay('created_at', Carbon::now()->day)
+            )
+
+
+
+            ->get()->count();
 
             //commande par temps
             $filter = request('vente');
@@ -67,6 +93,7 @@ class DashboardController extends Controller
                     => $q->whereDay('created_at', Carbon::now()->day)
                         ->whereStatus('livre')
                 )
+                ->whereStatus('livre')
                 ->get()->count();
 
 
@@ -91,32 +118,29 @@ class DashboardController extends Controller
                     => $q->whereDay('created_at', Carbon::now()->day)
                         ->whereStatus('attente')
                 )
+                ->whereStatus('attente')
                 ->get()->count();
 
 
             //nombre de produits
             $nombre_produit = Produit::get()->count();
 
-                    //liste des commandes en attente
-                    $commande = Commande::with(['produits', 'livraison', 'users'])
-                    ->whereStatus('attente')
-                    ->whereDay('created_at', Carbon::now()->day)
-                    ->orderBy('created_at', 'desc')->get();
+            //liste des commandes en attente
+            $commande = Commande::with(['produits', 'livraison', 'users'])
+                ->whereStatus('attente')
+                ->whereDay('created_at', Carbon::now()->day)
+                ->orderBy('created_at', 'desc')->get();
 
-            // dd(
-            //     $nombre_client,
-            //     $nombre_commande_mois,
-            //     $nombre_commande_jour,
-            //     $nombre_commande_annee
 
-            // );
             return view('admin.pages.index', compact([
                 'nombre_commande_livre',
                 'nombre_commande_attente',
                 'nombre_commande',
                 'nombre_produit',
                 'nombre_client',
-                'commande'
+                'commande',
+                'visiteur'
+
             ]));
         } else {
             return redirect('admin/login');
