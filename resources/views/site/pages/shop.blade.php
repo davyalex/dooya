@@ -84,11 +84,11 @@
                                 <!-- Single Product Start -->
                                 @foreach ($produit as $item )
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6" style="padding-left:0; padding-right:0;">
-                                    <div class="single-product">
+                                    <div class="single-product mx-1">
                                         <!-- Product Image Start -->
                                         <div class="pro-img">
                                             <a href="/detail?produit={{ $item['code'] }}">
-                                                <img class="primary-img" src="{{ asset($item->getFirstMediaUrl('image')) }}" width="100%" height="150px" style=" object-fit:contain" alt="single-product">
+                                                <img class="primary-img" src="{{ asset($item->getFirstMediaUrl('image')) }}" width="100%" height="200px" style=" object-fit:contain" alt="single-product">
                                             </a>
                                         </div>
                                         <!-- Product Image End -->

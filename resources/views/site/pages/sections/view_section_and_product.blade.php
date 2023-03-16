@@ -24,7 +24,7 @@
        
    <div class="container" style="background: #f28b00">
     <div class="row">
-        <div class=" col-lg-6 col-md-12   py-3" >
+        <div class=" col-lg-8 col-md-12   py-3" >
             <a href="/boutique?section={{ $item['code'] }}" class="" style=" color: #fff;
             font-size: 21px;
             font-weight: 500;
@@ -35,7 +35,7 @@
             </a>
                
         </div>
-        <div class="col-lg-6 col-md-12  ">
+        <div class="col-lg-4 col-md-12  ">
             <a href="/boutique?section={{ $item['code'] }}"  style="color: white; float:right; margin-right:100px;line-height:3">
                 <span class="voirPlus text-dark" style=" font-weight: 600;"><i class="fa fa-plus"></i> Voir Tout</span>
             </a>
@@ -49,7 +49,7 @@
   @if ($item['title'] != 'Decouvrez')
   <div class="hot-deal-active owl-carousel">
     @foreach ( $item['produits'] as $item )
-    <div class="single-product">
+    <div class="single-product" style="border:1px solid rgb(6, 145, 59)">
         <!-- Product Image Start -->
         <div class="pro-img">
             <a href="/detail?produit={{ $item['code'] }}">
@@ -58,7 +58,7 @@
         </div>
         <!-- Product Image End -->
         <!-- Product Content Start -->
-        <div class="pro-content">
+        <div class="pro-content" >
             <div class="pro-info text-center">
                 <h4><a href="/detail?produit={{ $item['code'] }}">{{ $item['title'] }}</a></h4>
                     @if ($item['prix_promo'] >0)
@@ -91,7 +91,7 @@
     <div class="row">
                 @foreach ( $item['produits']->take(16) as $item )
                 <div class="col-md-6 col-lg-3 col-sm-6 col-6" style="padding-left:0; padding-right:0;">
-                    <div class="single-product">
+                    <div class="single-product mx-1" style="border:1px solid rgb(236, 131, 19); border-radius:20px">
                         <!-- Product Image Start -->
                         <div class="pro-img">
                             <a href="/detail?produit={{ $item['code'] }}">
@@ -144,7 +144,7 @@
 
         $('.banner').owlCarousel({
         loop: true,
-        nav: true,
+        // nav: true,
         autoplay: true,
         dots: false,
         navText: ["<i class='lnr lnr-arrow-left'></i>", "<i class='lnr lnr-arrow-right'></i>"],
